@@ -1,24 +1,28 @@
-import React from 'react';
+import React,{useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {Layout} from 'antd'
+import 'antd/dist/antd.css'
 
+import LeftNav from '../src/layout/leftNav'
+
+let {Header, Footer, Sider, Content} = Layout
 function App() {
+  let [isOpenNavStatus, setIsOpenNavStatus] = useState(true)
+  let isOpenNav = (val: boolean)=>{
+    setIsOpenNavStatus(val)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{height: '100vh'}}>
+      <Layout style={{height: '100%'}}>
+      <Header style={{color: '#fff'}}>还没想好名字</Header>
+      <Layout>
+        <Sider collapsible={true}>
+          <LeftNav />
+        </Sider>
+        <Content>Content</Content>
+      </Layout>
+    </Layout>
     </div>
   );
 }
