@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { Menu, Button } from 'antd';
+import {useNavigate} from 'react-router-dom'
 import {
     AppstoreOutlined,
     MenuUnfoldOutlined,
@@ -10,22 +11,20 @@ import {
     MailOutlined,
   } from '@ant-design/icons';
 let { SubMenu } = Menu;
-class leftNav extends Component {
-
-    state = {
-        collapsed: false,
-      };
+export default function LeftNav (props: Object) {
+  let navigate = useNavigate()
+  let [collapsed, setCollapsed] = useState(false)
+    // state = {
+    //     collapsed: false,
+    //   };
+    useEffect(()=>{
+      console.log('=====>propskkk', window.location)
+    })
+     let toggleCollapsed = () => {
+      setCollapsed(!collapsed)
+      }
     
-      toggleCollapsed = () => {
-        this.setState({
-          collapsed: !this.state.collapsed,
-        });
-        // this.props.isOpenNavFn(this.state.collapsed)
-        console.log('=====>props', this.props);
-      };
-    
 
-    render() {
         return (
             <div style={{ width: '100%' }}>
             {/* <Button type="primary" onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
@@ -36,9 +35,9 @@ class leftNav extends Component {
               defaultOpenKeys={['sub1']}
               mode="inline"
               theme="dark"
-              inlineCollapsed={this.state.collapsed}
+              inlineCollapsed={collapsed}
             >
-              <Menu.Item key="1" icon={<PieChartOutlined />}>
+              <Menu.Item key="1" icon={<PieChartOutlined />} onClick={()=>navigate('/test2')}>
                 Option 1
               </Menu.Item>
               <Menu.Item key="2" icon={<DesktopOutlined />}>
@@ -64,8 +63,7 @@ class leftNav extends Component {
             </Menu>
           </div>
         );
-    }
+
 }
 
 
-export default leftNav
