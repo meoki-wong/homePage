@@ -37,10 +37,10 @@ export default function LeftNav (props: Object) {
               theme="dark"
               inlineCollapsed={collapsed}
             >
-              <Menu.Item key="1" icon={<PieChartOutlined />} onClick={()=>navigate('/test2')}>
+              <Menu.Item key="1" icon={<PieChartOutlined />} onClick={()=>navigate('/home/test2')}>
                 Option 1
               </Menu.Item>
-              <Menu.Item key="2" icon={<DesktopOutlined />}>
+              <Menu.Item key="2" icon={<DesktopOutlined />} onClick={()=>navigate('/home/details')}>
                 Option 2
               </Menu.Item>
               <Menu.Item key="3" icon={<ContainerOutlined />}>
