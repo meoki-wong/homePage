@@ -1,11 +1,11 @@
-import React,{useState, useEffect} from 'react';
+import React from 'react';
 import homeStyl from './home.module.scss'
 import {Layout} from 'antd'
 import 'antd/dist/antd.css'
 import LeftNav from '../src/layout/leftNav'
 import {Outlet} from 'react-router-dom'
 import BreadCrumb from './utils/breadcrumb'
-let {Header, Footer, Sider, Content} = Layout
+let {Header, Sider, Content} = Layout
 function App(props: any) {
 //   useEffect(()=>{
 //   })

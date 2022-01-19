@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes, useRoutes } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
 // import WrapComps from "./NavigateRouter";
 import routeList from "./routeList";
 

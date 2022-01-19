@@ -1,10 +1,8 @@
-import React, { Component, useState, useEffect } from 'react';
-import { Menu, Button } from 'antd';
+import React, { useEffect } from 'react';
+import { Menu } from 'antd';
 import {useNavigate} from 'react-router-dom'
 import {
     AppstoreOutlined,
-    MenuUnfoldOutlined,
-    MenuFoldOutlined,
     PieChartOutlined,
     DesktopOutlined,
     ContainerOutlined,
@@ -13,16 +11,16 @@ import {
 let { SubMenu } = Menu;
 export default function LeftNav (props: Object) {
   let navigate = useNavigate()
-  let [collapsed, setCollapsed] = useState(false)
+  // let [collapsed, setCollapsed] = useState(false)
     // state = {
     //     collapsed: false,
     //   };
     useEffect(()=>{
       console.log('=====>propskkk', window.location)
     })
-     let toggleCollapsed = () => {
-      setCollapsed(!collapsed)
-      }
+    //  let toggleCollapsed = () => {
+    //   setCollapsed(!collapsed)
+    //   }
     
 
         return (
@@ -35,7 +33,7 @@ export default function LeftNav (props: Object) {
               defaultOpenKeys={['sub1']}
               mode="inline"
               theme="dark"
-              inlineCollapsed={collapsed}
+              inlineCollapsed={false}
             >
               <Menu.Item key="1" icon={<PieChartOutlined />} onClick={()=>navigate('/home/test2')}>
                 Option 1
