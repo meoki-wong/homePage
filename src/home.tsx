@@ -19,7 +19,6 @@ function App(props: any) {
           <LeftNav/>
         </Sider>
         <Content>
-          {/* <ReactRoute /> */}
           <div className={homeStyl['bread-crumb']}>
             <BreadCrumb />
           </div>

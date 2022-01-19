@@ -1,5 +1,5 @@
 import React, {lazy, ReactElement ,Suspense} from 'react'
-import { RouteObject } from 'react-router-dom' // hook导入
+// import { RouteObject } from 'react-router-dom' // hook导入
 import Loading from '../view/components/Loading'
 // import Test from "../test"
 // import Test2 from '../test2'
@@ -17,27 +17,27 @@ const lazyComponent = (Element: ReactElement)=>{
         </Suspense>
     )
 }
-const routeList: RouteObject[] = [
+const routeList: any[] = [
     
     {
+        name: 'kk',
         path: '/home',
         element: <Home />,
         children: [
             {
+                name: '首页',
                 path: '/home/details',
                 index: true,
                 element: lazyComponent(<Test />)
             },
             {
+                name: '第二个首页',
                 path: '/home/test2',
                 element: lazyComponent(<Test2 />),
             },
         ]
     },
-    {
-        path: '/login',
-        element: lazyComponent(<Login />)
-    }
+    
 
 ]
 

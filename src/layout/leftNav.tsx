@@ -1,35 +1,73 @@
-import React, { useEffect } from 'react';
-import { Menu } from 'antd';
-import {useNavigate} from 'react-router-dom'
-import {
-    AppstoreOutlined,
-    PieChartOutlined,
-    DesktopOutlined,
-    ContainerOutlined,
-    MailOutlined,
-  } from '@ant-design/icons';
-let { SubMenu } = Menu;
-export default function LeftNav (props: Object) {
-  let navigate = useNavigate()
-  // let [collapsed, setCollapsed] = useState(false)
-    // state = {
-    //     collapsed: false,
-    //   };
-    useEffect(()=>{
-      console.log('=====>propskkk', window.location)
-    })
-    //  let toggleCollapsed = () => {
-    //   setCollapsed(!collapsed)
-    //   }
-    
+import React, { useEffect } from "react";
+import { Menu } from "antd";
+import { useNavigate, useParams } from "react-router-dom";
+import routeList from "../router/routeList";
 
-        return (
-            <div style={{ width: '100%' }}>
-            {/* <Button type="primary" onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
+import {
+  AppstoreOutlined,
+  PieChartOutlined,
+  DesktopOutlined,
+  ContainerOutlined,
+  MailOutlined,
+} from "@ant-design/icons";
+let { SubMenu } = Menu;
+export default function LeftNav(props: Object) {
+  let navigate = useNavigate();
+  console.log("=====>history", window.location);
+  // let [collapsed, setCollapsed] = useState(false)
+  // state = {
+  //     collapsed: false,
+  //   };
+  useEffect(() => {
+    console.log("=====>propskkk", window.location);
+  });
+  //  let toggleCollapsed = () => {
+  //   setCollapsed(!collapsed)
+  //   }
+
+  return (
+    <div style={{ width: "100%" }}>
+      {/* <Button type="primary" onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
               {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
             </Button> */}
-            <Menu
-              defaultSelectedKeys={['1']}
+      <Menu
+        defaultSelectedKeys={[window.location.pathname]}
+        defaultOpenKeys={[window.location.pathname]}
+        mode="inline"
+        theme="dark"
+        inlineCollapsed={false}
+      >
+        {routeList.map((item) => {
+          if (item.children) {
+            return (
+              <SubMenu
+                key={item.path}
+                icon={<MailOutlined />}
+                title={item.name}
+              >
+                {item.children.map((ite: any) => (
+                  <Menu.Item key={ite.path} onClick={() => navigate(ite.path)}>
+                    {ite.name}
+                  </Menu.Item>
+                ))}
+              </SubMenu>
+            );
+          } else {
+            return (
+              <Menu.Item
+                key={item.path}
+                icon={<PieChartOutlined />}
+                onClick={() => navigate(item.path)}
+              >
+                {item.name}
+              </Menu.Item>
+            );
+          }
+        })}
+      </Menu>
+
+      {/* <Menu
+              defaultSelectedKeys={[window.location.pathname]}
               defaultOpenKeys={['sub1']}
               mode="inline"
               theme="dark"
@@ -58,10 +96,7 @@ export default function LeftNav (props: Object) {
                   <Menu.Item key="12">Option 12</Menu.Item>
                 </SubMenu>
               </SubMenu>
-            </Menu>
-          </div>
-        );
-
+            </Menu> */}
+    </div>
+  );
 }
-
-

@@ -2,9 +2,11 @@ import React from "react";
 import { useRoutes } from "react-router-dom";
 // import WrapComps from "./NavigateRouter";
 import routeList from "./routeList";
+import publicRouterList from './publicRouterList'
+
 
 export default function ReactRouter(props: any) {
-  return useRoutes(routeList);
+  return useRoutes(routeList.concat(publicRouterList));
 
   // return (
   //     <BrowserRouter>

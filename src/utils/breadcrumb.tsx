@@ -21,7 +21,6 @@ export default function BreadCrumb(props: any){
   useEffect(()=>{
     let routePathArr = pathname.split('/')
     routePathArr.shift()
-
   },[pathname])
 
   return (
