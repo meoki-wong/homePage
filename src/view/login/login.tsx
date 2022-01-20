@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form, Input, Button, Checkbox } from 'antd';
-
+import loginStyl from './login.module.scss'
 export default function Demo() {
   const onFinish = (values :any) => {
     console.log('Success:', values);
@@ -11,7 +11,9 @@ export default function Demo() {
   };
 
   return (
-    <Form
+    <div className={loginStyl.container}>
+        <div className={loginStyl.formArea}>
+        <Form
       name="basic"
       labelCol={{
         span: 8,
@@ -27,11 +29,11 @@ export default function Demo() {
       autoComplete="off"
     >
       <Form.Item
-        label="Username"
+        label="用户名"
         name="username"
         rules={[
           {
-            required: true,
+            required: true, 
             message: 'Please input your username!',
           },
         ]}
@@ -40,7 +42,7 @@ export default function Demo() {
       </Form.Item>
 
       <Form.Item
-        label="Password"
+        label="密码"
         name="password"
         rules={[
           {
@@ -74,6 +76,9 @@ export default function Demo() {
         </Button>
       </Form.Item>
     </Form>
+        </div>
+    </div>
+    
   );
 };
 
