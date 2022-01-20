@@ -2,15 +2,14 @@ import React, {useState, useEffect} from 'react'
 import { Form, Input, Button, Checkbox } from 'antd';
 import loginStyl from './login.module.scss'
 import axios from 'axios';
+import { AnyARecord } from 'dns';
 export default function Login() {
   const onFinish = (values :any) => {
     console.log('Success:', values);
   };
 
   useEffect(()=>{
-      axios.get('/test').then(res=>{
-          console.log('====>res参数', res);
-      })
+      console.log('--->', checkBox);
   })
 
   const onFinishFailed = (errorInfo: any) => {
@@ -22,6 +21,24 @@ export default function Login() {
       message: 'Please input the content!',
     },
   ])
+  let [userName, setUserName] = useState(null)
+  let [password, setPassWord] = useState(null)
+  let [checkBox, setCheckBox] = useState(true)
+
+  let getUser = (e: any)=>{
+    setUserName(e.target.value)
+  }
+  let getPassword = (e: any)=>{
+      setPassWord(e.target.value)
+  }
+  
+  let login = ()=>{
+    axios.post('/login', {userName, password,checkBox}).then(res=>{
+    })
+  }
+  let onCheckRember=(e:any)=>{
+    setCheckBox(e.target.checked)
+  }
   return (
     <div className={loginStyl.container}>
         <div className={loginStyl.formArea}>
@@ -46,7 +63,7 @@ export default function Login() {
         name="username"
         rules={rules}
       >
-        <Input />
+        <Input onChange={(e)=>getUser(e)}/>
       </Form.Item>
 
       <Form.Item
@@ -54,7 +71,7 @@ export default function Login() {
         name="password"
         rules={rules}
       >
-        <Input.Password />
+        <Input.Password onChange={(e)=>getPassword(e)}/>
       </Form.Item>
 
       <Form.Item
@@ -65,7 +82,9 @@ export default function Login() {
           span: 16,
         }}
       >
-        <Checkbox>Remember me</Checkbox>
+        <Checkbox  
+        onChange={(e)=>onCheckRember(e)}
+        checked={checkBox}>记住我</Checkbox>
       </Form.Item>
 
       <Form.Item
@@ -74,8 +93,8 @@ export default function Login() {
           span: 16,
         }}
       >
-        <Button type="primary" htmlType="submit">
-          Submit
+        <Button type="primary" htmlType="submit" onClick={login}>
+          登录
         </Button>
       </Form.Item>
     </Form>

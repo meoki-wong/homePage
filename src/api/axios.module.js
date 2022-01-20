@@ -1,6 +1,8 @@
 import axios from 'axios'
 import React from 'react'
-axios.defaults.baseURL = 'http://127.0.0.1:10020'
+axios.defaults.baseURL =  process.env.NODE_ENV == 'development'? 
+                          'http://127.0.0.1:10020/api'
+                          :'http:// 39.105.153.195/api'
 
 
 // 请求拦截
