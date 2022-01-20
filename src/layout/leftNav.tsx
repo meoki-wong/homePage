@@ -32,7 +32,7 @@ export default function LeftNav(props: Object) {
             </Button> */}
       <Menu
         defaultSelectedKeys={[window.location.pathname]}
-        defaultOpenKeys={[window.location.pathname]}
+        defaultOpenKeys={[routeList[0].path]}
         mode="inline"
         theme="dark"
         inlineCollapsed={false}
