@@ -9,11 +9,13 @@
         right: 200px;
         top: 50%;
         transform: translate(0,-50%);
-        width: 400px;
+        width: 500px;
         height: 350px;
         // background-color: #eee;
         display: flex;
         justify-content: center;
         align-items: center;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+        background-color: rgba(0, 0, 0, 0.3);
     }   
 }
