@@ -1,21 +1,20 @@
 import React, {useState, useEffect} from 'react'
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox, message } from 'antd';
 import loginStyl from './login.module.scss'
 import axios from 'axios';
-import { AnyARecord } from 'dns';
 export default function Login() {
   const onFinish = (values :any) => {
     console.log('Success:', values);
   };
 
-  useEffect(()=>{
-      console.log('--->', checkBox);
-  })
+  // useEffect(()=>{
+  //     console.log('--->', checkBox);
+  // })
 
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
-  let [rules, serRules] = useState([
+  let [rules, setRules] = useState([
     {
       required: true, 
       message: 'Please input the content!',
@@ -33,7 +32,14 @@ export default function Login() {
   }
   
   let login = ()=>{
-    axios.post('/login', {userName, password,checkBox}).then(res=>{
+    axios.post('/login', {userName, password,checkBox}).then((res: any)=>{
+      if(res.data.code === 200){
+        let token = res.data.token
+        window.localStorage.setItem('token', token)
+        message.success('登录成功')
+      }
+      
+
     })
   }
   let onCheckRember=(e:any)=>{
@@ -78,13 +84,14 @@ export default function Login() {
         name="remember"
         valuePropName="checked"
         wrapperCol={{
-          offset: 8,
+          offset: 4,
           span: 16,
         }}
       >
         <Checkbox  
         onChange={(e)=>onCheckRember(e)}
-        checked={checkBox}>记住我</Checkbox>
+        checked={checkBox}
+        style={{color: '#fff'}}>记住我</Checkbox>
       </Form.Item>
 
       <Form.Item
