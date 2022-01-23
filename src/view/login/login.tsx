@@ -1,15 +1,27 @@
 import React, {useState, useEffect} from 'react'
 import { Form, Input, Button, Checkbox, message } from 'antd';
+import {useNavigate} from 'react-router-dom'
 import loginStyl from './login.module.scss'
 import axios from 'axios';
+import { setCookieFn } from '../../utils/setCookie'
 export default function Login() {
+
+  let navigate = useNavigate()
+
   const onFinish = (values :any) => {
-    console.log('Success:', values);
+    console.log('Success:', document.cookie);
   };
 
-  // useEffect(()=>{
-  //     console.log('--->', checkBox);
-  // })
+  useEffect(()=>{
+      // console.log('--->', `username="123"; expires=${new Date().toUTCString()}`);
+      // // document.cookie = `username="123"; expires=${new Date().toUTCString()}`
+      // var d = new Date();
+      // d.setTime(d.getTime());
+      // var expires = "expires="+d
+      // console.log('----->', d);
+      // document.cookie = 'cname' + "=" + 'cvalue' + "; " + expires;
+      setCookieFn({name: 'kk2', value: 123, time: 7})  // 测试记住我功能  存入cookie
+  },[])
 
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
@@ -37,6 +49,7 @@ export default function Login() {
         let token = res.data.token
         window.localStorage.setItem('token', token)
         message.success('登录成功')
+        navigate('/home')
       }
       
 
