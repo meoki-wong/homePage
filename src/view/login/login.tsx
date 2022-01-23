@@ -113,8 +113,14 @@ export default function Login() {
           span: 16,
         }}
       >
-        <Button type="primary" htmlType="submit" onClick={login}>
+        <Button type="primary"
+         htmlType="submit"
+        onClick={login}
+        style={{marginRight: '30px'}}>
           登录
+        </Button>
+        <Button type="primary" htmlType="submit" onClick={()=>navigate('/register')}>
+          注册
         </Button>
       </Form.Item>
     </Form>
