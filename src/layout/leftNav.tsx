@@ -13,7 +13,6 @@ import {
 let { SubMenu } = Menu;
 export default function LeftNav(props: Object) {
   let navigate = useNavigate();
-  console.log("=====>history", window.location);
   // let [collapsed, setCollapsed] = useState(false)
   // state = {
   //     collapsed: false,

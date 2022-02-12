@@ -3,7 +3,10 @@ import { Form, Input, Button, Checkbox, message } from 'antd';
 import {useNavigate} from 'react-router-dom'
 import loginStyl from './login.module.scss'
 import axios from 'axios';
-import { setCookieFn } from '../../utils/setCookie'
+// import { setCookieFn } from '../../utils/setCookie'
+// import {Base64} from 'js-base64'
+// import md5 from 'js-md5'
+import Cookies from 'js-cookie' 
 export default function Login() {
 
   let navigate = useNavigate()
@@ -20,7 +23,7 @@ export default function Login() {
       // var expires = "expires="+d
       // console.log('----->', d);
       // document.cookie = 'cname' + "=" + 'cvalue' + "; " + expires;
-      setCookieFn({name: 'kk2', value: 123, time: 7})  // 测试记住我功能  存入cookie
+      
   },[])
 
   const onFinishFailed = (errorInfo: any) => {
@@ -46,6 +49,17 @@ export default function Login() {
   let login = ()=>{
     axios.post('/login', {userName, password,checkBox}).then((res: any)=>{
       if(res.data.code === 200){
+        if(checkBox){
+          // setCookieFn({name: 'kk2', value: {
+          //   userName: 'admin',
+          //   password: '12345'
+          // }, time: 7})  // 测试记住我功能  存入cookie
+          Cookies.set('kk2', JSON.stringify({
+            userName: 'admin',
+            password: '12345'
+          }), {expires: 7})
+          window.localStorage.setItem('kk', '12') // localstroage存储记住我登录状态 进入后判断是否有该状态进行跳转
+        }
         let token = res.data.token
         window.localStorage.setItem('token', token)
         message.success('登录成功')
@@ -130,3 +144,14 @@ export default function Login() {
   );
 };
 
+
+
+
+/**
+ * 
+ * 生成特殊cookie  将cookie对应账号密码传入服务端
+ * 
+ * 服务端传递加密账号密码
+ * 
+ * 前端解密  创建登录
+ */
