@@ -2,15 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import {counter} from './store/test'
+import {Provider} from 'react-redux'
+import { createStore} from 'redux'
 import {BrowserRouter, HashRouter} from 'react-router-dom'
 import reportWebVitals from './reportWebVitals';
 import './api/axios.module'
 
 
+
+let store = createStore(counter)
+
 ReactDOM.render(
-  <BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter >
     <App/>
-  </BrowserRouter>,
+  </BrowserRouter>
+  </Provider>
+  ,
   document.getElementById('root')
 );
 

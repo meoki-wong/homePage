@@ -3,11 +3,12 @@ import { Form, Input, Button, Checkbox, message } from 'antd';
 import {useNavigate} from 'react-router-dom'
 import loginStyl from './login.module.scss'
 import axios from 'axios';
+
 // import { setCookieFn } from '../../utils/setCookie'
 // import {Base64} from 'js-base64'
 // import md5 from 'js-md5'
 import Cookies from 'js-cookie' 
-export default function Login() {
+function Login() {
 
   let navigate = useNavigate()
 
@@ -16,14 +17,17 @@ export default function Login() {
   };
 
   useEffect(()=>{
-      // console.log('--->', `username="123"; expires=${new Date().toUTCString()}`);
-      // // document.cookie = `username="123"; expires=${new Date().toUTCString()}`
-      // var d = new Date();
-      // d.setTime(d.getTime());
-      // var expires = "expires="+d
-      // console.log('----->', d);
-      // document.cookie = 'cname' + "=" + 'cvalue' + "; " + expires;
-      
+    if(window.localStorage.getItem('remember_pwd')){
+      let userInfo = JSON.parse(`${Cookies.get('kk2')}`) 
+        axios.post('/login', {...userInfo}).then(res=>{
+          console.log('res参数', res);
+          if(res.data.code == 200){
+            navigate('/home')
+          }
+        })
+       
+      // return <ReactRouter />
+  } 
   },[])
 
   const onFinishFailed = (errorInfo: any) => {
@@ -55,12 +59,12 @@ export default function Login() {
           //   password: '12345'
           // }, time: 7})  // 测试记住我功能  存入cookie
           Cookies.set('kk2', JSON.stringify({
-            userName: 'admin',
-            password: '12345'
+            userName: userName,
+            password: password
           }), {expires: 7})
-          window.localStorage.setItem('kk', '12') // localstroage存储记住我登录状态 进入后判断是否有该状态进行跳转
+          window.localStorage.setItem('remember_pwd', '1') // localstroage存储记住我登录状态 进入后判断是否有该状态进行跳转
         }
-        let token = res.data.token
+        let token = res.data.data.token
         window.localStorage.setItem('token', token)
         message.success('登录成功')
         navigate('/home')
@@ -145,6 +149,8 @@ export default function Login() {
 };
 
 
+
+export default Login
 
 
 /**
