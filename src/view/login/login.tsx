@@ -13,14 +13,12 @@ function Login() {
   let navigate = useNavigate()
 
   const onFinish = (values :any) => {
-    console.log('Success:', document.cookie);
   };
 
   useEffect(()=>{
     if(window.localStorage.getItem('remember_pwd')){
       let userInfo = JSON.parse(`${Cookies.get('kk2')}`) 
         axios.post('/login', {...userInfo}).then(res=>{
-          console.log('res参数', res);
           if(res.data.code == 200){
             navigate('/home')
           }
@@ -157,7 +155,7 @@ export default Login
  * 
  * 生成特殊cookie  将cookie对应账号密码传入服务端
  * 
- * 服务端传递加密账号密码
+ * 前端存储登录账号密码信息  cookie  并加密
  * 
  * 前端解密  创建登录
  */
