@@ -6,8 +6,7 @@ import Loading from '../view/components/Loading'
 import Home from '../home'
 
 const Login = lazy(()=>import('../view/login/login'))
-const Test = lazy(()=>import('../test'))
-const Test2 = lazy(()=>import('../test2'))
+const Test2 = lazy(()=>import('../view/test2'))
 
 
 const lazyComponent = (Element: ReactElement)=>{
@@ -26,12 +25,6 @@ const routeList: any[] = [
         children: [
             {
                 name: '首页',
-                path: '/home/details',
-                index: true,
-                element: lazyComponent(<Test />)
-            },
-            {
-                name: '第二个首页',
                 path: '/home/test2',
                 element: lazyComponent(<Test2 />),
             },

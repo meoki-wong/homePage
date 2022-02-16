@@ -1,9 +1,9 @@
-import axios from 'axios'
 import React from 'react'
+import axios from 'axios'
 import {message} from 'antd'
 import Nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
-import axiosRetry from 'axios-retry'
+// import axiosRetry from 'axios-retry'
 axios.defaults.baseURL =  process.env.NODE_ENV == 'development'? 
                           'http://127.0.0.1:10020/api'
                           :'http:// 39.105.153.195/api'
