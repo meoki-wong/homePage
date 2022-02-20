@@ -6,12 +6,9 @@ import LeftNav from '../src/layout/leftNav'
 import {Outlet} from 'react-router-dom'
 import BreadCrumb from './utils/breadcrumb'
 import Cookies from 'js-cookie'
+import {connect} from 'react-redux'
 let {Header, Sider, Content} = Layout
 function App(props: any) {
-  useEffect(()=>{
-    console.log('=====>cookie参数', JSON.parse(`${Cookies.get('kk2')}`));
-
-  }, [])
   return (
     <div className={homeStyl.App}>
       <Layout style={{height: '100%'}}>
@@ -33,5 +30,23 @@ function App(props: any) {
     </div>
   );
 }
+const mapStateToProps = (state: any, ownProps: any) => {
+  return {
+    prop: state
+  }
+}
 
-export default App;
+const mapDispatchToProps = (dispatch: any, ownProps: any) => {
+  return {
+    dispatchTest: () => {
+      dispatch({
+        type: 'action_type_1'
+      })
+    }
+  }
+}
+
+export default connect(
+  mapDispatchToProps,
+  mapStateToProps
+)(App);

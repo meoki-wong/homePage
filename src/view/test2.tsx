@@ -1,10 +1,52 @@
-import React from 'react'
+
+import React, { useState, useEffect } from 'react'
 import Map from './components/map/Map'
-export default function test2() {
+import {connect} from 'react-redux'
+function Test2(props: any) {
+    let [searchVal, setSearchVal] = useState('')
+    let searchValFn = (e: any)=>{
+        setSearchVal(e.target.value)
+    }
+    let btn = ()=>{
+        // setSearchVal('500')
+        props.dispatchTest()
+    }
+    useEffect(()=>{
+        console.log('------>props', props);
+    }, [])
     return (
-        <div>
-            <p>还可以</p>
-            <Map />
-        </div>
+        <>
+            <p>{props.prop.value}</p>
+            <input type="text" onChange={searchValFn} value={searchVal} />
+            <button onClick={btn}>点击</button>
+            <Map 
+            searchBusMap={searchVal}/>
+        </>
     )
 }
+
+
+
+const mapStateToProps = (state: any, ownProps: any) => {
+    return {
+      prop: state
+    }
+  }
+  
+  const mapDispatchToProps = (dispatch: any, ownProps: any) => {
+      console.log('----->ownProps', ownProps);
+    return {
+      dispatchTest: () => {
+        dispatch({
+          type: 'action_type_1',
+          value: 2
+        })
+      }
+    }
+  }
+
+
+export default connect (
+    mapStateToProps,
+    mapDispatchToProps,
+)(Test2)

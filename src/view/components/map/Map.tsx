@@ -1,45 +1,32 @@
 import React, { useEffect, useState } from "react";
 import AMapLoader from "@amap/amap-jsapi-loader";
 import mapStyl from "./map.module.scss";
-
-function Test() {
-  let searchMap = (AMap:any)=>{
-    AMap.plugin(["AMap.StationSearch"], function() {
-        //实例化公交站点查询类
-        var station = new AMap.StationSearch({
-          pageIndex: 1, //页码，默认值为1
-          pageSize: 10, //单页显示结果条数，默认值为20，最大值为50
-          city: '010' //限定查询城市，可以是城市名（中文/中文全拼）、城市编码，默认值为『全国』
-        });
-        console.log('----->station', station);
-        //执行关键字查询
-        station.search('西直门', function(status:any, result:any) {
-          //打印状态信息status和结果信息result
-          //status：complete 表示查询成功，no_data 为查询无结果，error 代表查询错误。
-          console.log('------->',status, result);
-        });
-      });
-  }
-
+import searchMap from './searchBusRoute'
+function Test(props: any) {
+    let mapNew: any  // 暴露出map
+    let AMap_export: any // 暴露出AMap
+    
 
 
 
   useEffect(() => {
-       
+    console.log('--->第一次触发', props.searchBusMap);
     AMapLoader.load({
       key: "ea6695b606c6904867d842c330339d40", // 申请好的Web端开发者Key，首次调用 load 时必填
       version: "2.0", // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15
-      plugins: [], // 需要使用的的插件列表，如比例尺'AMap.Scale'等
+      plugins: ["AMap.LineSearch"], // 需要使用的的插件列表，如比例尺'AMap.Scale'等
     })
-      .then((AMap) => {
-          new AMap.Map("container")
-          searchMap(AMap)
+      .then(AMap => {
+          mapNew = new AMap.Map("container")
+          AMap_export = AMap
+          searchMap(AMap_export, mapNew, props.searchBusMap)
       })
       .catch((e) => {
-        console.log(e);
+        console.log('初始化map失败：', e);
       });
       
-  }, []);
+  }, [props.searchBusMap]);
+
   return (
     <div>
       <div className={mapStyl.map_container} id={"container"}></div>
@@ -48,3 +35,11 @@ function Test() {
 }
 
 export default Test;
+
+
+
+
+/**
+ * INVALID_USER_SCODE 初始化出现报错原因    未在全局加载时   配置安全密钥  web端
+ * 本项目安全秘钥配置在index.html中
+ */

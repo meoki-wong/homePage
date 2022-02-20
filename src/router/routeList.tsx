@@ -5,7 +5,6 @@ import Loading from '../view/components/Loading'
 // import Test2 from '../test2'
 import Home from '../home'
 
-const Login = lazy(()=>import('../view/login/login'))
 const Test2 = lazy(()=>import('../view/test2'))
 
 
