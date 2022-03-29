@@ -7,7 +7,7 @@ import {BrowserRouter, HashRouter} from 'react-router-dom'
 import reportWebVitals from './reportWebVitals';
 import './api/axios.module'
 import store from './store/store'
-
+import "lib-flexible" //转化px
 
 console.log('---->store', store.getState());
 ReactDOM.render(

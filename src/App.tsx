@@ -4,12 +4,11 @@ import UseRoute from './router/UseRoute'
 function App(store: any) {
   let {pathname} = useLocation()
   useEffect(()=>{
-    console.log('----->pathname', pathname);
   }, [pathname])
   return (
-    <>
+    <div style={{width:"100%", height: '100%'}}>
       <UseRoute />
-    </>
+    </div>
   )
 }
 

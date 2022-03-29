@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import Map from './components/map/Map'
 import {connect} from 'react-redux'
+import ChatRoom from './chatRoom/ChartRoom'
 function Test2(props: any) {
     let [searchVal, setSearchVal] = useState('')
     let searchValFn = (e: any)=>{
@@ -18,6 +19,7 @@ function Test2(props: any) {
         <>
             <p>{props.prop.value}</p>
             <input type="text" onChange={searchValFn} value={searchVal} />
+            <ChatRoom />
             <button onClick={btn}>点击</button>
             <Map 
             searchBusMap={searchVal}/>

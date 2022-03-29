@@ -1,6 +1,6 @@
 import React, {ReactElement, useEffect} from 'react'
 import ReactRouter from './ReactRouter'
-import {Routes, Route, useLocation, useNavigate, Navigate} from 'react-router-dom'
+import {Routes, Route, useLocation, Navigate} from 'react-router-dom'
 import Login from '../view/login/login'
 import Home from '../home'
 import Cookies from 'js-cookie'
@@ -28,12 +28,13 @@ let RedirectHome = ()=>{
 }
 
 
-
-export default function UseRoute() {
-    let navigate = useNavigate()
+export default function UseRoute(props:any) {
+    let location = useLocation()
     let token = window.localStorage.getItem('token')
+    // 免token白名单
+    let whiteList = ["/login", "/register"]
     let ElementRoute = ()=>{
-        if(!token){
+        if(!token && !whiteList.includes(location.pathname)){
             return <RedirectLogin /> 
         } 
         else {
