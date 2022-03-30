@@ -17,6 +17,7 @@ let options = {
     uid: 123456
 };
 
+
 async function startBasicCall() {
     // Create an AgoraRTCClient object.
     rtc.client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
