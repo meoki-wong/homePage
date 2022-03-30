@@ -3,14 +3,16 @@ import React, { useState, useEffect } from 'react'
 import Map from './components/map/Map'
 import {connect} from 'react-redux'
 import ChatRoom from './chatRoom/ChartRoom'
+import LiveCom from './components/liveRtc/liveCom'
 function Test2(props: any) {
+    let [inputVal, setInputVal] = useState('')
     let [searchVal, setSearchVal] = useState('')
     let searchValFn = (e: any)=>{
-        setSearchVal(e.target.value)
+      setInputVal(e.target.value)
     }
     let btn = ()=>{
-        // setSearchVal('500')
-        props.dispatchTest()
+        setSearchVal(inputVal)
+        // props.dispatchTest()
     }
     useEffect(()=>{
         console.log('------>props', props);
@@ -18,8 +20,9 @@ function Test2(props: any) {
     return (
         <>
             <p>{props.prop.value}</p>
-            <input type="text" onChange={searchValFn} value={searchVal} />
+            <input type="text" onChange={searchValFn} value={inputVal} />
             <ChatRoom />
+            <LiveCom />
             <button onClick={btn}>点击</button>
             <Map 
             searchBusMap={searchVal}/>
