@@ -1,8 +1,7 @@
 let AMap_export: any
 let mapNew: any
 
-let searchMap = (AMap: any, mapNews:any, busNum: number) => {
-    console.log('----->共享', busNum)
+let searchMap = (AMap: any, mapNews: any, busNum: number) => {
     //实例化公交站点查询类
     mapNew = mapNews
     AMap_export = AMap
@@ -17,13 +16,11 @@ let searchMap = (AMap: any, mapNews:any, busNum: number) => {
         pageSize: 1,
         extensions: 'all'
     })
-    console.log('----->station', station);
     //执行关键字查询
     station.search(busNum, function (status: any, result: any) {
         //打印状态信息status和结果信息result
         //status：complete 表示查询成功，no_data 为查询无结果，error 代表查询错误。
-        console.log('------->', status, result);
-        lineSearch_Callback(result)
+        result.lineInfo && lineSearch_Callback(result)
     });
 }
 
