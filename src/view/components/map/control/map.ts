@@ -29,8 +29,8 @@ export default class Map {
                 console.log('初始化map失败：', e);
             });
     }
-    searchBusRoute(busNO: number){
-        searchMap(this.AMaper, this.AMapContain, busNO)
+    searchBusRoute(busNO: number, area: string){
+        searchMap(this.AMaper, this.AMapContain, busNO, area)
     }
 }
 
