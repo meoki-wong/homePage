@@ -34,8 +34,6 @@ export default class Map {
                     resizeEnable: true
                 })
                 autoInput(AMap) // 开启自动搜索提示
-                console.log('=====>amaper', AMap)
-                //   searchMap(AMap, mapNew, 300 )
             })
             .catch((e) => {
                 console.log('初始化map失败：', e);
