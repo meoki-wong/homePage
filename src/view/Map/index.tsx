@@ -75,13 +75,14 @@ function Index() {
     <div>
         <>
         <input type="text" onChange={e=>inputBus(e)}/>
+        <input id="input_id" type="text"/>
         <Select  style={{ width: 120 }} value={cities} onChange={handleProvinceChange}>
         { provice.map(province => (
           <Option key={province}>{province}</Option>
         ))}
       </Select>
       <Select style={{ width: 120 }} value={secondCity} onChange={onSecondCityChange}>
-        {city[cities].map(city => (
+        {city[cities] && city[cities].map(city => (
           <Option key={city}>{city}</Option>
         ))}
       </Select>
