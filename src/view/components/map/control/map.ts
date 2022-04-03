@@ -5,22 +5,26 @@
 import AMapLoader from "@amap/amap-jsapi-loader";
 import searchMap from "./mapOption/searchBusRoute";
 import searchPOI from './mapOption/searchPOI'
+import RouteAccount from './mapOption/RouteAccount'
 // 加载地图所需要的控件
 let mapPlugins = [
     "AMap.LineSearch", // 公交路线查询
     "AMap.AutoComplete", // 输入框联想  直接加载触发
     "AMap.Driving", // 路线查询   驾车情况
-    'AMap.PlaceSearch',
+    "AMap.PlaceSearch",
+    "AMap.Walking", // 步行路线规划
 ] 
 export default class Map {
     AMapContain: any
     AMaper: any
-    searchBus: any
-    searchPOI: any
+    searchBus: Function
+    searchPOI: Function
+    searchRouteAcc: Function
     constructor() {
         this.initMap()
         this.searchBus = this.searchBusRoute
         this.searchPOI = this.searchPosition
+        this.searchRouteAcc = this.searchRouteAccount
     }
 
     initMap() {
@@ -43,11 +47,16 @@ export default class Map {
                 console.log('初始化map失败：', e);
             });
     }
+
+
     searchBusRoute(busNO: number, area: string){
         searchMap(this.AMaper, this.AMapContain, busNO, area)
     }
     searchPosition(keyword: string){
         searchPOI(this.AMaper, this.AMapContain, keyword)
+    }
+    searchRouteAccount(){
+        RouteAccount(this.AMaper, this.AMapContain)
     }
 }
 
@@ -56,4 +65,7 @@ export default class Map {
 /**
  * INVALID_USER_SCODE 初始化出现报错原因    未在全局加载时   配置安全密钥  web端
  * 本项目安全秘钥配置在index.html中
+ * 
+ * @method searchBusRoute 查询公交线路
+ * @method searchPosition 查询单个地点
  */

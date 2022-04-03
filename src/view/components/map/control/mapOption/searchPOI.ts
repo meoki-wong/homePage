@@ -1,5 +1,5 @@
 interface tipsObject {
-    id: number
+    id: number,
 }
 
 /**
@@ -10,8 +10,9 @@ interface results {
     info: string,
     tips: Array<tipsObject>
 }
-
+let resultList: Array<object>
 const searchPOI = (AMap: any, AMapContain: any, keyword: string) => {
+    // return 12/
     const autoComplete = new AMap.AutoComplete({
         city: '全国'
     })
@@ -27,10 +28,7 @@ const searchPOI = (AMap: any, AMapContain: any, keyword: string) => {
     autoComplete.search(keyword, function (status: string, result: results) {
         // 搜索成功时，result即是对应的匹配数据
         console.log(result);
-
-        // if (result.tips.length > 1) {
-        //     return result.tips
-        // }
+        
         //详情查询
         placeSearch.getDetails(result.tips[0].id, function (status: string, result: results) {
             if (status === 'complete' && result.info === 'OK') {
@@ -38,6 +36,7 @@ const searchPOI = (AMap: any, AMapContain: any, keyword: string) => {
             }
         });
     })
+
 
 
 

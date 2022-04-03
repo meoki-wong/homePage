@@ -1,17 +1,15 @@
 import React, { createContext } from "react";
+import InitMaps from '../utils/InitMaps'
 
-interface contextType {
-    searchPOI: Function
-    searchBus: Function
-}
-const maps: contextType = {
+const maps: InitMaps = {
     searchPOI: Function,
-    searchBus: Function
+    searchBus: Function,
+    searchRouteAcc: Function
 }
 
 
 
-const { Provider, Consumer}  = createContext<contextType>(maps)
+const { Provider, Consumer}  = createContext<InitMaps>(maps)
 
 
 export {

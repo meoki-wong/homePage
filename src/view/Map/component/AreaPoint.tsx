@@ -8,9 +8,9 @@ export default function AreaPoint() {
   const { Search } = Input;
   const [inputVal, setInputVal] = useState<string>();
   const searchPosition = (initMaps: InitMaps) => {
-    initMaps.searchPOI(inputVal);
+    console.log('------>查询数组', initMaps.searchPOI(inputVal));
   };
-  let inputBus = (e: React.ChangeEvent<HTMLInputElement>) => {
+  let inputArea = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputVal(e.target.value);
   };
   return (
@@ -20,7 +20,7 @@ export default function AreaPoint() {
           <>
             <Search
               id="input_id"
-              onChange={(e) => inputBus(e)}
+              onChange={(e) => inputArea(e)}
               placeholder="请输入查询地点"
               onSearch={()=>searchPosition(initMaps)}
               style={{ width: 200 }}

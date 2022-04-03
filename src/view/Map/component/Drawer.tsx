@@ -5,6 +5,7 @@ import { Provider } from '../utils/useContext'
 import "../assets/css/Drawer.scss";
 import BusRoute from "./BusRoute";
 import AreaPoint from "./AreaPoint";
+import RouteAccount from "./RouteAccount";
 const DrawerContain = () => {
   const [initMaps, setInitMaps] = useState<any>();
 
@@ -12,7 +13,7 @@ const DrawerContain = () => {
     setInitMaps(new initMap());
   }, []);
 
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState<boolean>(false);
 
   const showDrawer = () => {
     setVisible(true);
@@ -47,6 +48,8 @@ const DrawerContain = () => {
           <BusRoute />
           <Divider plain>地点查询</Divider>
           <AreaPoint />
+          <Divider plain>起止路线查询</Divider>
+          <RouteAccount />
         </Provider>
         
       </Drawer>

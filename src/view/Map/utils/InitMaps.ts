@@ -12,6 +12,7 @@
 interface InitMaps {
     searchPOI: Function
     searchBus: Function
+    searchRouteAcc: Function
 }
 
 
