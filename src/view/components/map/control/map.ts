@@ -4,22 +4,23 @@
  *  */
 import AMapLoader from "@amap/amap-jsapi-loader";
 import searchMap from "./mapOption/searchBusRoute";
-import autoInput from './mapOption/autoInput'
-
+import searchPOI from './mapOption/searchPOI'
 // 加载地图所需要的控件
 let mapPlugins = [
     "AMap.LineSearch", // 公交路线查询
     "AMap.AutoComplete", // 输入框联想  直接加载触发
     "AMap.Driving", // 路线查询   驾车情况
+    'AMap.PlaceSearch',
 ] 
 export default class Map {
     AMapContain: any
     AMaper: any
     searchBus: any
+    searchPOI: any
     constructor() {
         this.initMap()
         this.searchBus = this.searchBusRoute
-        
+        this.searchPOI = this.searchPosition
     }
 
     initMap() {
@@ -33,7 +34,10 @@ export default class Map {
                 this.AMapContain = new AMap.Map("container", {
                     resizeEnable: true
                 })
-                autoInput(AMap) // 开启自动搜索提示
+                // 开启自动搜索提示
+                new AMap.AutoComplete({
+                    input: 'input_id' // input 为绑定输入提示功能的input的DOM ID
+                  }); 
             })
             .catch((e) => {
                 console.log('初始化map失败：', e);
@@ -41,6 +45,9 @@ export default class Map {
     }
     searchBusRoute(busNO: number, area: string){
         searchMap(this.AMaper, this.AMapContain, busNO, area)
+    }
+    searchPosition(keyword: string){
+        searchPOI(this.AMaper, this.AMapContain, keyword)
     }
 }
 
