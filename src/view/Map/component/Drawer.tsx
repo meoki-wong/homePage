@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Drawer, Button, Space, Divider, Select, Input } from "antd";
 import initMap from "../../components/map/control/map";
+import { Provider } from '../utils/useContext'
 import "../assets/css/Drawer.scss";
 import BusRoute from "./BusRoute";
 import AreaPoint from "./AreaPoint";
@@ -41,10 +42,13 @@ const DrawerContain = () => {
           </Space>
         }
       >
-        <Divider plain>城市公交线路查询</Divider>
-        <BusRoute initMaps={initMaps} />
-        <Divider plain>地点查询</Divider>
-        <AreaPoint initMaps={initMaps} />
+        <Provider value={initMaps}>
+          <Divider plain>城市公交线路查询</Divider>
+          <BusRoute />
+          <Divider plain>地点查询</Divider>
+          <AreaPoint />
+        </Provider>
+        
       </Drawer>
     </>
   );
