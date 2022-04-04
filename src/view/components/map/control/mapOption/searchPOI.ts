@@ -27,8 +27,8 @@ const searchPOI = (AMap: any, AMapContain: any, keyword: string) => {
     });
     autoComplete.search(keyword, function (status: string, result: results) {
         // 搜索成功时，result即是对应的匹配数据
-        console.log(result);
-        
+        console.log('-----。查询结果', result);
+
         //详情查询
         placeSearch.getDetails(result.tips[0].id, function (status: string, result: results) {
             if (status === 'complete' && result.info === 'OK') {

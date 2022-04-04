@@ -49,7 +49,7 @@ export default function BusRoute() {
       setProvice(proviceList);
       setCity(cityObj);
       setCities(proviceList[0]);
-      setSecondCity(city[proviceList[0]][0]);
+      setSecondCity(cityObj[proviceList[0]][0]);
     });
   };
   let inputBus = (e: React.ChangeEvent<HTMLInputElement>) => {

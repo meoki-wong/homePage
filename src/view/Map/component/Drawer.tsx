@@ -8,12 +8,14 @@ import AreaPoint from "./AreaPoint";
 import RouteAccount from "./RouteAccount";
 const DrawerContain = () => {
   const [initMaps, setInitMaps] = useState<any>();
-
+  const [visible, setVisible] = useState<boolean>(false);
   useEffect(() => {
     setInitMaps(new initMap());
   }, []);
-
-  const [visible, setVisible] = useState<boolean>(false);
+  useEffect(()=>{
+    visible && initMaps.loadAutoInputs()
+  },[visible])
+  
 
   const showDrawer = () => {
     setVisible(true);
@@ -50,6 +52,7 @@ const DrawerContain = () => {
           <AreaPoint />
           <Divider plain>起止路线查询</Divider>
           <RouteAccount />
+          <Divider plain>暂时先这么多吧~</Divider>
         </Provider>
         
       </Drawer>

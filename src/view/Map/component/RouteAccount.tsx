@@ -1,24 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Consumer } from "../utils/useContext";
 import { Input, Radio } from "antd";
 import InitMaps from "../utils/InitMaps";
 import RouteStyl from '../assets/css/RouteAccount.module.scss'
+type InputList = Array<string>
 export default function RouteAccount() {
   const { Search } = Input;
-  const [inputVal, setInputVal] = useState<string>();
-
-  const [value, setValue] = React.useState(1);
-
+  const [inputStartVal, setInputStartVal] = useState<string>('');
+  const [inputEndVal, setInputEndVal] = useState<string>('');
+  const [inputList, setInputList] = useState<InputList>([]);
+  const [value, setValue] = useState<number>(1);
   const onChange = (e: any) => {
-    console.log("radio checked", e.target.value);
     setValue(e.target.value);
   };
+  useEffect(()=>{
+    console.log('----->输入内容查看', inputStartVal, inputEndVal, inputList)
+  }, [inputList])
 
-  let inputRoute = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputVal(e.target.value);
+  let inputStartRoute = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputStartVal(e.target.value);
+    
   };
+  let inputEndRoute = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setInputEndVal(e.target.value)
+  }
   const searchPosition = (initMaps: InitMaps) => {
-    console.log("------>查询数组", initMaps.searchRouteAcc(inputVal));
+    setInputList(()=> [ ...[inputStartVal, inputEndVal]])
+      console.log('---->触发查询工鞥呢', inputList)
+    initMaps.searchRouteAcc(inputList)
   };
   return (
     <>
@@ -31,13 +40,22 @@ export default function RouteAccount() {
               <Radio value={3}>骑行</Radio>
               <Radio value={4}>公交</Radio>
             </Radio.Group>
+            <div className={RouteStyl.search_box}>
+            <Input
+              id="input_ids"
+              onChange={(e) => inputStartRoute(e)}
+              placeholder="请输入查询地点"
+              style={{ width: 200 }}
+            />
+            ——
             <Search
-              id="input_id"
-              onChange={(e) => inputRoute(e)}
+              id="input_ids"
+              onChange={(e) => inputEndRoute(e)}
               placeholder="请输入查询地点"
               onSearch={() => searchPosition(initMaps)}
               style={{ width: 200 }}
             />
+            </div>
           </div>
         )}
       </Consumer>

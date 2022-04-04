@@ -6,6 +6,7 @@ import AMapLoader from "@amap/amap-jsapi-loader";
 import searchMap from "./mapOption/searchBusRoute";
 import searchPOI from './mapOption/searchPOI'
 import RouteAccount from './mapOption/RouteAccount'
+import autoInput from './mapOption/autoInput'
 // 加载地图所需要的控件
 let mapPlugins = [
     "AMap.LineSearch", // 公交路线查询
@@ -20,11 +21,13 @@ export default class Map {
     searchBus: Function
     searchPOI: Function
     searchRouteAcc: Function
+    loadAutoInputs: Function
     constructor() {
         this.initMap()
         this.searchBus = this.searchBusRoute
         this.searchPOI = this.searchPosition
         this.searchRouteAcc = this.searchRouteAccount
+        this.loadAutoInputs = this.loadAutoInput
     }
 
     initMap() {
@@ -38,10 +41,7 @@ export default class Map {
                 this.AMapContain = new AMap.Map("container", {
                     resizeEnable: true
                 })
-                // 开启自动搜索提示
-                new AMap.AutoComplete({
-                    input: 'input_id' // input 为绑定输入提示功能的input的DOM ID
-                  }); 
+                
             })
             .catch((e) => {
                 console.log('初始化map失败：', e);
@@ -55,8 +55,12 @@ export default class Map {
     searchPosition(keyword: string){
         searchPOI(this.AMaper, this.AMapContain, keyword)
     }
-    searchRouteAccount(){
-        RouteAccount(this.AMaper, this.AMapContain)
+    searchRouteAccount(keywordList: Array<string>){
+        RouteAccount(this.AMaper, this.AMapContain, keywordList)
+    }
+    loadAutoInput = ()=>{
+        autoInput(this.AMaper, 'input_id')
+        autoInput(this.AMaper, 'input_ids')
     }
 }
 
