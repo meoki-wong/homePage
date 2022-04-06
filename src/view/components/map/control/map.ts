@@ -7,13 +7,17 @@ import searchMap from "./mapOption/searchBusRoute";
 import searchPOI from './mapOption/searchPOI'
 import RouteAccount from './mapOption/RouteAccount'
 import autoInput from './mapOption/autoInput'
+import "@amap/amap-jsapi-types";
+
 // 加载地图所需要的控件
 let mapPlugins = [
     "AMap.LineSearch", // 公交路线查询
     "AMap.AutoComplete", // 输入框联想  直接加载触发
-    "AMap.Driving", // 路线查询   驾车情况
     "AMap.PlaceSearch",
     "AMap.Walking", // 步行路线规划
+    "AMap.Driving", // 驾车路线规划
+    "AMap.Riding", //骑行路线规划
+    "AMap.Transfer", // 公交路线规划
 ] 
 export default class Map {
     AMapContain: any
@@ -55,8 +59,8 @@ export default class Map {
     searchPosition(keyword: string){
         searchPOI(this.AMaper, this.AMapContain, keyword)
     }
-    searchRouteAccount(keywordList: Array<string>){
-        RouteAccount(this.AMaper, this.AMapContain, keywordList)
+    searchRouteAccount(keywordList: Array<object>, type: string){
+        RouteAccount(this.AMaper, this.AMapContain, keywordList, type)
     }
     loadAutoInput = ()=>{
         autoInput(this.AMaper, 'input_id')

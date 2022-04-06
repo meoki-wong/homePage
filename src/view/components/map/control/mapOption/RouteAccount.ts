@@ -1,27 +1,31 @@
 
 import { message } from "antd";
 
-const RouteAccount = (AMap: any, AMapContain: any, keywordList:Array<string>) => {
+const RouteAccount = (AMap: any, AMapContain: any, keywordList:Array<object>, type: string) => {
 
 
     // 当前示例的目标是展示如何根据规划结果绘制路线，因此walkOption为空对象
-    let walkingOption = {}
-
-    // 步行导航
-    const walking = new AMap.Walking(walkingOption)
-    const autoComplete = new AMap.AutoComplete({
-        city: '全国'
-    })
-
-    autoComplete.search(keywordList, function (status: string, result: any) {
-        // 搜索成功时，result即是对应的匹配数据
-        console.log('-----。查询结果', result, keywordList);
-
-        
-    })
-
+    let Walking = {
+        map: AMapContain,
+    }
+    let Driving = {
+        policy: AMap.DrivingPolicy.LEAST_TIME, // 其它policy参数请参考 https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingPolicy
+        ferry: 1, // 是否可以使用轮渡
+        province: '京', // 车牌省份的汉字缩写  
+    }
+    let Riding = {
+        policy: 1  
+    }
+    let Transfer = {
+        nightflag: true, // 是否计算夜班车
+        policy: AMap.TransferPolicy.LEAST_TIME, // 其它policy取值请参照 https://lbs.amap.com/api/javascript-api/reference/route-search#m_TransferPolicy
+    }
+    // 创建导航
+    const walking = new AMap[type](type)
+    console.log('--->查询', keywordList)
     //根据起终点坐标规划步行路线
-    walking.search([116.399028, 39.845042], [116.436281, 39.880719], function(status: string, result: any) {
+    walking.search(keywordList, function(status: string, result: any) {
+        console.log('--->results', result, keywordList)
         if (status === 'complete') {
             if (result.routes && result.routes.length) {
                 drawRoute(result.routes[0])
@@ -70,9 +74,10 @@ const RouteAccount = (AMap: any, AMapContain: any, keywordList:Array<string>) =>
     // WalkRoute对象的结构文档 https://lbs.amap.com/api/javascript-api/reference/route-search#m_WalkRoute
     const parseRouteToPath = (route: any)=> {
         var path = []
-
-        for (var i = 0, l = route.steps.length; i < l; i++) {
-            var step = route.steps[i]
+        let routeType = route.steps? 'steps' : 'rides'
+        console.log('---->参数触发', route)
+        for (var i = 0, l = route[routeType].length; i < l; i++) {
+            var step = route[routeType][i]
 
             for (var j = 0, n = step.path.length; j < n; j++) {
               path.push(step.path[j])

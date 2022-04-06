@@ -3,18 +3,26 @@ import { Consumer } from "../utils/useContext";
 import { Input, Radio } from "antd";
 import InitMaps from "../utils/InitMaps";
 import RouteStyl from '../assets/css/RouteAccount.module.scss'
-type InputList = Array<string>
+type InputList = Array<object>
+interface OptionObject {
+    [key: number]: string
+}
 export default function RouteAccount() {
   const { Search } = Input;
   const [inputStartVal, setInputStartVal] = useState<string>('');
   const [inputEndVal, setInputEndVal] = useState<string>('');
   const [inputList, setInputList] = useState<InputList>([]);
   const [value, setValue] = useState<number>(1);
+  let optionObject: OptionObject = {
+      1: 'Walking',
+      2: "Driving",
+      3: "Riding",
+      4: "Transfer"
+  }
   const onChange = (e: any) => {
     setValue(e.target.value);
   };
   useEffect(()=>{
-    console.log('----->输入内容查看', inputStartVal, inputEndVal, inputList)
   }, [inputList])
 
   let inputStartRoute = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,9 +33,8 @@ export default function RouteAccount() {
       setInputEndVal(e.target.value)
   }
   const searchPosition = (initMaps: InitMaps) => {
-    setInputList(()=> [ ...[inputStartVal, inputEndVal]])
-      console.log('---->触发查询工鞥呢', inputList)
-    initMaps.searchRouteAcc(inputList)
+    setInputList(()=> [ ...[{keyword: inputStartVal}, {keyword: inputEndVal}]])
+    initMaps.searchRouteAcc(inputList, optionObject[value])
   };
   return (
     <>

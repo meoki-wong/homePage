@@ -1,6 +1,5 @@
 import React from "react";
 import "./register.scss";
-import { SmileOutlined } from "@ant-design/icons";
 import {
   Form,
   Input,
@@ -8,8 +7,6 @@ import {
   TimePicker,
   Select,
   Cascader,
-  InputNumber,
-  Mentions,
 } from "antd";
 
 export default function register() {
