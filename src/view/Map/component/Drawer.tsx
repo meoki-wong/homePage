@@ -13,7 +13,7 @@ const DrawerContain = () => {
     setInitMaps(new initMap());
   }, []);
   useEffect(()=>{
-    visible && initMaps.loadAutoInputs()
+    visible && initMaps.loadAutoInputs() //存在dom节点 触发加载输入联想
   },[visible])
   
 

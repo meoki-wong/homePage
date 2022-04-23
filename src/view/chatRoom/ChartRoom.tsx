@@ -2,8 +2,8 @@ import React, { Component } from "react";
 
 interface InitSocket {
     initSocket: any,
-    msgBox: any,
-    inputVal: string
+    msgBox: Array<string | number>,
+    inputVal: string | number
 }
 export default class ChartRooms extends Component {
   state: InitSocket = {
@@ -18,9 +18,6 @@ export default class ChartRooms extends Component {
     let _this = this;
     let socket;
     let msgList: any = _this.state.msgBox
-    // if (!window.WebSocket) {
-    // 	window.WebSocket = window.MozWebSocket;
-    // }
     let ta = document.getElementById("responseText") as HTMLInputElement;
     if (window.WebSocket) {
       socket = new WebSocket("ws://localhost:10021");
@@ -54,7 +51,7 @@ export default class ChartRooms extends Component {
   render() {
     return (
       <div>
-        {this.state.msgBox.map((item: string, index: number) => {
+        {this.state.msgBox.map((item: string | number, index: number) => {
           return <div key={index}>{item}</div>;
         })}
         <input type="text" id="responseText" onChange={(e) => this.getVal(e)} />
