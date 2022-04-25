@@ -4,10 +4,10 @@ import Loading from '../view/components/Loading'
 // import Test from "../test"
 // import Test2 from '../test2'
 import Home from '../home'
-import LiveCom from '../view/components/liveRtc/liveCom'
-import ChartRoom from '../view/chatRoom/ChartRoom'
-import Map from '../view/Map/index'
-const Test2 = lazy(()=>import('../view/test2'))
+const LiveCom = lazy(()=>import('../view/components/liveRtc/liveCom'))
+const ChartRoom = lazy(()=>import('../view/chatRoom/ChartRoom'))
+const Map = lazy(()=>import('../view/Map/index'))
+// const Test2 = lazy(()=>import('../view/test2'))
 
 // 路由懒加载
 const lazyComponent = (Element: ReactElement)=>{
@@ -21,7 +21,7 @@ const routeList: any[] = [
     
     {
         name: '首批功能实现',
-        path: '/home',
+        path: '/',
         element: <Home />,
         children: [
             {
