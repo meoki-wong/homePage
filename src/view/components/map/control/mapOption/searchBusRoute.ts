@@ -1,8 +1,13 @@
+import { message } from 'antd'
 let AMap_export: any
 let mapNew: any
-
-let searchMap = (AMap: any, mapNews:any, busNum: number) => {
-    console.log('----->共享', busNum)
+/**
+ * @param AMap 创建地图对象
+ * @param mapNews 地图对象构造函数
+ * @param busNum 公交线编号
+ * @param area 搜索区域  不选择默认全国
+  */
+let searchMap = (AMap: any, mapNews: any, busNum: number, area: string) => {
     //实例化公交站点查询类
     mapNew = mapNews
     AMap_export = AMap
@@ -13,17 +18,19 @@ let searchMap = (AMap: any, mapNews:any, busNum: number) => {
     // });
     var station = new AMap.LineSearch({
         pageIndex: 1,
-        city: '北京',
+        city: area,
         pageSize: 1,
         extensions: 'all'
     })
-    console.log('----->station', station);
     //执行关键字查询
-    station.search(busNum, function (status: any, result: any) {
+    station.search(busNum, function (status: string, result: object) {
         //打印状态信息status和结果信息result
         //status：complete 表示查询成功，no_data 为查询无结果，error 代表查询错误。
-        console.log('------->', status, result);
-        lineSearch_Callback(result)
+         if(!Boolean(status === "complete")){
+            message.warning('查询正常存在的公交线')
+            return
+         }
+         lineSearch_Callback(result)
     });
 }
 

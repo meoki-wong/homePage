@@ -4,8 +4,8 @@
   "private": true,
   "homepage": "./",
   "dependencies": {
-    "agora-rtc-sdk-ng": "latest", 
     "@amap/amap-jsapi-loader": "^1.0.1",
+    "@amap/amap-jsapi-types": "^0.0.8",
     "@babel/core": "^7.16.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@svgr/webpack": "^5.5.0",
@@ -16,6 +16,7 @@
     "@types/node": "^16.11.19",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
+    "agora-rtc-sdk-ng": "latest",
     "antd": "^4.18.3",
     "axios": "^0.25.0",
     "axios-retry": "^3.2.4",

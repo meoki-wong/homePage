@@ -17,7 +17,7 @@ function Login() {
     if (window.localStorage.getItem("remember_pwd")) {
       let userInfo = JSON.parse(`${Cookies.get("kk2")}`);
       axios.post("/login", { ...userInfo }).then((res) => {
-        if (res.data.code == 200) {
+        if (res.data.code === 200) {
           navigate("/home");
         }
       });

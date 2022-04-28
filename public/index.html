@@ -13,8 +13,13 @@
 
 
     <script>
+      // 服务器nginx配置 
+      // window._AMapSecurityConfig = {
+      //   serviceHost: 'http://39.105.153.195/_AMapService' // 配置  必须带上http://  
+      //   }
+      // 本地开发环境配置 不安全
       window._AMapSecurityConfig = {
-        serviceHost: 'http://39.105.153.195/_AMapService' // 配置  必须带上http://  
+            securityJsCode:'f2ef79e6da16d5b3c19a6c25cb0ef306',
         }
     </script>
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />

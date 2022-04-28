@@ -4,7 +4,7 @@ import {message} from 'antd'
 import Nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
 // import axiosRetry from 'axios-retry'
-axios.defaults.baseURL =  process.env.NODE_ENV == 'development'? 
+axios.defaults.baseURL =  process.env.NODE_ENV === 'development'? 
                           'http://127.0.0.1:10020/api'
                           :'http://39.105.153.195/api'
 
@@ -20,7 +20,7 @@ axios.defaults.retryDelay = 1000;
 
 // 请求拦截
 let requestWhiteList = ['/login', '/register'] // 请求白名单
-let responseWhiteList = [] // 响应白名单
+// let responseWhiteList = [] // 响应白名单
 axios.interceptors.request.use((config)=>{
     Nprogress.start() // 添加请求进度条
     if(requestWhiteList.includes(config.url)){

@@ -1,0 +1,13 @@
+.route-func{
+    display: flex;
+    flex-flow: column;
+    align-content: space-between;
+    .radio_list{
+        margin-bottom: 15px;
+    }
+    .search_box{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+}

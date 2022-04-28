@@ -5,7 +5,6 @@ const nameInitialState = {
     type: 1
 }
 export const reactReducer = (state:any = nameInitialState, action: any) => {
-    console.log('---->触发', state, action)
     switch (action.type) {
         case 'action_type_1':
             action.value ++

@@ -1,11 +1,18 @@
-import React from 'react'
-import Map from '../components/map/Map'
-export default function index() {
+import React, { useState, useEffect, memo } from "react";
+import Map from "../components/map/Map";
+import axios from "axios";
+import DrawerContain from "./component/Drawer";
+
+function Index() {
+
   return (
     <div>
-        <>
-            <Map searchBusMap={'300'}/>
-        </>
+      <>
+        <Map />
+        <DrawerContain />
+      </>
     </div>
-  )
+  );
 }
+
+export default memo(Index);

@@ -2,7 +2,7 @@ import React, {lazy, ReactElement ,Suspense} from 'react'
 // import { RouteObject } from 'react-router-dom' // hook导入
 import Loading from '../view/components/Loading'
 import Home from '../home'
-const LiveCom = lazy(()=>import('../view/components/liveRtc/liveCom'))
+const LiveCom = lazy(()=>import('../view/Meeting/index'))
 const ChartRoom = lazy(()=>import('../view/chatRoom/ChartRoom'))
 const Map = lazy(()=>import('../view/Map/index'))
 
