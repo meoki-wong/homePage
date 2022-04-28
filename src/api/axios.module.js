@@ -44,6 +44,8 @@ axios.interceptors.response.use((config)=>{
         message.error(data.message)
         return
     }
+    // 需要添加token等   登录信息失效  跳转 /login
+    
     Nprogress.done() // 结束请求进度条 
     return config
 }, (err)=>{

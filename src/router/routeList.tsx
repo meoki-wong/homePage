@@ -1,13 +1,10 @@
 import React, {lazy, ReactElement ,Suspense} from 'react'
 // import { RouteObject } from 'react-router-dom' // hook导入
 import Loading from '../view/components/Loading'
-// import Test from "../test"
-// import Test2 from '../test2'
 import Home from '../home'
 const LiveCom = lazy(()=>import('../view/components/liveRtc/liveCom'))
 const ChartRoom = lazy(()=>import('../view/chatRoom/ChartRoom'))
 const Map = lazy(()=>import('../view/Map/index'))
-// const Test2 = lazy(()=>import('../view/test2'))
 
 // 路由懒加载
 const lazyComponent = (Element: ReactElement)=>{
@@ -18,10 +15,9 @@ const lazyComponent = (Element: ReactElement)=>{
     )
 }
 const routeList: any[] = [
-    
     {
         name: '首批功能实现',
-        path: '/',
+        path: '/home',
         element: <Home />,
         children: [
             {
@@ -41,7 +37,7 @@ const routeList: any[] = [
                 element: lazyComponent(<ChartRoom />)
             }
         ]
-    },
+    }
     
 
 ]

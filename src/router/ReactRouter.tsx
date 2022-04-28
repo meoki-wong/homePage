@@ -5,7 +5,7 @@ import routeList from "./routeList";
 import publicRouterList from './publicRouterList'
 
 
-export default function ReactRouter(props: any) {
+export default function ReactRouter() {
   return useRoutes(routeList.concat(publicRouterList));
 
   // return (
