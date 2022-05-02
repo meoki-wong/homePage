@@ -37,6 +37,9 @@ const routeList: any[] = [
                 element: lazyComponent(<ChartRoom />)
             }
         ]
+    },
+    {
+        name: '测试待定'
     }
     
 

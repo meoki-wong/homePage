@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Form, Input, Button, Checkbox, message } from "antd";
 import { useNavigate } from "react-router-dom";
-import loginStyl from "./login.module.scss";
+import "./login.scss"
 import axios from "axios";
 
 // import { setCookieFn } from '../../utils/setCookie'
 // import {Base64} from 'js-base64'
 // import md5 from 'js-md5'
 import Cookies from "js-cookie";
+import { CheckboxChangeEvent } from "antd/lib/checkbox";
 function Login() {
   let navigate = useNavigate();
 
@@ -21,28 +22,26 @@ function Login() {
           navigate("/home");
         }
       });
-
-      // return <ReactRouter />
     }
   }, []);
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
-  };
+  // const onFinishFailed = (errorInfo: any) => {
+  //   console.log("Failed:", errorInfo);
+  // };
   let [rules, setRules] = useState([
     {
       required: true,
       message: "Please input the content!",
     },
   ]);
-  let [userName, setUserName] = useState(null);
-  let [password, setPassWord] = useState(null);
+  let [userName, setUserName] = useState('');
+  let [password, setPassWord] = useState('');
   let [checkBox, setCheckBox] = useState(true);
 
-  let getUser = (e: any) => {
+  let getUser = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(e.target.value);
   };
-  let getPassword = (e: any) => {
+  let getPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassWord(e.target.value);
   };
 
@@ -66,17 +65,22 @@ function Login() {
         }
         let token = res.data.data.token;
         window.localStorage.setItem("token", token);
+        window.localStorage.setItem("userId", res.data.data.userInfoId);
         message.success("登录成功");
         navigate("/home");
       }
     });
   };
-  let onCheckRember = (e: any) => {
+  let onCheckRember = (e: CheckboxChangeEvent) => {
     setCheckBox(e.target.checked);
   };
   return (
-    <div className={loginStyl.container}>
-      <div className={loginStyl.formArea}>
+    <div className="login-container">
+      <div className="header">
+        <div className="logo"><img src={require("../assets/image/Flag.png")} /></div>
+        <div className="title">SuperMeoki</div>
+      </div>
+      <div className="form-area">
         <Form
           name="basic"
           style={{ width: "100%" }}
@@ -90,7 +94,7 @@ function Login() {
             remember: true,
           }}
           onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
+          // onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
           <Form.Item label="用户名" name="username" rules={rules}>
@@ -116,6 +120,7 @@ function Login() {
             >
               记住我
             </Checkbox>
+            <span className={"forget"}>忘记密码？</span>
           </Form.Item>
 
           <Form.Item
@@ -137,6 +142,9 @@ function Login() {
           </Form.Item>
         </Form>
       </div>
+      {/* <div className="game-box">
+        手机游戏盒子
+      </div> */}
     </div>
   );
 }

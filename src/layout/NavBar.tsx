@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Menu } from "antd";
+import './NavBar.scss'
 import { useNavigate, useParams } from "react-router-dom";
 import routeList from "../router/routeList";
 
@@ -13,27 +14,17 @@ import {
 let { SubMenu } = Menu;
 export default function LeftNav(props: Object) {
   let navigate = useNavigate();
-  // let [collapsed, setCollapsed] = useState(false)
-  // state = {
-  //     collapsed: false,
-  //   };
-  useEffect(() => {
-    console.log("=====>propskkk", window.location);
-  });
-  //  let toggleCollapsed = () => {
-  //   setCollapsed(!collapsed)
-  //   }
 
   return (
-    <div style={{ width: "100%" }}>
-      {/* <Button type="primary" onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
-              {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
-            </Button> */}
+    <div className="nav-bar">
+      <div className="logo">
+        <img src={require('../view/assets/image/Flag.png')} alt="" />
+        <div className="title">SuperMeoki</div>
+      </div>
       <Menu
         defaultSelectedKeys={[window.location.pathname]}
         defaultOpenKeys={[routeList[0].path]}
-        mode="inline"
-        theme="dark"
+        mode="horizontal"
         inlineCollapsed={false}
       >
         {routeList.map((item) => {

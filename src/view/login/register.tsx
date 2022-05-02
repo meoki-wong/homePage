@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./register.scss";
 import {
   Form,
@@ -7,9 +8,12 @@ import {
   TimePicker,
   Select,
   Cascader,
+  Button,
+  message
 } from "antd";
-
-export default function register() {
+import axios from 'axios'
+export default function Register() {
+  const navigate = useNavigate()
   const { Option } = Select;
 
   const formItemLayout = {
@@ -22,12 +26,23 @@ export default function register() {
       sm: { span: 14 },
     },
   };
-
+  let register = ()=>{
+    let params = {
+      userName: 'jack',
+      password: 123456
+    }
+    axios.post('/register', params).then(res=>{
+      if(res.data.success){
+        message.success('注册成功')
+        navigate('/login')
+      }
+    })
+  }
   return (
     <div className={"register-container"}>
       <div className="form">
       <Form {...formItemLayout}>
-        <Form.Item label="Success" hasFeedback validateStatus="success">
+        {/* <Form.Item label="Success" hasFeedback validateStatus="success">
           <DatePicker style={{ width: "100%" }} />
         </Form.Item>
 
@@ -75,12 +90,18 @@ export default function register() {
           >
             <DatePicker />
           </Form.Item>
+        </Form.Item> */}
+        <Form.Item label="用户名">
+          <Input placeholder="请输入用户名" />
         </Form.Item>
-
-        <Form.Item label="Warning" hasFeedback validateStatus="warning">
-          <Input.Password placeholder="with input password" />
+        <Form.Item label="密码" hasFeedback validateStatus="warning">
+          <Input.Password placeholder="请输入密码" />
         </Form.Item>
+        
       </Form>
+      <Button type="primary" onClick={register}>
+              注册
+            </Button>
       </div>
     </div>
   );

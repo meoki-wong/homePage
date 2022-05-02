@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-
+import { notification } from "antd";
+import io from 'socket.io-client'
+import Socket from './chart'
 interface InitSocket {
-    initSocket: any,
-    msgBox: Array<string | number>,
-    inputVal: string | number
+  initSocket: any;
+  msgBox: Array<string | number>;
+  inputVal: string | number;
 }
 export default class ChartRooms extends Component {
   state: InitSocket = {
@@ -11,43 +13,22 @@ export default class ChartRooms extends Component {
     msgBox: [],
     inputVal: "",
   };
-  componentDidMount(){
-      this.initChat()
+  componentDidMount() {
+    this.setState({initSocket: new Socket(this)})
   }
-  initChat = () => {
-    let _this = this;
-    let socket;
-    let msgList: any = _this.state.msgBox
-    let ta = document.getElementById("responseText") as HTMLInputElement;
-    if (window.WebSocket) {
-      socket = new WebSocket("ws://localhost:10021");
-      socket.onmessage = function (event) {
-        var reader = new FileReader()
-        reader.readAsText(event.data)
-        reader.onload = function(e){
-          msgList.push(reader.result)
-        _this.setState({ msgBox: msgList });
-        }
-        
-      };
-      socket.onopen = function (event) {
-        ta.value = "连接开启!";
-      };
-      socket.onclose = function (event) {
-        ta.value = ta.value + "连接被关闭";
-      };
-    } else {
-      alert("你的浏览器不支持 WebSocket！");
-    }
-    this.setState({ initSocket: socket });
+  openNotification = (msg: string) => {
+    notification.open({
+      message: "提示",
+      description: msg,
+    });
   };
-
   getVal = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({inputVal: e.target.value})
-}
-  sendMsg = () =>{
-    this.state.initSocket.send(this.state.inputVal);
-}
+    this.setState({ inputVal: e.target.value });
+  };
+  sendMsg = () => {
+    let {initSocket, inputVal} = this.state
+    initSocket.sendMsg(inputVal)
+  };
   render() {
     return (
       <div>

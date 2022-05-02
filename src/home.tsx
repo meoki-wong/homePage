@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import {useNavigate} from 'react-router-dom'
-import './home.module.scss'
+import './home.scss'
 import {Layout} from 'antd'
 import 'antd/dist/antd.css'
-import LeftNav from '../src/layout/leftNav'
+import NavBar from './layout/NavBar'
 import {Outlet} from 'react-router-dom'
 import BreadCrumb from './utils/breadcrumb'
 import Cookies from 'js-cookie'
@@ -17,17 +17,14 @@ function App(props: any) {
   }
   return (
     <div className="App">
-      <Layout style={{height: '100vh'}}>
-      <Header>
-        <div className="header-area">
-        <p style={{color: '#fff'}}>还没想好名字</p>
-        <div className='logout-btn' onClick={logout}>退出</div> 
-        </div>
-      </Header>
       <Layout>
-        <Sider collapsible={true}>
-          <LeftNav/>
-        </Sider>
+      {/* <Header> */}
+      <NavBar/>
+      {/* </Header> */}
+      <Layout>
+        {/* <Sider collapsible={true}>
+          
+        </Sider> */}
         <Content>
           <div className='bread-crumb'>
             <BreadCrumb />
