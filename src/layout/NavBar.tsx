@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
-import { Menu } from "antd";
-import './NavBar.scss'
+import React, { useEffect, useState } from "react";
+import { Menu, Dropdown, Modal, Badge } from "antd";
+import "./NavBar.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import routeList from "../router/routeList";
-
 import {
   AppstoreOutlined,
   PieChartOutlined,
@@ -14,48 +13,96 @@ import {
 let { SubMenu } = Menu;
 export default function LeftNav(props: Object) {
   let navigate = useNavigate();
+  let [logMsg, setLogMsg] = useState<string>("登录/注册");
+  let [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+  useEffect(() => {
+    //
+    if (!window.localStorage.token) {
+      setLogMsg("登录/注册");
+    } else {
+      setLogMsg("退出登录");
+    }
+  });
+  const isLogin = () => {
+    if (window.localStorage.token) {
+      setIsModalVisible(true);
+    } else {
+      navigate("/login");
+    }
+  };
+  const handleConfirm = () => {
+    localStorage.clear();
+    setIsModalVisible(false);
+  };
 
+  const menu = (
+    <Menu>
+      <Menu.Item onClick={isLogin}>{logMsg}</Menu.Item>
+    </Menu>
+  );
   return (
     <div className="nav-bar">
-      <div className="logo">
-        <img src={require('../view/assets/image/Flag.png')} alt="" />
-        <div className="title">SuperMeoki</div>
+      <div className="left-area">
+        <div className="logo">
+          <img src={require("../view/assets/image/Flag.png")} alt="" />
+          <div className="title">SuperMeoki</div>
+        </div>
+        <Menu
+          defaultSelectedKeys={[window.location.pathname]}
+          defaultOpenKeys={[routeList[0].path]}
+          mode="horizontal"
+          inlineCollapsed={false}
+        >
+          {routeList.map((item, index) => {
+            if (item.children) {
+              return (
+                <SubMenu key={index} icon={<MailOutlined />} title={item.name}>
+                  {item.children.map((ite: any, idx: number) => (
+                    <Menu.Item key={idx} onClick={() => navigate(ite.path)}>
+                      {ite.name}
+                    </Menu.Item>
+                  ))}
+                </SubMenu>
+              );
+            } else {
+              return (
+                <Menu.Item
+                  key={index}
+                  icon={<PieChartOutlined />}
+                  onClick={() => navigate(item.path)}
+                >
+                  {item.name}
+                </Menu.Item>
+              );
+            }
+          })}
+        </Menu>
       </div>
-      <Menu
-        defaultSelectedKeys={[window.location.pathname]}
-        defaultOpenKeys={[routeList[0].path]}
-        mode="horizontal"
-        inlineCollapsed={false}
-      >
-        {routeList.map((item) => {
-          if (item.children) {
-            return (
-              <SubMenu
-                key={item.path}
-                icon={<MailOutlined />}
-                title={item.name}
-              >
-                {item.children.map((ite: any) => (
-                  <Menu.Item key={ite.path} onClick={() => navigate(ite.path)}>
-                    {ite.name}
-                  </Menu.Item>
-                ))}
-              </SubMenu>
-            );
-          } else {
-            return (
-              <Menu.Item
-                key={item.path}
-                icon={<PieChartOutlined />}
-                onClick={() => navigate(item.path)}
-              >
-                {item.name}
-              </Menu.Item>
-            );
-          }
-        })}
-      </Menu>
+      <div className="user-info">
+        <div className="notify">
+          <Badge count={100}>
+            <i className="iconfont icon-notify"></i>
+          </Badge>
+        </div>
 
+        <Dropdown overlay={menu} placement="bottomLeft" arrow>
+          {/* <span className="user-name">张三</span> */}
+          <div className="user-header">
+            <img src={require("../view/assets/image/user_header.jpeg")} />
+          </div>
+        </Dropdown>
+      </div>
+
+      <Modal
+        title="提示"
+        visible={isModalVisible}
+        onOk={handleConfirm}
+        onCancel={() => setIsModalVisible(false)}
+        okText="确认"
+        cancelText="取消"
+      >
+        <p>确定要离开吗？</p>
+      </Modal>
       {/* <Menu
               defaultSelectedKeys={[window.location.pathname]}
               defaultOpenKeys={['sub1']}

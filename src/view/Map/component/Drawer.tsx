@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Drawer, Button, Space, Divider, Select, Input } from "antd";
+import { Drawer, Button, Space, Divider, Select, Input, Tooltip } from "antd";
 import initMap from "../../components/map/control/map";
 import { Provider } from '../utils/useContext'
 import "../assets/css/Drawer.scss";
@@ -27,11 +27,11 @@ const DrawerContain = () => {
 
   return (
     <>
-      <Space>
-        <Button type="primary" onClick={showDrawer}>
-          显示操作区
-        </Button>
-      </Space>
+        <div className="show-btn" onClick={showDrawer}>
+          <Tooltip placement="topLeft" title="显示地图搜索" arrowPointAtCenter>
+            <i className="iconfont icon-search"></i>
+          </Tooltip>
+        </div>
       <Drawer
         title="地图查询区域"
         placement={"right"}

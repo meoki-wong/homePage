@@ -3,7 +3,8 @@ import React, {lazy, ReactElement ,Suspense} from 'react'
 import Loading from '../view/components/Loading'
 import Home from '../home'
 const LiveCom = lazy(()=>import('../view/Meeting/index'))
-const ChartRoom = lazy(()=>import('../view/chatRoom/ChartRoom'))
+const ChartRoom = lazy(()=>import('../view/chatRoom/ChatRoom'))
+const ChatPage = lazy(()=>import('../view/chatRoom/components/chatPage'))
 const Map = lazy(()=>import('../view/Map/index'))
 
 // 路由懒加载
@@ -34,7 +35,14 @@ const routeList: any[] = [
             {
                 name: '即时通讯',
                 path: '/home/ChartRoom',
-                element: lazyComponent(<ChartRoom />)
+                element: lazyComponent(<ChartRoom />),
+                children: [
+                    {
+                        name: '测试',
+                        path: '/home/ChartRoom/11',
+                        element: lazyComponent(<ChatPage/>)
+                    }
+                ]
             }
         ]
     },

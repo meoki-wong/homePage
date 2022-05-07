@@ -8,20 +8,66 @@
     background-color: #fff;
     padding: 0 20px;
     box-sizing: border-box;
-    .logo{
+    justify-content: space-between;
+    .left-area{
         display: flex;
-        align-items: center;
-        margin-right: 50px;
-        img{
-            width: 50px;
-            height: 50px;
-        }
-        .title{
-            font-size: 18px;
-            font-weight: 500;
+        .logo{
+            display: flex;
+            align-items: center;
+            margin-right: 50px;
+            img{
+                width: 50px;
+                height: 50px;
+            }
+            .title{
+                font-size: 18px;
+                font-weight: 500;
+            }
         }
     }
-
+    
+    .user-info{
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+        .notify{
+            cursor: pointer;
+            margin-right: 30px;
+            
+            .ant-badge{
+                width: 30px;
+                height: 30px;
+            }
+            .icon-notify:before{
+                font-size: 25px;
+                color: #3662EC;
+                margin-right: 20px;
+            }
+        }
+        .user-header{
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid #3662EC;
+            cursor: pointer;
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+        // .user-name{
+        //     font-size: 16px;
+        //     font-weight: 500;
+        //     color: #3662EC;
+        //     cursor: pointer;
+        // }
+    }
+    
+    .login-box{
+        height: 300px;
+    }
     /* 组件样式 */
     .ant-menu-overflow-item{
         height: 80px;

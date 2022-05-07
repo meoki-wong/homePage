@@ -1,0 +1,66 @@
+*{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.chat-contain{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+    min-height: inherit;
+    .contants{
+        height: 100%;
+        border: 1px solid #eee;
+        .search{
+            width: 100%;
+            height: 80px;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+        .friend-list{
+            margin-top: 20px;
+            .contant-item{
+                width: 100%;
+                height: 70px;
+                border-top: 1px solid #eee;
+                border-bottom: 1px solid #eee;
+                margin-bottom: 5px;
+                display: flex;
+                align-items: center;
+                padding: 0 15px;
+                box-sizing: border-box;
+                cursor: pointer;
+                .item-header{
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 25%;
+                    overflow: hidden;
+                    border: 1px solid #eee;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .item-desc{
+                    margin-left: 20px;
+                    text-align: left;
+                    .name{
+                        font-size: 16px;
+                        font-weight: 500;
+                    }
+                    .desc{
+
+                    }
+                }
+            }
+        }
+
+    }
+    .chat-box{
+        height: 100%;
+        margin-left: 10px;
+        border: 1px solid #eee;
+    }
+}

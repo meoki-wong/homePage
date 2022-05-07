@@ -6,33 +6,32 @@ export default class Socket {
 
     socket: any
     msgList: Array<string | number> = []
-    self: any
-    constructor(_this: any){
+    setMsg: any
+    constructor(setMsgList: any) {
+        this.setMsg = setMsgList
         this.initSocket()
-        this.receiveMsg(_this) // 监听接收服务端返回的消息数据
-        this.self = _this
+        this.receiveMsg() // 监听接收服务端返回的消息数据
     }
 
-    initSocket(){
+    initSocket() {
         this.socket = io('ws://localhost:10021')
         console.log('创建构造函数', this.socket)
     }
 
-    sendMsg(msg: string | number){
+    sendMsg(msg: string | number) {
         this.socket.emit('sendMsg', {
             userId: localStorage.getItem('userId'),
             message: msg
         })
     }
 
-    receiveMsg(_this: any){
-        this.socket.on('receiveMsg', (msg: string | number)=>{
-            _this.setState({msgBox: []})
+    receiveMsg() {
+        this.socket.on('receiveMsg', (msg: string | number) => {
             this.msgList.push(msg)
-            _this.setState({msgBox: this.msgList})
+            this.setMsg(this.msgList)
+            console.log('---触发内容-----',)
         })
     }
-
 
 
 }

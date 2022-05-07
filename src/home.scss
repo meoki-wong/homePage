@@ -15,8 +15,11 @@
   .view{
     background-color: #fff;
     max-width: 1200px;
-    margin: 0 auto;
-    height: auto;
+    min-height: calc(100vh - 150px);
+    margin: 0 auto 20px;
+    // padding-bottom: 20px;
+    box-sizing: border-box;
+    // display: grid;
   }
 }
 
