@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./register.scss";
 import {
@@ -26,10 +26,21 @@ export default function Register() {
       sm: { span: 14 },
     },
   };
+
+  let [name, setName] = useState<string>('')
+  let [password, setPassword] = useState<string>()
+
+  let changeNameVal = (e:React.ChangeEvent<HTMLInputElement>)=>{
+    setName(e.target.value)
+  }
+  let changePwdVal = (e:React.ChangeEvent<HTMLInputElement>)=>{
+    setPassword(e.target.value)
+  }
+
   let register = ()=>{
     let params = {
-      userName: 'jack',
-      password: 123456
+      userName: name,
+      password: password
     }
     axios.post('/register', params).then(res=>{
       if(res.data.success){
@@ -92,10 +103,10 @@ export default function Register() {
           </Form.Item>
         </Form.Item> */}
         <Form.Item label="用户名">
-          <Input placeholder="请输入用户名" />
+          <Input placeholder="请输入用户名" onChange={changeNameVal}/>
         </Form.Item>
         <Form.Item label="密码" hasFeedback validateStatus="warning">
-          <Input.Password placeholder="请输入密码" />
+          <Input.Password placeholder="请输入密码" onChange={changePwdVal}/>
         </Form.Item>
         
       </Form>
