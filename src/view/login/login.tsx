@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Form, Input, Button, Checkbox, message } from "antd";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from '../../api/axios.module'
 import "./login.scss"
-import axios from "axios";
+// import axios from "axios";
 
 // import { setCookieFn } from '../../utils/setCookie'
 // import {Base64} from 'js-base64'
@@ -17,7 +18,7 @@ function Login() {
   useEffect(() => {
     if (window.localStorage.getItem("remember_pwd")) {
       let userInfo = JSON.parse(`${Cookies.get("kk2")}`);
-      axios.post("/login", { ...userInfo }).then((res) => {
+      axiosInstance.post("/login", { ...userInfo }).then((res) => {
         if (res.data.code === 200) {
           navigate("/home");
         }
@@ -46,7 +47,7 @@ function Login() {
   };
 
   let login = () => {
-    axios.post("/login", { userName, password, checkBox }).then((res: any) => {
+    axiosInstance.post("/login", { userName, password, checkBox }).then((res: any) => {
       if (res.data.code === 200) {
         if (checkBox) {
           // setCookieFn({name: 'kk2', value: {

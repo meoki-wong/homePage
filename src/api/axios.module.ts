@@ -1,14 +1,14 @@
 import React from 'react'
-import axios, {AxiosRequestConfig, AxiosResponse, AxiosInstance} from 'axios'
-import {message} from 'antd'
-//@ts-ignore
+import axios, { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios'
+import { message } from 'antd'
+// @ts-ignore
 import Nprogress from 'nprogress' 
 import 'nprogress/nprogress.css'
 // import axiosRetry from 'axios-retry'
-//@ts-ignore
-axios.defaults.baseURL = process.env.NODE_ENV === 'production' ?
-'https://supermeoki/data_admin' :
-'https://127.0.0.1:10020/data_admin'
+// @ts-ignore
+// axios.defaults.baseURL = process.env.NODE_ENV === 'production' ?
+// 'https://supermeoki/data_admin' :
+// 'https://127.0.0.1:10020/data_admin'
 
 let axiosInstance: AxiosInstance = axios.create({
     baseURL:  process.env.NODE_ENV === 'production' ?
@@ -81,5 +81,7 @@ axiosInstance.interceptors.response.use((config: AxiosResponse)=>{
     // console.log('=====>响应拦截失败', err.config)
     // message.error(String(err)) // statusCode 不为200时   报相关异常信息
 })
+
+export default axiosInstance
 
 
