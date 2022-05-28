@@ -8,27 +8,28 @@ export default function ChatPage(props: any) {
   const { TextArea } = Input;
   const [content, setContent] = useState<string | number>();
   const [initSocket, setInitSocket] = useState<any>({});
-  const [msgList, setMsgList] = useState<MsgList>([]);
 
   const inputVal = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
   };
   const sendMsg = () => {
     initSocket.sendMsg(content);
+    let selfHtml = document.createElement('div')
+    selfHtml.setAttribute('class', 'self-frame')
+    selfHtml.innerHTML = `
+          <p class="inner-msg">${content}</p>
+          <img src="${require('../../assets/image/login_bg.png')}" alt="" />`
+    document.getElementsByClassName('msg-area')[0].append(selfHtml)
   };
   useEffect(() => {
-    setInitSocket(new Socket(setMsgList));
+    setInitSocket(new Socket());
+    
   }, []);
-  useEffect(()=>{
-    console.log('-----msgList', msgList);
-  }, [msgList])
   return (
     <div className="chat-page">
       <div className="friend-name">{"阿斯顿撒"}</div>
       <div className="msg-area">
-        {msgList.map((item: string | number, index) => {
-          return <span key={index}>{item}</span>;
-        })}
+        {/* 聊天区 */}
       </div>
       <div className="msg-opt">
         <div className="option-area">

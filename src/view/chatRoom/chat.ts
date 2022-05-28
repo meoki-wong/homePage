@@ -5,10 +5,7 @@ import io from 'socket.io-client'
 export default class Socket {
 
     socket: any
-    msgList: Array<string | number> = []
-    setMsg: any
-    constructor(setMsgList: any) {
-        this.setMsg = setMsgList
+    constructor() {
         this.initSocket()
         this.receiveMsg() // 监听接收服务端返回的消息数据
     }
@@ -26,10 +23,17 @@ export default class Socket {
     }
 
     receiveMsg() {
-        this.socket.on('receiveMsg', (msg: string | number) => {
-            this.msgList.push(msg)
-            this.setMsg(this.msgList)
-            console.log('---触发内容-----',)
+        this.socket.on('receiveMsg', (msg: any) => {
+            console.log('------chufan ', msg)
+            let htmlCon = document.createElement("div")
+            htmlCon.setAttribute('class', 'other-frame')
+            htmlCon.innerHTML = `
+            <img src='${require('../assets/image/login_bg.png')}' alt="" />
+            <p class="inner-msg">${msg.message}</p>`
+            
+            document.getElementsByClassName('msg-area')[0].append(
+                htmlCon
+            )
         })
     }
 
