@@ -10,6 +10,7 @@ import "./login.scss"
 // import md5 from 'js-md5'
 import Cookies from "js-cookie";
 import { CheckboxChangeEvent } from "antd/lib/checkbox";
+import { json } from "stream/consumers";
 function Login() {
   let navigate = useNavigate();
 
@@ -66,7 +67,7 @@ function Login() {
         }
         let token = res.data.data.token;
         window.localStorage.setItem("token", token);
-        window.localStorage.setItem("userId", res.data.data.userInfoId);
+        window.localStorage.setItem("userInfo", JSON.stringify(res.data.data.userInfo));
         message.success("登录成功");
         navigate("/home");
       }

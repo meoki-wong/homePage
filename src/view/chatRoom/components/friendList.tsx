@@ -1,28 +1,44 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './friendList.module.scss'
+import { request } from '../../../api/request'
+import { AxiosResponse } from 'axios'
+// import axios from 'axios'
+type FriendList = Array<object>
 export default function FriendList() {
     let navigate = useNavigate()
-    const chatFriends = ()=>{
-        navigate('/home/ChartRoom/11')
-      }
+    let [friendList, setFriendList] = useState<FriendList>()
+    useEffect(()=>{
+      // getFirends
+      request.post('/getFirends', {
+        userId: JSON.parse(localStorage.getItem('userInfo')!).id
+      }).then((res)=>{
+        console.log('----res相关参数', res);
+        setFriendList(res.data.list)
+      })
+    }, [])
 
+    const chatFriends = (id: number)=>{
+      navigate(`/home/ChartRoom/${id}`)
+    }
   return (
     <div className="friend-list">
     <ul>
-      <li className="contant-item" onClick={chatFriends}>
+      {friendList?.map((item: any)=>{
+        return (<li className="contant-item" onClick={()=>chatFriends(item.id)}>
         <div className="item-header">
           <img src={require('../../assets/image/user_header.jpeg')} alt="" />
         </div>
         <div className="item-desc">
           <div className="name">
-            {'我是老牛逼'}
+            {item.userName}
           </div>
           <div className="desc">
             {'你夸撒大声地'}
           </div>
         </div>
-      </li>
+      </li>)
+      })}
     </ul>
   </div>
   )

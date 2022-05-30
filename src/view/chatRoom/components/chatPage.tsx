@@ -14,23 +14,20 @@ export default function ChatPage(props: any) {
   };
   const sendMsg = () => {
     initSocket.sendMsg(content);
-    let selfHtml = document.createElement('div')
-    selfHtml.setAttribute('class', 'self-frame')
+    let selfHtml = document.createElement("div");
+    selfHtml.setAttribute("class", "self-frame");
     selfHtml.innerHTML = `
           <p class="inner-msg">${content}</p>
-          <img src="${require('../../assets/image/login_bg.png')}" alt="" />`
-    document.getElementsByClassName('msg-area')[0].append(selfHtml)
+          <img src="${require("../../assets/image/login_bg.png")}" alt="" />`;
+    document.getElementsByClassName("msg-area")[0].append(selfHtml);
   };
   useEffect(() => {
     setInitSocket(new Socket());
-    
   }, []);
   return (
     <div className="chat-page">
       <div className="friend-name">{"阿斯顿撒"}</div>
-      <div className="msg-area">
-        {/* 聊天区 */}
-      </div>
+      <div className="msg-area">{/* 聊天区 */}</div>
       <div className="msg-opt">
         <div className="option-area">
           <div className="send-btn" onClick={sendMsg}>

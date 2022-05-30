@@ -39,7 +39,7 @@ const routeList: any[] = [
                 children: [
                     {
                         name: '测试',
-                        path: '/home/ChartRoom/11',
+                        path: '/home/ChartRoom/:id',
                         element: lazyComponent(<ChatPage/>)
                     }
                 ]

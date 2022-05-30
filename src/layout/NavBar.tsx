@@ -37,6 +37,7 @@ export default function LeftNav(props: Object) {
 
   const menu = (
     <Menu>
+      {window.localStorage.token && <Menu.Item>{JSON.parse(localStorage.getItem('userInfo')!).userName}</Menu.Item>}
       <Menu.Item onClick={isLogin}>{logMsg}</Menu.Item>
     </Menu>
   );
