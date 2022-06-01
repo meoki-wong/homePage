@@ -1,20 +1,21 @@
 import React, { useEffect, useState, useRef } from "react";
 import Socket from "../chat";
 import "./chatPage.scss";
-import { Input } from "antd";
+import { Input, message } from "antd";
 
 export default function ChatPage(props: any) {
   // const inputRef:any = useRef()
   const { TextArea } = Input;
-  const [content, setContent] = useState<string>('');
+  const [content, setContent] = useState<string>("");
   const [initSocket, setInitSocket] = useState<any>({});
 
   const inputVal = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
   };
   const sendMsg = () => {
-    if(!content.trim()){
-      return
+    if (!content.trim()) { // 禁止输入空内容
+      message.warning('禁止输入空白内容')
+      return;
     }
     initSocket.sendMsg(content);
     let selfHtml = document.createElement("div");
@@ -23,7 +24,7 @@ export default function ChatPage(props: any) {
           <p class="inner-msg">${content}</p>
           <img src="${require("../../assets/image/login_bg.png")}" alt="" />`;
     document.getElementsByClassName("msg-area")[0].append(selfHtml);
-    setContent('')
+    setContent("");
   };
   useEffect(() => {
     setInitSocket(new Socket());

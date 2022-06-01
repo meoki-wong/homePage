@@ -36,6 +36,7 @@ export default function UseRoute(props:any) {
     let whiteList = ["/dataAdmin/login", "/dataAdmin/register"]
     useEffect(()=>{
         ElementRoute() // 路由改变触发路由重新渲染  首先实现的功能是/ 重定向/home
+
     })
     let ElementRoute = ()=>{
         if(!token && !whiteList.includes(location.pathname)){
