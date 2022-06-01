@@ -10,8 +10,8 @@ let RedirectLogin = ()=>{
     return (
         <>
             <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="*" element={<Navigate to="/login" />} />
+                <Route path="/dataAdmin/login" element={<Login />} />
+                <Route path="*" element={<Navigate to="/dataAdmin/login" />} />
             </Routes>
         </>
     )
@@ -20,8 +20,8 @@ let RedirectHome = ()=>{
     return (
         <>
             <Routes>
-                <Route path="/home" element={<Home />} />
-                <Route path="*" element={<Navigate to="/home" />} />
+                <Route path="/dataAdmin" element={<Home />} />
+                <Route path="*" element={<Navigate to="/dataAdmin" />} />
             </Routes>
         </>
     )
@@ -33,7 +33,7 @@ export default function UseRoute(props:any) {
     let navigate = useNavigate()
     let token = window.localStorage.getItem('token')
     // 免token白名单
-    let whiteList = ["/login", "/register"]
+    let whiteList = ["/dataAdmin/login", "/dataAdmin/register"]
     useEffect(()=>{
         ElementRoute() // 路由改变触发路由重新渲染  首先实现的功能是/ 重定向/home
     })
@@ -43,7 +43,7 @@ export default function UseRoute(props:any) {
         } 
         else {
             if(location.pathname === '/'){
-                navigate("/home")
+                navigate("/dataAdmin")
             }
             return <ReactRouter />
         }

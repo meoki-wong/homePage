@@ -13,7 +13,7 @@ function App(props: any) {
   let navigate = useNavigate()
   let logout = ()=>{
     localStorage.clear()
-    navigate('/login')
+    navigate('/dataAdmin/login')
   }
   return (
     <div className="App">

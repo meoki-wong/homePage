@@ -19,13 +19,13 @@ export default function FriendList() {
     }, [])
 
     const chatFriends = (id: number)=>{
-      navigate(`/home/ChartRoom/${id}`)
+      navigate(`/dataAdmin/ChartRoom/${id}`)
     }
   return (
     <div className="friend-list">
     <ul>
       {friendList?.map((item: any)=>{
-        return (<li className="contant-item" onClick={()=>chatFriends(item.id)}>
+        return (<li key={item.id} className="contant-item" onClick={()=>chatFriends(item.id)}>
         <div className="item-header">
           <img src={require('../../assets/image/user_header.jpeg')} alt="" />
         </div>

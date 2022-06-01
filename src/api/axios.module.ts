@@ -12,8 +12,8 @@ import 'nprogress/nprogress.css'
 
 let axiosInstance: AxiosInstance = axios.create({
     baseURL:  process.env.NODE_ENV === 'production' ?
-                          'https://supermeoki/data_admin' :
-                          'https://127.0.0.1:10020/data_admin',
+                          'https://supermeoki.xyz/data_admin' :
+                          'http://127.0.0.1:10020/data_admin',
     timeout:  15 * 1000, // 设置请求超时时间
     // 设置超时请求
     retryDelay: 1000,

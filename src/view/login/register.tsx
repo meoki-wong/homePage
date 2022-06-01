@@ -45,7 +45,7 @@ export default function Register() {
     axios.post('/register', params).then(res=>{
       if(res.data.success){
         message.success('注册成功')
-        navigate('/login')
+        navigate('/dataAdmin/login')
       }
     })
   }

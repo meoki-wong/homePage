@@ -27,7 +27,7 @@ export default function LeftNav(props: Object) {
     if (window.localStorage.token) {
       setIsModalVisible(true);
     } else {
-      navigate("/login");
+      navigate("/dataAdmin/login");
     }
   };
   const handleConfirm = () => {

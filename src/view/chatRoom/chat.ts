@@ -11,7 +11,9 @@ export default class Socket {
     }
 
     initSocket() {
-        this.socket = io('ws://localhost:10021')
+        this.socket = process.env.NODE_ENV == 'production'?io('wss://supermeoki.xyz'): io('ws://localhost:10021')
+        // this.socket =  io('ws://localhost:10020/socket.io')
+        // this.socket = io('wss://supermeoki.xyz/socket.io')
         console.log('创建构造函数', this.socket)
     }
 
@@ -24,13 +26,12 @@ export default class Socket {
 
     receiveMsg() {
         this.socket.on('receiveMsg', (msg: any) => {
-            console.log('------chufan ', msg)
             let htmlCon = document.createElement("div")
             htmlCon.setAttribute('class', 'other-frame')
             htmlCon.innerHTML = `
             <img src='${require('../assets/image/login_bg.png')}' alt="" />
             <p class="inner-msg">${msg.message}</p>`
-            
+
             document.getElementsByClassName('msg-area')[0].append(
                 htmlCon
             )

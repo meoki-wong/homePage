@@ -21,7 +21,7 @@ function Login() {
       let userInfo = JSON.parse(`${Cookies.get("kk2")}`);
       axiosInstance.post("/login", { ...userInfo }).then((res) => {
         if (res.data.code === 200) {
-          navigate("/home");
+          navigate("/dataAdmin");
         }
       });
     }
@@ -69,7 +69,7 @@ function Login() {
         window.localStorage.setItem("token", token);
         window.localStorage.setItem("userInfo", JSON.stringify(res.data.data.userInfo));
         message.success("登录成功");
-        navigate("/home");
+        navigate("/dataAdmin");
       }
     });
   };

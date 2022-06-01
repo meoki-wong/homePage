@@ -5,12 +5,12 @@ import Register from '../view/login/register'
 const publicRoute = [
     {
         name: '登录',
-        path: '/login',
+        path: '/dataAdmin/login',
         element: <Login />
     },
     {
         name: '注册',
-        path: '/register',
+        path: '/dataAdmin/register',
         element: <Register />
     }
 ]
