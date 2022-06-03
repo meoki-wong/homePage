@@ -138,7 +138,7 @@ function Login() {
             >
               登录
             </Button>
-            <Button type="primary" onClick={() => navigate("/register")}>
+            <Button type="primary" onClick={() => navigate("/dataAdmin/register")}>
               注册
             </Button>
           </Form.Item>

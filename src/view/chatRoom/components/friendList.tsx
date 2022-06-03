@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './friendList.module.scss'
 import { request } from '../../../api/request'
-import { AxiosResponse } from 'axios'
+import { SelectItem } from '../interface/SelectItem'
+import { socketIo } from '../utils/newSocket'
 // import axios from 'axios'
 type FriendList = Array<object>
+
 export default function FriendList() {
     let navigate = useNavigate()
     let [friendList, setFriendList] = useState<FriendList>()
@@ -18,14 +20,18 @@ export default function FriendList() {
       })
     }, [])
 
-    const chatFriends = (id: number)=>{
-      navigate(`/dataAdmin/ChartRoom/${id}`)
+    const chatFriends = (item: SelectItem)=>{
+      navigate(`/dataAdmin/ChartRoom/friend`, { state: {
+        id: item.id,
+        userName: item.userName
+      }})
+
     }
   return (
     <div className="friend-list">
     <ul>
       {friendList?.map((item: any)=>{
-        return (<li key={item.id} className="contant-item" onClick={()=>chatFriends(item.id)}>
+        return (<li key={item.id} className="contant-item" onClick={()=>chatFriends(item)}>
         <div className="item-header">
           <img src={require('../../assets/image/user_header.jpeg')} alt="" />
         </div>

@@ -1,13 +1,21 @@
 import React, { useEffect, useState, useRef } from "react";
-import Socket from "../chat";
+import {socketIo} from "../utils/newSocket";
 import "./chatPage.scss";
 import { Input, message } from "antd";
-
+import { Location, useLocation } from "react-router-dom";
+import { SelectItem, SendMsgInfo } from '../interface/SelectItem'
 export default function ChatPage(props: any) {
   // const inputRef:any = useRef()
   const { TextArea } = Input;
   const [content, setContent] = useState<string>("");
-  const [initSocket, setInitSocket] = useState<any>({});
+  // const [initSocket, setInitSocket] = useState<any>({});
+  const location: Location = useLocation()
+  const routeState = location.state as SelectItem
+
+
+  useEffect(()=>{
+    socketIo.getSocketId(routeState.id)
+  }, [])
 
   const inputVal = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
@@ -17,7 +25,12 @@ export default function ChatPage(props: any) {
       message.warning('禁止输入空白内容')
       return;
     }
-    initSocket.sendMsg(content);
+    const sendMsgInfo = {
+      userId: JSON.parse(localStorage.getItem('userInfo')!).id,
+      friendId: routeState.id,
+      sendMsg: content
+    }
+    socketIo.sendSingleMsg(sendMsgInfo);
     let selfHtml = document.createElement("div");
     selfHtml.setAttribute("class", "self-frame");
     selfHtml.innerHTML = `
@@ -26,12 +39,9 @@ export default function ChatPage(props: any) {
     document.getElementsByClassName("msg-area")[0].append(selfHtml);
     setContent("");
   };
-  useEffect(() => {
-    setInitSocket(new Socket());
-  }, []);
   return (
     <div className="chat-page">
-      <div className="friend-name">{"阿斯顿撒"}</div>
+      <div className="friend-name">{routeState.userName}</div>
       <div className="msg-area">{/* 聊天区 */}</div>
       <div className="msg-opt">
         <div className="option-area">

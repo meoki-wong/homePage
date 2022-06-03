@@ -35,7 +35,7 @@ const routeList: any[] = [
         children: [
           {
             name: "测试",
-            path: "/dataAdmin/ChartRoom/:id",
+            path: "/dataAdmin/ChartRoom/friend",
             element: <ChatPage />,
           },
         ],

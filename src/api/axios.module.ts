@@ -47,7 +47,6 @@ axiosInstance.interceptors.request.use((config: AxiosRequestConfig)=>{
 // 响应拦截
 
 axiosInstance.interceptors.response.use((config: AxiosResponse)=>{
-    console.log('----触发', config)
     let {status, statusText, data} = config
     if(data.code !==200){
         message.error(data.message)

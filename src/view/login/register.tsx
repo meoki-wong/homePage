@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./register.scss";
+import { request  } from "../../api/request";
 import {
   Form,
   Input,
@@ -42,7 +43,7 @@ export default function Register() {
       userName: name,
       password: password
     }
-    axios.post('/register', params).then(res=>{
+    request.post('/register', params).then(res=>{
       if(res.data.success){
         message.success('注册成功')
         navigate('/dataAdmin/login')
