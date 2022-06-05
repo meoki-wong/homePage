@@ -3,6 +3,8 @@ import { Menu, Dropdown, Modal, Badge } from "antd";
 import "./NavBar.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import routeList from "../router/routeList";
+import { socketIo } from '../view/chatRoom/utils/newSocket'
+import { request } from "../api/request";
 import {
   AppstoreOutlined,
   PieChartOutlined,
@@ -10,11 +12,13 @@ import {
   ContainerOutlined,
   MailOutlined,
 } from "@ant-design/icons";
+import Store from '../store/store/index'
 let { SubMenu } = Menu;
 export default function LeftNav(props: Object) {
   let navigate = useNavigate();
   let [logMsg, setLogMsg] = useState<string>("登录/注册");
   let [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+  const [reminder, setReminder] = useState<number>(0)
   useEffect(() => {
     //
     if (!window.localStorage.token) {
@@ -22,6 +26,16 @@ export default function LeftNav(props: Object) {
     } else {
       setLogMsg("退出登录");
     }
+
+    request.post('/privateMessage').then(res=>{
+      console.log('-----res消息提示', res);
+      setReminder(res.data.data.msgItem.length)
+    })
+    socketIo.getApplyMsg()
+    Store.subscribe(()=>{
+      console.log('获取值的内容', Store.getState());
+      setReminder(Store.getState().value)
+    })
   });
   const isLogin = () => {
     if (window.localStorage.token) {
@@ -81,7 +95,7 @@ export default function LeftNav(props: Object) {
       </div>
       <div className="user-info">
         <div className="notify">
-          <Badge count={100}>
+          <Badge count={reminder}>
             <i className="iconfont icon-notify"></i>
           </Badge>
         </div>

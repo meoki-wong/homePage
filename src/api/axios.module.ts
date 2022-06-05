@@ -35,12 +35,17 @@ axiosInstance.interceptors.request.use((config: AxiosRequestConfig)=>{
         config.headers = {}
     } else {
         config.headers.authorization = token as string
+        config.headers = {
+            authorization: token as string,
+            userInfo: localStorage.getItem('userInfo')!
+        }
     }
     
     return config
 }, (err: any)=>{
     message.error(err)
     console.log('=====>请求拦截失败:', err)
+    Nprogress.done() // 结束请求进度条 
 })
 
 
@@ -49,7 +54,9 @@ axiosInstance.interceptors.request.use((config: AxiosRequestConfig)=>{
 axiosInstance.interceptors.response.use((config: AxiosResponse)=>{
     let {status, statusText, data} = config
     if(data.code !==200){
+        console.log('-----触发', data)
         message.error(data.message)
+        Nprogress.done() // 结束请求进度条 
         return
     }
     // 需要添加token等   登录信息失效  跳转 /login

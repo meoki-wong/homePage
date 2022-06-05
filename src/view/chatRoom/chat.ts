@@ -1,6 +1,7 @@
 import io from 'socket.io-client'
-
 import { SendMsgInfo } from './interface/SelectItem'
+import Store from '../../store/store/index'
+import { sendAction } from '../../store/action/index'
 
 export default class Socket {
 
@@ -34,6 +35,7 @@ export default class Socket {
     // }
     joinRoom(item: any) {
         this.socket.emit('join', item)
+        console.log('----登录', item)
     }
     getSocketId(sendId: number) {
         this.socketId = sendId
@@ -47,10 +49,20 @@ export default class Socket {
     // 接收单聊消息
     receiveSingleMsg() {
         this.socket.on('singleMsg', (msg: SendMsgInfo) => {
-            console.log('first', this.socketId, msg)
             if (this.socketId === msg.userId) { // 同一环境下 不接受
                 htmlFn(msg.sendMsg)
             }
+        })
+    }
+    // 接收添加朋友消息
+    getApplyMsg(){
+        this.socket.on('sendApply',(msg: number | string)=>{
+            console.log('收到一条好友申请')
+            Store.dispatch({
+                type: 'action_type_1',
+                value: 0
+            })
+            console.log('---getState', Store.getState())
         })
     }
 

@@ -14,16 +14,8 @@ let {Header, Sider, Content} = Layout
 function App(props: any) {
   let navigate = useNavigate()
   useEffect(()=>{
-    let userinfo = JSON.parse(localStorage.getItem('userInfo')!)
-    socketIo.joinRoom({
-      userName: userinfo.userName,
-      userId: userinfo.id
-    })
+    
   },[])
-  let logout = ()=>{
-    localStorage.clear()
-    navigate('/dataAdmin/login')
-  }
   return (
     <div className="App">
       <Layout>
@@ -48,6 +40,7 @@ function App(props: any) {
   );
 }
 const mapStateToProps = (state: any, ownProps: any) => {
+  console.log('---statestate', state, ownProps);
   return {
     prop: state
   }
@@ -57,7 +50,8 @@ const mapDispatchToProps = (dispatch: any, ownProps: any) => {
   return {
     dispatchTest: () => {
       dispatch({
-        type: 'action_type_1'
+        type: 'action_type_1',
+        value: 20
       })
     }
   }
