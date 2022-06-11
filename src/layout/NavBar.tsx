@@ -20,20 +20,17 @@ export default function LeftNav(props: Object) {
   let [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [reminder, setReminder] = useState<number>(0)
   useEffect(() => {
-    //
     if (!window.localStorage.token) {
       setLogMsg("登录/注册");
     } else {
       setLogMsg("退出登录");
     }
 
-    request.post('/privateMessage').then(res=>{
-      console.log('-----res消息提示', res);
-      setReminder(res.data.data.msgItem.length)
+    request.post('/getMessageAccount').then(res=>{
+      setReminder(res.data.data)
     })
     socketIo.getApplyMsg()
     Store.subscribe(()=>{
-      console.log('获取值的内容', Store.getState());
       setReminder(Store.getState().value)
     })
   });
@@ -55,6 +52,13 @@ export default function LeftNav(props: Object) {
       <Menu.Item onClick={isLogin}>{logMsg}</Menu.Item>
     </Menu>
   );
+  const showNotifier = () => {
+    setReminder(0)
+    request.post('/showAllMessage').then(res=>{
+      navigate('/dataAdmin/notification')
+    })
+    
+  }
   return (
     <div className="nav-bar">
       <div className="left-area">
@@ -69,6 +73,7 @@ export default function LeftNav(props: Object) {
           inlineCollapsed={false}
         >
           {routeList.map((item, index) => {
+            if(!item.isShowNav) return 
             if (item.children) {
               return (
                 <SubMenu key={index} icon={<MailOutlined />} title={item.name}>
@@ -94,7 +99,7 @@ export default function LeftNav(props: Object) {
         </Menu>
       </div>
       <div className="user-info">
-        <div className="notify">
+        <div className="notify" onClick={showNotifier}>
           <Badge count={reminder}>
             <i className="iconfont icon-notify"></i>
           </Badge>

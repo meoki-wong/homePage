@@ -44,7 +44,7 @@ function SearchModal(props: any, ref: any) {
     request.post('/appleFriend', {
       friendId: itemId
     }).then(res=>{
-      if(res.data.success){
+      if(res && res.data.success){
         message.success(res.data.message)
       }
     })

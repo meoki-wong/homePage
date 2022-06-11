@@ -6,6 +6,7 @@ import ChatPage from "../view/chatRoom/components/chatPage";
 const LiveCom = lazy(() => import("../view/Meeting/index"));
 const ChartRoom = lazy(() => import("../view/chatRoom/ChatRoom"));
 const Map = lazy(() => import("../view/Map/index"));
+const Notification = lazy(() => import("../view/notification/page/notification"));
 
 // 路由懒加载
 const lazyComponent = (Element: ReactElement) => {
@@ -15,6 +16,7 @@ const routeList: any[] = [
   {
     name: "首批功能实现",
     path: "/dataAdmin",
+    isShowNav: true,
     element: <Home />,
     children: [
       {
@@ -44,7 +46,22 @@ const routeList: any[] = [
   },
   {
     name: "测试待定",
+    isShowNav: true,
   },
+  { // 个人消息页
+    name: '个人消息页',
+    path: '/dataAdmin',
+    isShowNav: false,
+    element: lazyComponent(<Home />),
+    children: [
+      {
+        name: '个人消息页',
+        path: '/dataAdmin/notification',
+        isShowNav: false,
+        element: lazyComponent(<Notification />)
+      }
+    ]
+  }
 ];
 
 export default routeList;

@@ -1,0 +1,27 @@
+
+
+.archival-container{
+    width: 250px;
+    min-height: 200px;
+    position: absolute;
+    top: 300px;
+    right: 30px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    .rules-map{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        li{
+            text-align: center;
+            width: 25%;
+            font-size: 12px;
+            font-weight: 400;
+        }
+    }
+    .rules-service{
+        text-align: left;
+    }
+}

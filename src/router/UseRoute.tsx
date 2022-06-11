@@ -60,6 +60,7 @@ export default function UseRoute(props: any) {
       if (location.pathname === "/") {
         navigate("/dataAdmin");
       }
+      
       return <ReactRouter />;
     }
   };
