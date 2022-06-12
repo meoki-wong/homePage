@@ -7,7 +7,7 @@ import { socketIo } from "../utils/newSocket";
 // import axios from 'axios'
 type FriendList = Array<object>;
 
-export default function FriendList() {
+function FriendList() {
   let navigate = useNavigate();
   let [friendList, setFriendList] = useState<FriendList>();
   useEffect(() => {
@@ -63,3 +63,6 @@ export default function FriendList() {
     </div>
   );
 }
+
+
+export default FriendList
