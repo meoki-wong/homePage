@@ -62,7 +62,12 @@ export default class Socket {
                 type: 'action_type_1',
                 value: 0
             })
-            console.log('---getState', Store.getState())
+        })
+    }
+    // 添加好友后的通知
+    addFriendSuccess(fn: Function){
+        this.socket.on('addFriendSuccess', ()=>{
+            fn()
         })
     }
 
