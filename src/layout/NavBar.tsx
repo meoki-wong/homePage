@@ -13,6 +13,7 @@ import {
   MailOutlined,
 } from "@ant-design/icons";
 import Store from '../store/store/index'
+import EditPersonInfo from '../view/personInfo/page/editPersonInfo'
 let { SubMenu } = Menu;
 export default function LeftNav(props: Object) {
   let navigate = useNavigate();
@@ -57,14 +58,33 @@ export default function LeftNav(props: Object) {
     request.post('/showAllMessage').then(res=>{
       navigate('/dataAdmin/notification')
     })
-    
+  }
+  const uploadPhoto = (e: any) => {
+    let file = e.target.files;
+    uploadFile(file);
+  }
+  const uploadFile = (file: any)=>{
+      var formData = new FormData();
+      Array.from(file).forEach((item: any)=>{
+        formData.append("file", item);
+      })
+      // 人民日益增长的美好生活需要和不平衡不充分的发展之间的矛盾是新时代的社会主要矛盾。
+      request.post('/uploadFile', formData).then(res=>{
+        // console.log('----上传文件参数', res);
+      })
   }
   return (
     <div className="nav-bar">
       <div className="left-area">
         <div className="logo">
           <img src={require("../view/assets/image/Flag.png")} alt="" />
-          <div className="title">SuperMeoki</div>
+          <div className="title">SuperMeoki
+          <input
+              type="file"
+              multiple
+              onChange={(e)=> uploadPhoto(e)}
+            />
+          </div>
         </div>
         <Menu
           defaultSelectedKeys={[window.location.pathname]}
@@ -110,6 +130,7 @@ export default function LeftNav(props: Object) {
           <div className="user-header">
             <img src={require("../view/assets/image/user_header.jpeg")} />
           </div>
+          
         </Dropdown>
       </div>
 

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./register.scss";
-import { request  } from "../../api/request";
+import { request } from "../../api/request";
+import UploadImg from "../components/upload/UploadImg";
 import {
   Form,
   Input,
@@ -10,12 +11,23 @@ import {
   Select,
   Cascader,
   Button,
-  message
+  message,
 } from "antd";
-import axios from 'axios'
+import axios from "axios";
+type FormData = {
+  userName: string,
+  password: string
+}
+type ImgType = {
+  response: {
+    data: string
+  }
+}
+
 export default function Register() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { Option } = Select;
+  const { TextArea } = Input
 
   const formItemLayout = {
     labelCol: {
@@ -27,93 +39,86 @@ export default function Register() {
       sm: { span: 14 },
     },
   };
-
-  let [name, setName] = useState<string>('')
-  let [password, setPassword] = useState<string>()
-
-  let changeNameVal = (e:React.ChangeEvent<HTMLInputElement>)=>{
-    setName(e.target.value)
+  const [ form ] = Form.useForm<FormData>()
+  const [imgUrl, setImgUrl] = useState<ImgType>()
+  const getImgUrl = (url: ImgType) => {
+    setImgUrl(url)
   }
-  let changePwdVal = (e:React.ChangeEvent<HTMLInputElement>)=>{
-    setPassword(e.target.value)
-  }
-
-  let register = ()=>{
-    let params = {
-      userName: name,
-      password: password
-    }
-    request.post('/register', params).then(res=>{
-      if(res.data.success){
-        message.success('注册成功')
-        navigate('/dataAdmin/login')
+  let register = async () => {
+    console.log('---await form.validateFields()', await form.validateFields(), imgUrl?.response?.data);
+    let formData = await form.validateFields()
+    // let params = {
+    //   userName,
+    //   password
+    // };
+    request.post("/register", {
+      ...formData,
+      headerImg: imgUrl?.response?.data
+    }).then((res) => {
+      if (res.data.success) {
+        message.success("注册成功");
+        navigate("/dataAdmin/login");
       }
-    })
-  }
+    });
+  };
   return (
     <div className={"register-container"}>
       <div className="form">
-      <Form {...formItemLayout}>
-        {/* <Form.Item label="Success" hasFeedback validateStatus="success">
-          <DatePicker style={{ width: "100%" }} />
-        </Form.Item>
-
-        <Form.Item label="Warning" hasFeedback validateStatus="warning">
-          <TimePicker style={{ width: "100%" }} />
-        </Form.Item>
-
-        <Form.Item label="Error" hasFeedback validateStatus="error">
-          <Select allowClear>
-            <Option value="1">Option 1</Option>
-            <Option value="2">Option 2</Option>
-            <Option value="3">Option 3</Option>
-          </Select>
-        </Form.Item>
-
-        <Form.Item
-          label="Validating"
-          hasFeedback
-          validateStatus="validating"
-          help="The information is being validated..."
-        >
-          <Cascader options={[{ value: "xx", label: "xx" }]} allowClear />
-        </Form.Item>
-
-        <Form.Item label="inline" style={{ marginBottom: 0 }}>
-          <Form.Item
-            validateStatus="error"
-            help="Please select right date"
-            style={{ display: "inline-block", width: "calc(50% - 12px)" }}
-          >
-            <DatePicker />
+        <Form {...formItemLayout} form={form}>
+          <Form.Item label="头像" name="headerImg">
+            <UploadImg maxNum={1} getImgUrl={getImgUrl}/>
           </Form.Item>
-          <span
-            style={{
-              display: "inline-block",
-              width: "24px",
-              lineHeight: "32px",
-              textAlign: "center",
-            }}
-          >
-            -
-          </span>
-          <Form.Item
-            style={{ display: "inline-block", width: "calc(50% - 12px)" }}
-          >
-            <DatePicker />
+          <Form.Item 
+          label="用户名"
+          name="userName">
+            <Input 
+            placeholder="请输入用户名" 
+            />
           </Form.Item>
-        </Form.Item> */}
-        <Form.Item label="用户名">
-          <Input placeholder="请输入用户名" onChange={changeNameVal}/>
-        </Form.Item>
-        <Form.Item label="密码" hasFeedback validateStatus="warning">
-          <Input.Password placeholder="请输入密码" onChange={changePwdVal}/>
-        </Form.Item>
-        
-      </Form>
-      <Button type="primary" onClick={register}>
-              注册
-            </Button>
+          <Form.Item 
+          label="密码" 
+          validateStatus="warning"
+          name="password">
+            <Input.Password placeholder="请输入密码" />
+          </Form.Item>
+          <Form.Item label="性别" name="sexy">
+            <Select allowClear>
+              <Option value="1">男</Option>
+              <Option value="2">女</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item label="地址" name="address">
+            <Input placeholder="请输入所在地区" />
+          </Form.Item>
+          <Form.Item label="联系方式" name="phoneNum">
+            <Input placeholder="请输入联系方式" />
+          </Form.Item>
+          <Form.Item label="年龄" name="age">
+            <Input placeholder="年龄先这么输吧" />
+          </Form.Item>
+          <Form.Item label="邮箱" name="email">
+            <Input placeholder="请输入邮箱" />
+          </Form.Item>
+          <Form.Item label="兴趣爱好" name="hobbies">
+            <TextArea 
+            placeholder="请输入兴趣爱好"  
+            showCount 
+            maxLength={30}
+            autoSize={{ minRows: 3, maxRows: 5 }}
+            />
+          </Form.Item>
+          <Form.Item label="个人简介" name="selfIntroduce">
+            <TextArea 
+            placeholder="请输入个人简介"  
+            showCount 
+            maxLength={50}
+            autoSize={{ minRows: 3, maxRows: 5 }}
+            />
+          </Form.Item>
+        </Form>
+        <Button type="primary" onClick={register}>
+          注册
+        </Button>
       </div>
     </div>
   );

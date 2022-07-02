@@ -34,6 +34,13 @@ axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
     if (!config.headers) {
         config.headers = {}
     } else {
+        // 区分上传接口和普通接口
+        if (config.url === "/uploadFile") {
+            //以formData上传时请求头Content-Type类型要改为multipart/form-data
+            config.headers['Content-Type'] = "multipart/form-data";
+        } else {
+            config.headers['Content-Type'] = 'application/json';
+        }
         config.headers.authorization = token as string
         config.headers = {
             authorization: token as string,

@@ -9,13 +9,19 @@ type FriendList = Array<object>;
 
 function FriendList() {
   let navigate = useNavigate();
+  let { socket } = socketIo;
   let [friendList, setFriendList] = useState<FriendList>();
   useEffect(() => {
     getFriendList();
   }, []);
-  useEffect(()=>{
-    socketIo.addFriendSuccess(getFriendList);
-  })
+  useEffect(() => {
+    socket.on("addFriendSuccess", () => {
+      getFriendList();
+    });
+    socket.on("userStatus", (item: any) => {
+      console.log("---item", item);
+    });
+  });
   const getFriendList = () => {
     request
       .post("/getFirends", {
@@ -64,5 +70,4 @@ function FriendList() {
   );
 }
 
-
-export default FriendList
+export default FriendList;

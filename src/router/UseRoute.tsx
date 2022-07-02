@@ -39,13 +39,14 @@ let RedirectHome = () => {
 let location: Location;
 let navigate: NavigateFunction;
 let token: string | null;
+
+// 免token白名单
 let whiteList = ["/dataAdmin/login", "/dataAdmin/register"];
 export default function UseRoute(props: any) {
   location = useLocation();
   navigate = useNavigate();
   token = window.localStorage.getItem("token");
-  // 免token白名单
-
+  
   useEffect(() => {
     ElementRoute(); // 路由改变触发路由重新渲染  首先实现的功能是/ 重定向/home
     if (localStorage.getItem("token")) {
@@ -79,6 +80,9 @@ let ElementRoute = () => {
     return <ReactRouter />;
   }
 };
+
+
+
 /**
  * 本组件作为全局的路由守卫
  * 鉴权   免密码登录等操作
