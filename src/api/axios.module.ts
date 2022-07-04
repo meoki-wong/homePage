@@ -7,6 +7,7 @@ import 'nprogress/nprogress.css'
 type UserInfo = {
     id: string | number
 }
+
 let userInfo: UserInfo = {
     id: JSON.parse(localStorage.getItem('userInfo')!).id
 }
@@ -16,14 +17,14 @@ let userInfo: UserInfo = {
 // 'https://supermeoki/data_admin' :
 // 'https://127.0.0.1:10020/data_admin'
 
+// 设置超时请求
+const retryDelay: number = 1000 // 超时请求
+const retry: number = 4 // 超时重新触发请求次数
 let axiosInstance: AxiosInstance = axios.create({
     baseURL: process.env.NODE_ENV === 'production' ?
         'https://supermeoki.xyz/data_admin' :
         'http://127.0.0.1:10020/data_admin',
     timeout: 15 * 1000, // 设置请求超时时间
-    // 设置超时请求
-    retryDelay: 1000,
-    retry: 4,
 })
 
 
@@ -80,11 +81,11 @@ axiosInstance.interceptors.response.use((config: AxiosResponse) => {
 }, (err: any) => {
     // 设置超时请求
     let config = err.config;
-    if (!config || !config.retry) return Promise.reject(err);
+    if (!config || !retry) return Promise.reject(err);
 
     config.__retryCount = config.__retryCount || 0;
 
-    if (config.__retryCount >= config.retry) {
+    if (config.__retryCount >= retry) {
         return Promise.reject(err);
     }
 
@@ -92,7 +93,7 @@ axiosInstance.interceptors.response.use((config: AxiosResponse) => {
     let backoff = new Promise<void>((resolve) => {
         setTimeout(function () {
             resolve();
-        }, config.retryDelay || 1);
+        }, retryDelay || 1);
     });
 
     return backoff.then(function () {
