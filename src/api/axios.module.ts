@@ -4,6 +4,9 @@ import { message } from 'antd'
 // @ts-ignore
 import Nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
+type UserInfo = {
+    userName: string
+}
 // import axiosRetry from 'axios-retry'
 // @ts-ignore
 // axios.defaults.baseURL = process.env.NODE_ENV === 'production' ?
@@ -38,10 +41,12 @@ axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
         if (config.url === "/uploadFile") {
             //以formData上传时请求头Content-Type类型要改为multipart/form-data
             config.headers['Content-Type'] = "multipart/form-data";
-        } else {
+        } 
+        else {
             config.headers['Content-Type'] = 'application/json';
         }
         config.headers.authorization = token as string
+        // 暂时不能使用中文做中文名  header不能写入中文  需要传入时进行过滤  后期做处理
         config.headers = {
             authorization: token as string,
             userInfo: localStorage.getItem('userInfo')!

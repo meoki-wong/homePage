@@ -79,11 +79,11 @@ export default function LeftNav(props: Object) {
         <div className="logo">
           <img src={require("../view/assets/image/Flag.png")} alt="" />
           <div className="title">SuperMeoki
-          <input
+          {/* <input
               type="file"
               multiple
               onChange={(e)=> uploadPhoto(e)}
-            />
+            /> */}
           </div>
         </div>
         <Menu

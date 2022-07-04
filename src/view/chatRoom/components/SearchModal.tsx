@@ -32,6 +32,7 @@ function SearchModal(props: any, ref: any) {
     setSearchVal(e.target.value)
   }
   const onSearch = () => {
+    console.log('-------searchVal', searchVal)
     request.post('/searchFriend', {
       searchUserId: searchVal
     }).then(res=>{
