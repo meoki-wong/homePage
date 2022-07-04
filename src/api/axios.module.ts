@@ -5,7 +5,10 @@ import { message } from 'antd'
 import Nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
 type UserInfo = {
-    userName: string
+    id: string | number
+}
+let userInfo: UserInfo = {
+    id: JSON.parse(localStorage.getItem('userInfo')!).id
 }
 // import axiosRetry from 'axios-retry'
 // @ts-ignore
@@ -49,7 +52,7 @@ axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
         // 暂时不能使用中文做中文名  header不能写入中文  需要传入时进行过滤  后期做处理
         config.headers = {
             authorization: token as string,
-            userInfo: localStorage.getItem('userInfo')!
+            userInfo: JSON.stringify(userInfo)
         }
     }
 
