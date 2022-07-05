@@ -46,10 +46,12 @@ export default function LeftNav(props: Object) {
     localStorage.clear();
     setIsModalVisible(false);
   };
-
+  const checkUserInfo = () => {
+    navigate('/dataAdmin/edit/editUserInfo')
+  }
   const menu = (
     <Menu>
-      {window.localStorage.token && <Menu.Item>{JSON.parse(localStorage.getItem('userInfo')!).userName}</Menu.Item>}
+      {window.localStorage.token && <Menu.Item onClick={checkUserInfo}>{JSON.parse(localStorage.getItem('userInfo')!).userName}</Menu.Item>}
       <Menu.Item onClick={isLogin}>{logMsg}</Menu.Item>
     </Menu>
   );
