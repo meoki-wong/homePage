@@ -34,11 +34,14 @@ export default function EditUserInfo() {
   const [ userInfo, setUserInfo] = useState<UserInfo>(Object)
 
   useEffect(()=>{
+    getUserData()
+  }, [])
+  let getUserData = () => {
     request.post('/getUserInfo').then(res=>{
       form.setFieldsValue(res.data.data)
       setUserInfo(res.data.data)
     })
-  }, [])
+  }
   const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -53,15 +56,16 @@ export default function EditUserInfo() {
     setImgUrl(url)
   }
 
-  let register = async () => {
+  let editInfo = async () => {
     let formData = await form.validateFields()
-    request.post("/register", {
+    request.post("/editUserInfo", {
       ...formData,
       headerImg: imgUrl?.response?.data
     }).then((res) => {
       if (res.data.success) {
-        message.success("注册成功");
-        navigate("/dataAdmin/login");
+        getUserData()
+        message.success("修改成功");
+
       }
     });
   };
@@ -119,8 +123,8 @@ export default function EditUserInfo() {
             />
           </Form.Item>
         </Form>
-        <Button type="primary" onClick={register}>
-          注册
+        <Button type="primary" onClick={editInfo}>
+          确认修改
         </Button>
       </div>
     </div>

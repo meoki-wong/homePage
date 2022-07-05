@@ -1,20 +1,29 @@
 import { Upload } from "antd";
 import ImgCrop from "antd-img-crop";
 import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
-import React, { useState, memo } from "react";
+import React, { useState, memo, useEffect } from "react";
 
 type PropInterface = {
   maxNum: number; // 上传最大值
   getImgUrl: Function; // 向父组件传入imgUrl字段
-  coverImg: string // 需要回显的图片url
 };
 const UploadImg: React.FC<PropInterface> = (props?: any) => {
   const { getImgUrl } = props;
+  useEffect(() => {
+    setFileList([
+      {
+        uid: "-1",
+        name: "image.png",
+        type: "image/jpeg",
+        url: props.coverImg,
+      },
+    ]);
+  }, [props.coverImg]);
   const [fileList, setFileList] = useState<UploadFile[]>([
     {
       uid: "-1",
       name: "image.png",
-      type: 'image/png',
+      type: "image/jpeg",
       url: props.coverImg,
     },
   ]);
