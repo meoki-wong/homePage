@@ -32,7 +32,8 @@ function App(props: any) {
               <Outlet />
             </div>
             <div className="archival">
-              <Archival />
+              {/* 协议 */}
+              {/* <Archival /> */}
             </div>
           </Content>
         </Layout>

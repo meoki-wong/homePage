@@ -8,9 +8,7 @@ type UserInfo = {
     id: string | number
 }
 
-let userInfo: UserInfo = {
-    id: JSON.parse(localStorage.getItem('userInfo')!).id
-}
+
 // import axiosRetry from 'axios-retry'
 // @ts-ignore
 // axios.defaults.baseURL = process.env.NODE_ENV === 'production' ?
@@ -36,6 +34,9 @@ axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
     Nprogress.start() // 添加请求进度条
     if (requestWhiteList.includes(config.url as string)) {
         return config
+    }
+    let userInfo: UserInfo = {
+        id: JSON.parse(localStorage.getItem('userInfo')!).UserId
     }
     let token = window.localStorage.getItem('token')
     if (!config.headers) {

@@ -130,7 +130,7 @@ export default function LeftNav(props: Object) {
         <Dropdown overlay={menu} placement="bottomLeft" arrow>
           {/* <span className="user-name">张三</span> */}
           <div className="user-header">
-            <img src={require("../view/assets/image/user_header.jpeg")} />
+            <img src={JSON.parse(localStorage.getItem('userInfo')!).headerImg} />
           </div>
           
         </Dropdown>

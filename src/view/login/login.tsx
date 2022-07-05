@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Form, Input, Button, Checkbox, message } from "antd";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from '../../api/axios.module'
+import { request } from "../../api/request";
 import "./login.scss"
 
 // import { setCookieFn } from '../../utils/setCookie'
@@ -17,7 +17,7 @@ function Login() {
   useEffect(() => {
     if (window.localStorage.getItem("remember_pwd")) {
       let userInfo = JSON.parse(`${Cookies.get("kk2")}`);
-      axiosInstance.post("/login", { ...userInfo }).then((res) => {
+      request.post("/login", { ...userInfo }).then((res) => {
         if (res.data.code === 200) {
           navigate("/dataAdmin");
         }
@@ -46,7 +46,7 @@ function Login() {
   };
 
   let login = () => {
-    axiosInstance.post("/login", { userName, password, checkBox }).then((res: any) => {
+    request.post("/login", { userName, password, checkBox }).then((res: any) => {
       if (res.data.code === 200) {
         if (checkBox) {
           // setCookieFn({name: 'kk2', value: {
@@ -65,7 +65,7 @@ function Login() {
         }
         let token = res.data.data.token;
         window.localStorage.setItem("token", token);
-        window.localStorage.setItem("userInfo", JSON.stringify(res.data.data.userInfo));
+        window.localStorage.setItem("userInfo", JSON.stringify(res.data.data.userInfo.allUsers[0]));
         message.success("登录成功");
         navigate("/dataAdmin");
       }
