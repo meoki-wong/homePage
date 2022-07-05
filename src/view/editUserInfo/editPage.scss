@@ -1,0 +1,33 @@
+.edit-container{
+
+    width: 1200px;
+    min-height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    background-color: #eee;
+    .left-nav{
+        padding: 10px 0;
+        box-sizing: border-box;
+        width: 300px;
+        min-height: 100vh;
+        background-color: #fff;
+        .nav-item{
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            font-size: 16px;
+            width: 100%;
+            color: #4e5969;
+            cursor: pointer;
+        }
+        .active{
+            background-color: #e8f3ff;
+        }
+    }
+    .right-contain{
+        width: 870px;
+        min-height: 100vh;
+        background-color: #fff;
+    }
+}

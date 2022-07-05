@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./register.scss";
-import { request } from "../../api/request";
-import UploadImg from "../components/upload/UploadImg";
+import "../../login/register.scss";
+import { request } from "../../../api/request";
+import UploadImg from "../../components/upload/UploadImg";
 import {
   Form,
   Input,
@@ -23,7 +23,7 @@ type ImgType = {
   }
 }
 
-export default function Register() {
+export default function EditUserInfo() {
   const navigate = useNavigate();
   const { Option } = Select;
   const { TextArea } = Input

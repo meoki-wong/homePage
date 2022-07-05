@@ -13,7 +13,6 @@ import Login from "../view/login/login";
 import Home from "../home";
 import { socketIo } from "../view/chatRoom/utils/newSocket";
 import Cookies from "js-cookie";
-import axios from "axios";
 // 跳转登录页组件
 let RedirectLogin = () => {
   return (

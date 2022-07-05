@@ -7,7 +7,9 @@ const LiveCom = lazy(() => import("../view/Meeting/index"));
 const ChartRoom = lazy(() => import("../view/chatRoom/ChatRoom"));
 const Map = lazy(() => import("../view/Map/index"));
 const Notification = lazy(() => import("../view/notification/page/notification"));
+// 编辑
 const Edit = lazy(() => import('../view/editUserInfo/editPage'))
+const EditUserInfo = lazy(()=> import('../view/editUserInfo/page/editUserInfo'))
 // 路由懒加载
 const lazyComponent = (Element: ReactElement) => {
   return <Suspense fallback={<Loading />}>{Element}</Suspense>;
@@ -69,10 +71,17 @@ const routeList: any[] = [
     element: lazyComponent(<Home />),
     children: [
       {
-        name: '个人消息页',
+        name: '个人信息',
         path: '/dataAdmin/edit',
         isShowNav: false,
-        element: lazyComponent(<Edit />)
+        element: lazyComponent(<Edit />),
+        children: [
+          {
+            name: '编辑个人信息',
+            path: '/dataAdmin/edit/editUserInfo',
+            element: lazyComponent(<EditUserInfo/>)
+          }
+        ]
       }
     ]
   }

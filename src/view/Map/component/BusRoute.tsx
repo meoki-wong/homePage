@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Select, Input } from "antd";
-import axios from "axios";
+import { request } from "../../../api/request";
 import { Consumer } from "../utils/useContext";
 import InitMaps from '../utils/InitMaps'
 /**
@@ -41,7 +41,7 @@ export default function BusRoute() {
     // 做数据监听 useState赋值同步
   }, [cities, secondCity]);
   let getAreaData = () => {
-    axios.get("/getArea").then((res) => {
+    request.get("/getArea").then((res) => {
       res.data.data.map((item: City) => {
         proviceList.push(item.name);
         cityObj[item.name] = JSON.parse(item.city);

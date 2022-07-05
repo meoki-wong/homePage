@@ -4,7 +4,6 @@ import "./friendList.scss";
 import { request } from "../../../api/request";
 import { SelectItem } from "../interface/SelectItem";
 import { socketIo } from "../utils/newSocket";
-// import axios from 'axios'
 type FriendList = Array<object>;
 
 function FriendList() {

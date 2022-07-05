@@ -3,14 +3,12 @@ import { Form, Input, Button, Checkbox, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from '../../api/axios.module'
 import "./login.scss"
-// import axios from "axios";
 
 // import { setCookieFn } from '../../utils/setCookie'
 // import {Base64} from 'js-base64'
 // import md5 from 'js-md5'
 import Cookies from "js-cookie";
 import { CheckboxChangeEvent } from "antd/lib/checkbox";
-import { json } from "stream/consumers";
 function Login() {
   let navigate = useNavigate();
 
