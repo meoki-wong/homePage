@@ -5,19 +5,26 @@ import React, { useState, memo } from "react";
 
 type PropInterface = {
   maxNum: number; // 上传最大值
-  getImgUrl: Function // 向父组件传入imgUrl字段
+  getImgUrl: Function; // 向父组件传入imgUrl字段
+  coverImg: string // 需要回显的图片url
 };
 const UploadImg: React.FC<PropInterface> = (props?: any) => {
-  const { getImgUrl } = props
-  const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const { getImgUrl } = props;
+  const [fileList, setFileList] = useState<UploadFile[]>([
+    {
+      uid: "-1",
+      name: "image.png",
+      type: 'image/png',
+      url: props.coverImg,
+    },
+  ]);
 
   const onChange: UploadProps["onChange"] = ({ fileList: newFileList }) => {
     setFileList(newFileList);
-    getImgUrl(...newFileList)
+    getImgUrl(...newFileList);
   };
 
   const onPreview = async (file: UploadFile) => {
-    console.log('-------file', file)
     let src = file.url as string;
     if (!src) {
       src = await new Promise((resolve) => {

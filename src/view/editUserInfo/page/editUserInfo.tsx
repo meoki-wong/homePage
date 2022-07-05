@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../login/register.scss";
 import { request } from "../../../api/request";
@@ -22,12 +22,23 @@ type ImgType = {
     data: string
   }
 }
-
+interface UserInfo {
+  headerImg: string
+}
 export default function EditUserInfo() {
   const navigate = useNavigate();
   const { Option } = Select;
   const { TextArea } = Input
+  const [ form ] = Form.useForm<FormData>()
+  const [ imgUrl, setImgUrl ] = useState<ImgType>()
+  const [ userInfo, setUserInfo] = useState<UserInfo>(Object)
 
+  useEffect(()=>{
+    request.post('/getUserInfo').then(res=>{
+      form.setFieldsValue(res.data.data)
+      setUserInfo(res.data.data)
+    })
+  }, [])
   const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -38,18 +49,12 @@ export default function EditUserInfo() {
       sm: { span: 14 },
     },
   };
-  const [ form ] = Form.useForm<FormData>()
-  const [imgUrl, setImgUrl] = useState<ImgType>()
   const getImgUrl = (url: ImgType) => {
     setImgUrl(url)
   }
+
   let register = async () => {
-    console.log('---await form.validateFields()', await form.validateFields(), imgUrl?.response?.data);
     let formData = await form.validateFields()
-    // let params = {
-    //   userName,
-    //   password
-    // };
     request.post("/register", {
       ...formData,
       headerImg: imgUrl?.response?.data
@@ -60,12 +65,17 @@ export default function EditUserInfo() {
       }
     });
   };
+  let uploadParams = {
+    maxNum: 1,
+    getImgUrl: getImgUrl,
+    coverImg: userInfo.headerImg
+  }
   return (
     <div className={"register-container"}>
       <div className="form">
         <Form {...formItemLayout} form={form}>
           <Form.Item label="头像" name="headerImg">
-            <UploadImg maxNum={1} getImgUrl={getImgUrl}/>
+            <UploadImg {...uploadParams}/>
           </Form.Item>
           <Form.Item 
           label="用户名"
@@ -73,12 +83,6 @@ export default function EditUserInfo() {
             <Input 
             placeholder="请输入用户名" 
             />
-          </Form.Item>
-          <Form.Item 
-          label="密码" 
-          validateStatus="warning"
-          name="password">
-            <Input.Password placeholder="请输入密码" />
           </Form.Item>
           <Form.Item label="性别" name="sexy">
             <Select allowClear>

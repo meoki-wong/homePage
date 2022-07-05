@@ -22,7 +22,7 @@ export default function EditPage() {
       <div className="left-nav">
         <ul>
           {nav?.map((item, index) => (
-            <li className={activeIndex === index? 'active nav-item' : 'nav-item'} onClick={() => selectNavItem(item, index)}>{item.name}</li>
+            <li key={index} className={activeIndex === index? 'active nav-item' : 'nav-item'} onClick={() => selectNavItem(item, index)}>{item.name}</li>
           ))}
         </ul>
       </div>
