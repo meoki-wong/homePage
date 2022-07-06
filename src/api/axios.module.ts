@@ -36,7 +36,7 @@ axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
         return config
     }
     let userInfo: UserInfo = {
-        id: JSON.parse(localStorage.getItem('userInfo')!).UserId
+        id: JSON.parse(localStorage.getItem('userInfo')!).id
     }
     let token = window.localStorage.getItem('token')
     if (!config.headers) {

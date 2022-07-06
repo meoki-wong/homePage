@@ -65,7 +65,7 @@ function Login() {
         }
         let token = res.data.data.token;
         window.localStorage.setItem("token", token);
-        window.localStorage.setItem("userInfo", JSON.stringify(res.data.data.userInfo.allUsers[0]));
+        window.localStorage.setItem("userInfo", JSON.stringify(res.data.data.userInfo));
         message.success("登录成功");
         navigate("/dataAdmin");
       }
