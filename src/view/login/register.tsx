@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./register.scss";
-import { request } from "../../api/request";
+import { request } from "@/api/request";
 import UploadImg from "../components/upload/UploadImg";
 import {
   Form,

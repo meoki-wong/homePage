@@ -28,7 +28,15 @@ export default class Socket {
     sendSingleMsg(msgInfo: SendMsgInfo) {
         this.socket.emit('sendSingleMsg', msgInfo.userId, msgInfo.friendId, msgInfo)
     }
-
+    // 接收单聊消息
+    receiveSingleMsg() {
+       this.socket.on('singleMsg', (msg: SendMsgInfo) => {
+        // msgInfo.friendId == msg.userId  服务端判断
+           if (this.socketId === msg.userId) { // 同一环境下 不接受
+               htmlFn(msg.sendMsg)
+           }
+       })
+    }
     // 单聊  私发  创建单独房间
     // sendSingleMsg(item: any){
     //     console.log('------触发参数', item)
@@ -47,14 +55,6 @@ export default class Socket {
     receiveMsg() {
         this.socket.on('receiveMsg', (msg: any) => {
             htmlFn(msg)
-        })
-    }
-    // 接收单聊消息
-    receiveSingleMsg() {
-        this.socket.on('singleMsg', (msg: SendMsgInfo) => {
-            if (this.socketId === msg.userId) { // 同一环境下 不接受
-                htmlFn(msg.sendMsg)
-            }
         })
     }
     // 接收添加朋友消息

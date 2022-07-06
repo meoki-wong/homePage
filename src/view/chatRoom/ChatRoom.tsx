@@ -5,7 +5,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Socket from "./chat";
 import FriendList from "./components/friendList";
 import SearchModal from "./components/SearchModal";
-import "./chatRoom.scss";
+import './chatRoom.scss'
 interface InitSocket {
   initSocket: any;
   msgBox: Array<string | number>;

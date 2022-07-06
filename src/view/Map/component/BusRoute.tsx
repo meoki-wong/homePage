@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Select, Input } from "antd";
-import { request } from "../../../api/request";
+import { request } from "@/api/request";
 import { Consumer } from "../utils/useContext";
 import InitMaps from '../utils/InitMaps'
 /**

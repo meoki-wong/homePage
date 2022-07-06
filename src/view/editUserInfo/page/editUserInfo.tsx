@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../login/register.scss";
-import { request } from "../../../api/request";
-import userInfoStore from "../../../store/store/userInfoStore";
+import { request } from "@/api/request";
+import userInfoStore from "@/store/store/userInfoStore";
 import UploadImg from "../../components/upload/UploadImg";
 import {
   Form,
@@ -38,7 +38,7 @@ export default function EditUserInfo() {
     getUserData()
   }, [])
   let getUserData = () => {
-    request.post('/getUserInfo').then(res=>{
+    request.post('/getUserInfo').then((res: any)=>{
       form.setFieldsValue(res.data.data)
       setUserInfo(res.data.data)
       userInfoStore.dispatch({
@@ -69,7 +69,7 @@ export default function EditUserInfo() {
     request.post("/editUserInfo", {
       ...formData,
       headerImg: imgUrl?.response?.data
-    }).then((res) => {
+    }).then((res: any) => {
       if (res.data.success) {
         getUserData()
         message.success("修改成功");

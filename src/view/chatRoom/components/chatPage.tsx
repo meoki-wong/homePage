@@ -15,6 +15,7 @@ export default function ChatPage(props: any) {
 
   useEffect(()=>{
     socketIo.getSocketId(routeState.id)
+    console.log('------routeState.id', location)
   }, [])
 
   const inputVal = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

@@ -1,7 +1,7 @@
 import React, { useState, forwardRef, useImperativeHandle } from "react";
 import { Modal, Input, message } from "antd";
 import { UserOutlined, UsergroupAddOutlined, CheckCircleFilled } from "@ant-design/icons";
-import { request } from '../../../api/request'
+import { request } from '@/api/request'
 import "./SearchModal.scss";
 interface FriendItem {
   userName: string,

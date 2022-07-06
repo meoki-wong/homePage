@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Form, Input, Button, Checkbox, message } from "antd";
 import { useNavigate } from "react-router-dom";
-import { request } from "../../api/request";
+import { request } from "@/api/request";
 import "./login.scss"
 
 // import { setCookieFn } from '../../utils/setCookie'

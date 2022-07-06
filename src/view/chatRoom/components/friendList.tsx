@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./friendList.scss";
-import { request } from "../../../api/request";
+import { request } from "@/api/request";
 import { SelectItem } from "../interface/SelectItem";
 import { socketIo } from "../utils/newSocket";
 type FriendList = Array<object>;

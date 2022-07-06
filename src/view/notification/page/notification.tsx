@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./notification.scss";
-import { request } from "../../../api/request";
+import { request } from "@/api/request";
 import { message } from "antd";
 type Message = Array<MessageItem>;
 interface MessageItem {
