@@ -34,7 +34,7 @@ function SearchModal(props: any, ref: any) {
   const onSearch = () => {
     console.log('-------searchVal', searchVal)
     request.post('/searchFriend', {
-      searchUserId: searchVal
+      searchUserNum: searchVal
     }).then(res=>{
       if(res && res.data.success){
         setSearchFriend(res.data.data || null)

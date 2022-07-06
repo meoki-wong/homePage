@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import { useNavigate } from "react-router-dom";
 import "./friendList.scss";
 import { request } from "@/api/request";
@@ -17,9 +17,10 @@ function FriendList() {
     socket.on("addFriendSuccess", () => {
       getFriendList();
     });
-    socket.on("userStatus", (item: any) => {
-      console.log("---item", item);
-    });
+    // 是否在线
+    // socket.on("userStatus", (item: any) => {
+    //   console.log("---item", item);
+    // });
   });
   const getFriendList = () => {
     request
@@ -31,6 +32,7 @@ function FriendList() {
       });
   };
   const chatFriends = (item: SelectItem) => {
+    console.log('------item,', item)
     navigate(`/dataAdmin/ChartRoom/friend`, {
       state: {
         id: item.id,
@@ -50,7 +52,7 @@ function FriendList() {
             >
               <div className="item-header">
                 <img
-                  src={require("../../assets/image/user_header.jpeg")}
+                  src={item.headerImg}
                   alt=""
                 />
               </div>
@@ -59,7 +61,7 @@ function FriendList() {
                   {item.userName}
                   <span className="user-number">（{item.user_number}）</span>
                 </div>
-                <div className="desc">{"你夸撒大声地"}</div>
+                <div className="desc">{item.selfIntroduce || '他很懒，啥都没写~'}</div>
               </div>
             </li>
           );
@@ -69,4 +71,4 @@ function FriendList() {
   );
 }
 
-export default FriendList;
+export default memo(FriendList);
