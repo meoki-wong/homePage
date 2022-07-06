@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import routeList from "../router/routeList";
 import { socketIo } from "../view/chatRoom/utils/newSocket";
 import { request } from "../api/request";
+import userInfoStore from "@/store/store/userInfoStore";
 import {
   AppstoreOutlined,
   PieChartOutlined,
@@ -13,7 +14,6 @@ import {
   MailOutlined,
 } from "@ant-design/icons";
 import Store from "../store/store/index";
-import userInfoStore from "../store/store/userInfoStore";
 import EditPersonInfo from "../view/personInfo/page/editPersonInfo";
 let { SubMenu } = Menu;
 type UserInfo = {
@@ -61,7 +61,12 @@ export default function LeftNav(props: Object) {
     if (window.localStorage.token) {
       setIsModalVisible(true);
     } else {
+      userInfoStore.dispatch({
+        type: 'userInfo',
+        value: {}
+      })
       navigate("/dataAdmin/login");
+
     }
   };
   const handleConfirm = () => {

@@ -6,7 +6,7 @@ type Message = Array<MessageItem>;
 interface MessageItem {
   userName: string;
   msgType: number;
-  id: number;
+  fromUserId: number;
 }
 export default function Notification() {
   const [messages, setMessages] = useState<Message>([]);
@@ -15,14 +15,15 @@ export default function Notification() {
   }, []);
   const getData = () => {
     request.post("/privateMessage").then((res) => {
-      setMessages(res.data.data.fromUserList);
+      setMessages(res.data.data.msgItem);
     });
   }
   // 同意
   const handleConfirm = (item: MessageItem) => {
+    console.log('------', item);
     request
       .post("/agreeFriendApply", {
-        friendId: item.id,
+        friendId: item.fromUserId,
       })
       .then((res) => {
         if (res.data.success) {
