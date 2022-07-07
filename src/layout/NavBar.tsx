@@ -66,10 +66,10 @@ export default function LeftNav(props: Object) {
         value: {}
       })
       navigate("/dataAdmin/login");
-
     }
   };
   const handleConfirm = () => {
+    socketIo.logout()
     localStorage.clear();
     setIsModalVisible(false);
   };

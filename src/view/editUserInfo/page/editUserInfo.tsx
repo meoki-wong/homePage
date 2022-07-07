@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../login/register.scss";
+import "@/view/login/register.scss";
 import { request } from "@/api/request";
 import userInfoStore from "@/store/store/userInfoStore";
 import UploadImg from "../../components/upload/UploadImg";
@@ -45,9 +45,6 @@ export default function EditUserInfo() {
         type: 'userInfo',
         value: res.data.data
       })
-      userInfoStore.subscribe(()=>{
-        console.log('-------userInfoStoressss', userInfoStore.getState().value);
-      })
     })
   }
   const formItemLayout = {
@@ -72,7 +69,7 @@ export default function EditUserInfo() {
     }).then((res: any) => {
       if (res.data.success) {
         getUserData()
-        message.success("修改成功");
+          message.success("修改成功")
       }
     });
   };

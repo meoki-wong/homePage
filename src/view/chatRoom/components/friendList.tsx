@@ -18,10 +18,10 @@ function FriendList() {
       getFriendList();
     });
     // 是否在线
-    // socket.on("userStatus", (item: any) => {
-    //   console.log("---item", item);
-    // });
-  });
+    socket.on("userStatus", (item: any) => {
+      console.log("---item", item);
+    });
+  }, []);
   const getFriendList = () => {
     request
       .post("/getFirends", {
@@ -32,7 +32,6 @@ function FriendList() {
       });
   };
   const chatFriends = (item: SelectItem) => {
-    console.log('------item,', item)
     navigate(`/dataAdmin/ChartRoom/friend`, {
       state: {
         id: item.id,

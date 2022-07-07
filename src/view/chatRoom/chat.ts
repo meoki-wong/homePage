@@ -11,13 +11,16 @@ export default class Socket {
         this.initSocket()
         // this.receiveMsg() // 监听接收服务端返回的消息数据
         this.receiveSingleMsg() // 单聊消息
-
     }
 
 
     
     initSocket() {
-        this.socket = process.env.NODE_ENV === 'production' ? io('wss://supermeoki.xyz') : io('ws://localhost:10021')
+        this.socket = process.env.NODE_ENV === 'production' ? 
+        io('wss://supermeoki.xyz') : 
+        io('ws://localhost:10021', {extraHeaders: {
+            userId: JSON.parse(localStorage.getItem('userInfo')!).id
+          }})
         console.log('创建构造函数', this.socket)
     }
     socketIO(){return this.socket}
@@ -66,6 +69,10 @@ export default class Socket {
                 value: 0
             })
         })
+    }
+
+    logout(){
+        this.socket.emit('logout', JSON.parse(localStorage.getItem('userInfo')!).id)
     }
 
 
