@@ -19,7 +19,8 @@ export default class Socket {
         this.socket = process.env.NODE_ENV === 'production' ? 
         io('wss://supermeoki.xyz') : 
         io('ws://localhost:10021', {extraHeaders: {
-            userId: JSON.parse(localStorage.getItem('userInfo')!).id
+            userId: localStorage.getItem('token') ? 
+            JSON.parse(localStorage.getItem('userInfo')!).id : ''
           }})
         console.log('创建构造函数', this.socket)
     }
@@ -73,6 +74,11 @@ export default class Socket {
 
     logout(){
         this.socket.emit('logout', JSON.parse(localStorage.getItem('userInfo')!).id)
+    }
+    quitItem(){
+        this.socket.on('quitItem', (msg: any)=>{
+            console.log('-----msg退出登录', msg)
+        })
     }
 
 
