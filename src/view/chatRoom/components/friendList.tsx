@@ -9,7 +9,7 @@ type FriendList = Array<object>;
 function FriendList() {
   let navigate = useNavigate();
   let { socket } = socketIo;
-  let [friendList, setFriendList] = useState<FriendList>();
+  let [friendList, setFriendList] = useState<FriendList>([]);
   useEffect(() => {
     getFriendList();
   }, []);
@@ -21,7 +21,16 @@ function FriendList() {
     socket.on("userStatus", (item: any) => {
       console.log("---item", item);
     });
-  }, []);
+    // socketIo.quitItem(list)
+    socket.on("quitItem", (quitItem: any) => {
+      if(quitItem && friendList.length){
+        let statusDom = document.querySelector(`.user-status-${quitItem}`) as HTMLElement
+        statusDom.style.backgroundColor = 'green'
+      }
+      // document.getElementsByClassName(`user-status-${quitItem}`)[0].style.backgroundColor = 'green'
+      
+    });
+  });
   const getFriendList = () => {
     request
       .post("/getFirends", {
@@ -59,6 +68,9 @@ function FriendList() {
                 <div className="name">
                   {item.userName}
                   <span className="user-number">（{item.user_number}）</span>
+                  <span className={`user-status-box `}>
+                    <i className={`user-status-${item.UserId}`}></i>{'离线'}
+                  </span>
                 </div>
                 <div className="desc">{item.selfIntroduce || '他很懒，啥都没写~'}</div>
               </div>

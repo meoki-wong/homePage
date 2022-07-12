@@ -22,6 +22,7 @@
             }
         }
         .item-desc{
+            width: 100%;
             margin-left: 20px;
             text-align: left;
             .name{
@@ -30,7 +31,28 @@
                 .user-number{
                     font-size: 12px;
                     font-weight: 400;
-
+                }
+                .user-status-box{
+                    width: 50px;
+                    height: 20px;
+                    border-radius: 8px;
+                    border: 1px solid #eee;
+                    display: inline-block;
+                    font-size: 12px;
+                    float: right;
+                    padding: 0 5px;
+                    box-sizing: border-box;
+                    display: flex;
+                    align-items: center;
+                    color: #ccc;
+                    i{
+                        width: 10px;
+                        height: 10px;
+                        background-color: #bbb;
+                        border-radius: 50%;
+                        margin-right: 3px;
+                        display: inline-block;
+                    }
                 }
             }
             .desc{
