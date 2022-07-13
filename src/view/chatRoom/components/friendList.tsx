@@ -17,17 +17,21 @@ function FriendList() {
     socket.on("addFriendSuccess", () => {
       getFriendList();
     });
-    // 是否在线
-    socket.on("userStatus", (item: any) => {
-      console.log("---item", item);
+    // 在线
+    socket.on("userStatus", (item: number) => {
+      let statusDom = document.querySelector(`.user-status-${item}`) as HTMLElement
+      let statusWord = document.querySelector('.user-status-word') as HTMLElement
+      statusWord.innerHTML = '在线'
+      statusDom.style.backgroundColor = 'green'
     });
-    // socketIo.quitItem(list)
+    // 离线
     socket.on("quitItem", (quitItem: any) => {
       if(quitItem && friendList.length){
         let statusDom = document.querySelector(`.user-status-${quitItem}`) as HTMLElement
-        statusDom.style.backgroundColor = 'green'
+        let statusWord = document.querySelector('.user-status-word') as HTMLElement
+        statusWord.innerHTML = '离线'
+        statusDom.style.backgroundColor = '#bbb'
       }
-      // document.getElementsByClassName(`user-status-${quitItem}`)[0].style.backgroundColor = 'green'
       
     });
   });
@@ -69,7 +73,7 @@ function FriendList() {
                   {item.userName}
                   <span className="user-number">（{item.user_number}）</span>
                   <span className={`user-status-box `}>
-                    <i style={{ backgroundColor: item.userOnlineStatus.userStatus ? 'green' : ''}} className={`user-status-${item.UserId}`}></i>{item.userOnlineStatus.userStatus?'在线' : '离线'}
+                    <i style={{ backgroundColor: item.userOnlineStatus.userStatus ? 'green' : ''}} className={`user-status-${item.UserId}`}></i><span className="user-status-word">{item.userOnlineStatus.userStatus?'在线' : '离线'}</span>
                   </span>
                 </div>
                 <div className="desc">{item.selfIntroduce || '他很懒，啥都没写~'}</div>
