@@ -69,7 +69,7 @@ function FriendList() {
                   {item.userName}
                   <span className="user-number">（{item.user_number}）</span>
                   <span className={`user-status-box `}>
-                    <i className={`user-status-${item.UserId}`}></i>{'离线'}
+                    <i style={{ backgroundColor: item.userOnlineStatus.userStatus ? 'green' : ''}} className={`user-status-${item.UserId}`}></i>{item.userOnlineStatus.userStatus?'在线' : '离线'}
                   </span>
                 </div>
                 <div className="desc">{item.selfIntroduce || '他很懒，啥都没写~'}</div>

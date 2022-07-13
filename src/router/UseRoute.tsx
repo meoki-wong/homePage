@@ -54,6 +54,7 @@ export default function UseRoute(props: any) {
   });
   const joinRoom = () => {
     let userinfo = JSON.parse(localStorage.getItem("userInfo")!);
+    console.log('-----登录内容', userinfo)
     socketIo.joinRoom({
       userName: userinfo.userName,
       userId: userinfo.id,
