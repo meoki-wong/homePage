@@ -4,6 +4,7 @@ import "./chatPage.scss";
 import { Input, message } from "antd";
 import { Location, useLocation } from "react-router-dom";
 import { SelectItem, SendMsgInfo } from '../interface/SelectItem'
+import userStore from "../../../store/store/userInfoStore";
 export default function ChatPage(props: any) {
   // const inputRef:any = useRef()
   const { TextArea } = Input;
@@ -11,11 +12,13 @@ export default function ChatPage(props: any) {
   // const [initSocket, setInitSocket] = useState<any>({});
   const location: Location = useLocation()
   const routeState = location.state as SelectItem
-
-
+  const [headerImgs, serHeaderImg] = useState<string>("")
+  const { headerImg } = userStore.getState().depReducer.value
   useEffect(()=>{
     socketIo.getSocketId(routeState.id)
-    console.log('------routeState.id', location)
+    console.log('-----userStore.getState()', userStore.getState());
+    
+    serHeaderImg(headerImg)
   }, [])
 
   const inputVal = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -36,7 +39,7 @@ export default function ChatPage(props: any) {
     selfHtml.setAttribute("class", "self-frame");
     selfHtml.innerHTML = `
           <p class="inner-msg">${content}</p>
-          <img src="${require("../../assets/image/login_bg.png")}" alt="" />`;
+          <img src="${headerImgs}" alt="" />`;
     document.getElementsByClassName("msg-area")[0].append(selfHtml);
     setContent("");
   };

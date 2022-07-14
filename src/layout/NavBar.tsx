@@ -51,6 +51,7 @@ export default function LeftNav(props: Object) {
         });
       }
       Store.subscribe(() => {
+        console.log('--userInfoStore', userInfoStore.getState())
         setReminder(Store.getState().value);
       });
     }

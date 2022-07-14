@@ -2,11 +2,18 @@ import io from 'socket.io-client'
 import { SendMsgInfo } from './interface/SelectItem'
 import Store from '../../store/store/index'
 import { sendAction } from '../../store/action/index'
+import { request } from '@/api/request'
 
+interface FriendUserInfo {
+    headerImg: string
+}
 export default class Socket {
 
     socket: any
     socketId: number = 0
+    friendUserInfo: FriendUserInfo = {
+        headerImg: ""
+    }
     constructor() {
         this.initSocket()
         // this.receiveMsg() // 监听接收服务端返回的消息数据
@@ -36,8 +43,8 @@ export default class Socket {
     receiveSingleMsg() {
        this.socket.on('singleMsg', (msg: SendMsgInfo) => {
         // msgInfo.friendId == msg.userId  服务端判断
-           if (this.socketId === msg.userId) { // 同一环境下 不接受
-               htmlFn(msg.sendMsg)
+           if (this.socketId === msg.userId) { // 同一环境下 不接受  只接收相同id消息
+               htmlFn(this.friendUserInfo, msg.sendMsg)
            }
        })
     }
@@ -54,11 +61,17 @@ export default class Socket {
     }
     getSocketId(sendId: number) {
         this.socketId = sendId
+        request.post('/getUserInfo', {
+            userId: sendId
+        }).then(res=>{
+            this.friendUserInfo = res.data.data
+            console.log('res.data.data', this.friendUserInfo, res.data)
+        })
         console.log('----触发', this.socketId)
     }
     receiveMsg() {
         this.socket.on('receiveMsg', (msg: any) => {
-            htmlFn(msg)
+            htmlFn(this.friendUserInfo ,msg)
         })
     }
     // 接收添加朋友消息
@@ -85,11 +98,11 @@ export default class Socket {
 }
 
 
-const htmlFn = (msg: string) => {
+const htmlFn = (info: FriendUserInfo, msg: string) => {
     let htmlCon = document.createElement("div")
     htmlCon.setAttribute('class', 'other-frame')
     htmlCon.innerHTML = `
-            <img src='${require('../assets/image/login_bg.png')}' alt="" />
+            <img src='${info.headerImg}' alt="" />
             <p class="inner-msg">${msg}</p>`
 
     document.getElementsByClassName('msg-area')[0].append(
