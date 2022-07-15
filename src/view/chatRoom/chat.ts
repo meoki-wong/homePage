@@ -108,4 +108,6 @@ const htmlFn = (info: FriendUserInfo, msg: string) => {
     document.getElementsByClassName('msg-area')[0].append(
         htmlCon
     )
+    const areaHeight = document.querySelector('.msg-area') as HTMLElement
+    areaHeight.scrollTo(0, areaHeight.scrollHeight);
 }

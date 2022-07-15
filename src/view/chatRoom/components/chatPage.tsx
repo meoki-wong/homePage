@@ -13,12 +13,10 @@ export default function ChatPage(props: any) {
   const location: Location = useLocation()
   const routeState = location.state as SelectItem
   const [headerImgs, serHeaderImg] = useState<string>("")
-  const { headerImg } = userStore.getState().depReducer.value
+  const userInfo = JSON.parse((localStorage.getItem('userInfo')!))
   useEffect(()=>{
     socketIo.getSocketId(routeState.id)
-    console.log('-----userStore.getState()', userStore.getState());
-    
-    serHeaderImg(headerImg)
+    serHeaderImg(userInfo.allUser.headerImg)
   }, [])
 
   const inputVal = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -41,6 +39,8 @@ export default function ChatPage(props: any) {
           <p class="inner-msg">${content}</p>
           <img src="${headerImgs}" alt="" />`;
     document.getElementsByClassName("msg-area")[0].append(selfHtml);
+    const areaHeight = document.querySelector('.msg-area') as HTMLElement
+    areaHeight.scrollTo(0, areaHeight.scrollHeight);
     setContent("");
   };
   return (

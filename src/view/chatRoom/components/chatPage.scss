@@ -33,12 +33,13 @@
             }
             .inner-msg{
                 font-size: 14px;
-                width: 45%;
+                max-width: 45%;
                 text-align: left;
                 padding: 5px 10px;
                 border-radius: 4px;
                 box-sizing: border-box;
                 background-color: #eee;
+                word-break: break-all;
             }
         }
         .self-frame{
@@ -58,8 +59,9 @@
                 border-radius: 4px;
                 box-sizing: border-box;
                 font-size: 14px;
-                width: 45%;
+                max-width: 45%;
                 text-align: left;
+                word-break: break-all;
             }
         }
     }

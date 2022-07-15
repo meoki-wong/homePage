@@ -9,8 +9,9 @@ const persistConfig = {
       // whitelist: ['navigation'] // navigation会存入缓存，其他不会存，适用于大多数数据并不会实时从后台拿数据
       blacklist: [] // 不做持久化的数据
     };
-const reducers = combineReducers({
-        depReducer: persistReducer(persistConfig, userInfoReducer)
-     });
+// const reducers = combineReducers({
+//         depReducer: persistReducer(persistConfig, userInfoReducer)
+//      });
+const reducers = persistReducer(persistConfig, userInfoReducer);
 export const persistor = persistStore(createStore(reducers))
 export default createStore(reducers)
