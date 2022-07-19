@@ -29,7 +29,6 @@ export default class Socket {
             userId: localStorage.getItem('token') ? 
             JSON.parse(localStorage.getItem('userInfo')!).id : ''
           }})
-        console.log('创建构造函数', this.socket)
     }
     socketIO(){return this.socket}
     sendMsg(msgInfo: SendMsgInfo) {
@@ -57,7 +56,6 @@ export default class Socket {
     // }
     joinRoom(item: any) {
         this.socket.emit('join', item)
-        console.log('----登录', item)
     }
     getSocketId(sendId: number) {
         this.socketId = sendId

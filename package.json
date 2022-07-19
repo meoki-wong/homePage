@@ -94,7 +94,6 @@
     "scp": "yarn build && node scripts/scp.js",
     "testgit": "node src/utils/uploadGit/index.js"
   },
-  
   "eslintConfig": {
     "extends": [
       "react-app",
