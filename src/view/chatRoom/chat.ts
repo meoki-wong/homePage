@@ -1,6 +1,7 @@
 import io from 'socket.io-client'
 import { SendMsgInfo } from './interface/SelectItem'
 import Store from '../../store/store/index'
+import msgCountStore from '../../store/store/getMessageCount'
 import { sendAction } from '../../store/action/index'
 import { request } from '@/api/request'
 
@@ -55,6 +56,12 @@ export default class Socket {
     //     })
     // }
     joinRoom(item: any) {
+        if(item.userId !== this.socketId){
+            msgCountStore.dispatch({
+                type: "addUser",
+                value: item
+            })
+        }
         this.socket.emit('join', item)
     }
     getSocketId(sendId: number) {

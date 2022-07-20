@@ -4,6 +4,9 @@ import "./friendList.scss";
 import { request } from "@/api/request";
 import { SelectItem } from "../interface/SelectItem";
 import { socketIo } from "../utils/newSocket";
+import { Badge } from 'antd';
+import getMsgCountStore from '../../../store/store/getMessageCount'
+
 type FriendList = Array<object>;
 
 function FriendList() {
@@ -19,10 +22,14 @@ function FriendList() {
     });
     // 在线
     socket.on("userStatus", (item: number) => {
-      let statusDom = document.querySelector(`.user-status-${item}`) as HTMLElement
-      let statusWord = document.querySelector('.user-status-word') as HTMLElement
-      statusWord.innerHTML = '在线'
-      statusDom.style.backgroundColor = 'green'
+      let userId = JSON.parse(localStorage.getItem('userInfo')!).id
+      if(userId !== item){ // 过滤排除自己
+        const statusDom = document.querySelector(`.user-status-${item}`) as HTMLElement
+        const statusWord = document.querySelector('.user-status-word') as HTMLElement
+        statusWord.innerHTML = '在线'
+        statusDom.style.backgroundColor = 'green'
+        console.log('-----getMsgCountStore.getState().value', getMsgCountStore.getState());
+      }
     });
     // 离线
     socket.on("quitItem", (quitItem: any) => {
@@ -34,7 +41,7 @@ function FriendList() {
       }
       
     });
-  });
+  }, []);
   const getFriendList = () => {
     request
       .post("/getFirends", {
@@ -62,12 +69,15 @@ function FriendList() {
               className="contant-item"
               onClick={() => chatFriends(item)}
             >
-              <div className="item-header">
-                <img
-                  src={item.headerImg}
-                  alt=""
-                />
-              </div>
+              <Badge count={1}>
+                <div className="item-header">
+                  <img
+                    src={item.headerImg}
+                    alt=""
+                  />
+                </div>
+              </Badge>
+              
               <div className="item-desc">
                 <div className="name">
                   {item.userName}

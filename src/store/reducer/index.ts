@@ -1,4 +1,9 @@
 
+type FriendUserObject = {
+    [key: number | string]: {
+        msgCount: number
+    }
+}
 
 const nameInitialState = {
     value: 1,
@@ -23,6 +28,20 @@ export const userInfoReducer = (state: any = {}, action: any) => {
     switch (action.type) {
         case 'userInfo':
             return Object.assign({}, state, action)
+        default:
+            return {}
+    }
+
+}
+
+// 获取  记录 用户接收到的消息条数  用户红圈展示
+let friendUserObject: FriendUserObject = {} // 赋初始值
+export const getMessageCount = (state: any = {}, action: any) => {
+    // console.log('-----statestatestate', state, action)
+    switch (action.type) {
+        case 'addUser':
+            friendUserObject[action.value.userId] = { msgCount: 0 }
+            return friendUserObject
         default:
             return {}
     }
