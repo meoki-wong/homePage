@@ -6,8 +6,8 @@ type FriendUserObject = {
 }
 
 const nameInitialState = {
-    value: 1,
-    type: 1
+    value: 0,
+    type: 0
 }
 // 获取全局提示消息数量
 export const reactReducer = (state: any = nameInitialState, action: any) => {
@@ -37,11 +37,16 @@ export const userInfoReducer = (state: any = {}, action: any) => {
 // 获取  记录 用户接收到的消息条数  用户红圈展示
 let friendUserObject: FriendUserObject = {} // 赋初始值
 export const getMessageCount = (state: any = {}, action: any) => {
-    // console.log('-----statestatestate', state, action)
+    console.log('-----statestatestate', state, action)
     switch (action.type) {
         case 'addUser':
-            friendUserObject[action.value.userId] = { msgCount: 0 }
+            friendUserObject = action.value
+            // friendUserObject[action.value.userId] = { msgCount: 0 }
             return friendUserObject
+        case 'getSingleMsg':
+            friendUserObject[action.value].msgCount ++ 
+            console.log('----参数触犯', Object.assign({}, state, friendUserObject))
+            return Object.assign({}, state, friendUserObject)
         default:
             return {}
     }

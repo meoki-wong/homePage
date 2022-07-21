@@ -22,16 +22,18 @@ export default class Socket {
     }
 
 
-    
+
     initSocket() {
-        this.socket = process.env.NODE_ENV === 'production' ? 
-        io('wss://supermeoki.xyz') : 
-        io('ws://localhost:10021', {extraHeaders: {
-            userId: localStorage.getItem('token') ? 
-            JSON.parse(localStorage.getItem('userInfo')!).id : ''
-          }})
+        this.socket = process.env.NODE_ENV === 'production' ?
+            io('wss://supermeoki.xyz') :
+            io('ws://localhost:10021', {
+                extraHeaders: {
+                    userId: localStorage.getItem('token') ?
+                        JSON.parse(localStorage.getItem('userInfo')!).id : ''
+                }
+            })
     }
-    socketIO(){return this.socket}
+    socketIO() { return this.socket }
     sendMsg(msgInfo: SendMsgInfo) {
         this.socket.emit('sendMsg', msgInfo.userId, msgInfo.friendId, msgInfo)
     }
@@ -41,12 +43,16 @@ export default class Socket {
     }
     // 接收单聊消息
     receiveSingleMsg() {
-       this.socket.on('singleMsg', (msg: SendMsgInfo) => {
-        // msgInfo.friendId == msg.userId  服务端判断
-           if (this.socketId === msg.userId) { // 同一环境下 不接受  只接收相同id消息
-               htmlFn(this.friendUserInfo, msg.sendMsg)
-           }
-       })
+        this.socket.on('singleMsg', (msg: SendMsgInfo) => {
+            msgCountStore.dispatch({
+                type: 'getSingleMsg',
+                value: msg.userId
+            })
+            // msgInfo.friendId == msg.userId  服务端判断
+            if (this.socketId === msg.userId) { // 同一环境下 不接受  只接收相同id消息
+                htmlFn(this.friendUserInfo, msg.sendMsg)
+            }
+        })
     }
     // 单聊  私发  创建单独房间
     // sendSingleMsg(item: any){
@@ -56,19 +62,13 @@ export default class Socket {
     //     })
     // }
     joinRoom(item: any) {
-        if(item.userId !== this.socketId){
-            msgCountStore.dispatch({
-                type: "addUser",
-                value: item
-            })
-        }
         this.socket.emit('join', item)
     }
     getSocketId(sendId: number) {
         this.socketId = sendId
         request.post('/getUserInfo', {
             userId: sendId
-        }).then(res=>{
+        }).then(res => {
             this.friendUserInfo = res.data.data
             console.log('res.data.data', this.friendUserInfo, res.data)
         })
@@ -76,12 +76,12 @@ export default class Socket {
     }
     receiveMsg() {
         this.socket.on('receiveMsg', (msg: any) => {
-            htmlFn(this.friendUserInfo ,msg)
+            htmlFn(this.friendUserInfo, msg)
         })
     }
     // 接收添加朋友消息
-    getApplyMsg(){
-        this.socket.on('sendApply',(msg: number | string)=>{
+    getApplyMsg() {
+        this.socket.on('sendApply', (msg: number | string) => {
             console.log('收到一条好友申请')
             Store.dispatch({
                 type: 'action_type_1',
@@ -90,11 +90,11 @@ export default class Socket {
         })
     }
 
-    logout(){
+    logout() {
         this.socket.emit('logout', JSON.parse(localStorage.getItem('userInfo')!).id)
     }
-    quitItem(){
-        this.socket.on('quitItem', (msg: any)=>{
+    quitItem() {
+        this.socket.on('quitItem', (msg: any) => {
             console.log('-----msg退出登录', msg)
         })
     }
