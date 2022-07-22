@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux'
+
 
 type FriendUserObject = {
     [key: number | string]: {
@@ -42,7 +44,7 @@ export const getMessageCount = (state: any = {}, action: any) => {
         case 'addUser':
             friendUserObject = action.value
             // friendUserObject[action.value.userId] = { msgCount: 0 }
-            return friendUserObject
+            return Object.assign({}, state, friendUserObject)
         case 'getSingleMsg':
             friendUserObject[action.value].msgCount ++ 
             console.log('----参数触犯', Object.assign({}, state, friendUserObject))
@@ -52,3 +54,17 @@ export const getMessageCount = (state: any = {}, action: any) => {
     }
 
 }
+
+
+
+const reactReducers = combineReducers({
+    getMessageCount,
+    userInfoReducer,
+    reactReducer
+})
+
+
+export default reactReducers
+
+
+console.log('----reactReducers', reactReducers)

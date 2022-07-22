@@ -11,7 +11,6 @@ import "lib-flexible"; //转化px
 // import { PersistGate } from "redux-persist/lib/integration/react";
 import { persistor } from "./store/store/userInfoStore";
 import { PersistGate } from 'redux-persist/es/integration/react'
-console.log("---->store", store.getState());
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>

@@ -1,4 +1,4 @@
-import { userInfoReducer } from "../reducer";
+import { userInfoReducer, getMessageCount, reactReducer } from "../reducer";
 import {createStore, combineReducers} from 'redux'
 import { persistReducer, persistStore} from 'redux-persist'
 import storage from "redux-persist/lib/storage";

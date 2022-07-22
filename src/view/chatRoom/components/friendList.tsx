@@ -65,7 +65,7 @@ function FriendList(props: any) {
       //     type: "addUser",
       //     value: friendObj
       // })
-
+        console.log('-----props相关参数', props);
           // console.log('-----getMsgCountStore.getState().value', getMsgCountStore.getState());
           setMsgCount(getMsgCountStore.getState())
         })
@@ -88,7 +88,7 @@ function FriendList(props: any) {
               className="contant-item"
               onClick={() => chatFriends(item)}
             >
-              <Badge count={msgCount[item.UserId]?.msgCount}>
+              <Badge count={props.getCount[item.UserId]?.msgCount}>
                 <div className="item-header">
                   <img
                     src={item.headerImg}
@@ -116,13 +116,12 @@ function FriendList(props: any) {
   
 }
 const mapStateToProps = (state: any, ownProps: any) => {
-  console.log("---kkkkkkkkk", state, ownProps);
+  console.log("---kkkkkkkkk", state.getMessageCount, ownProps);
   return {
-    prop: state,
+    getCount: state.getMessageCount,
   };
 };
 const mapDispatchToProps = (dispatch: any, ownProps: any) => {
-  console.log('----->ownProps', ownProps);
 return {
   getFriendDispatch: (item: FriendList) => {
     dispatch({
