@@ -6,8 +6,6 @@ import { request } from "@/api/request";
 import { SelectItem } from "../interface/SelectItem";
 import { socketIo } from "../utils/newSocket";
 import { Badge } from 'antd';
-import getMsgCountStore from '../../../store/store/getMessageCount'
-import msgCountStore from '../../../store/store/getMessageCount'
 type FriendList = Array<object>;
 type FriendUserObject = {
   [key: number | string]: {
@@ -18,11 +16,12 @@ function FriendList(props: any) {
   let navigate = useNavigate();
   let { socket } = socketIo;
   let [friendList, setFriendList] = useState<FriendList>([]);
-  let [msgCount, setMsgCount] = useState<FriendUserObject>({})
   useEffect(() => {
     getFriendList();
+    
   }, []);
   useEffect(() => {
+    // 好友添加成功刷新好友列表
     socket.on("addFriendSuccess", () => {
       getFriendList();
     });
@@ -47,6 +46,7 @@ function FriendList(props: any) {
       }
       
     });
+    
   }, []);
   const getFriendList = () => {
     request
@@ -61,13 +61,6 @@ function FriendList(props: any) {
           friendObj[item.UserId] = {msgCount: 0}
         })
         props.getFriendDispatch(friendObj)
-      //     msgCountStore.dispatch({
-      //     type: "addUser",
-      //     value: friendObj
-      // })
-        console.log('-----props相关参数', props);
-          // console.log('-----getMsgCountStore.getState().value', getMsgCountStore.getState());
-          setMsgCount(getMsgCountStore.getState())
         })
   };
   const chatFriends = (item: SelectItem) => {
@@ -116,7 +109,6 @@ function FriendList(props: any) {
   
 }
 const mapStateToProps = (state: any, ownProps: any) => {
-  console.log("---kkkkkkkkk", state.getMessageCount, ownProps);
   return {
     getCount: state.getMessageCount,
   };

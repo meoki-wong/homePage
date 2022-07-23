@@ -1,8 +1,6 @@
 import io from 'socket.io-client'
 import { SendMsgInfo } from './interface/SelectItem'
 import Store from '../../store/store/index'
-import msgCountStore from '../../store/store/getMessageCount'
-import { sendAction } from '../../store/action/index'
 import { request } from '@/api/request'
 
 interface FriendUserInfo {
@@ -44,7 +42,7 @@ export default class Socket {
     // 接收单聊消息
     receiveSingleMsg() {
         this.socket.on('singleMsg', (msg: SendMsgInfo) => {
-            msgCountStore.dispatch({
+            Store.dispatch({
                 type: 'getSingleMsg',
                 value: msg.userId
             })
@@ -116,5 +114,5 @@ const htmlFn = (info: FriendUserInfo, msg: string) => {
         htmlCon
     )
     const areaHeight = document.querySelector('.msg-area') as HTMLElement
-    areaHeight.scrollTo(0, areaHeight.scrollHeight);
+    areaHeight.scrollTo(0, areaHeight.scrollHeight); // 每次发送消息   使消息都处在底部
 }
