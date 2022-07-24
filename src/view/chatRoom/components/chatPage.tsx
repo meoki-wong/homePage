@@ -11,13 +11,16 @@ export default function ChatPage(props: any) {
   const [content, setContent] = useState<string>("");
   // const [initSocket, setInitSocket] = useState<any>({});
   const location: Location = useLocation()
-  const routeState = location.state as SelectItem
+  let routeState = location.state as SelectItem
+  
   const [headerImgs, serHeaderImg] = useState<string>("")
   const userInfo = JSON.parse((localStorage.getItem('userInfo')!))
   useEffect(()=>{
+    routeState = location.state as SelectItem
     socketIo.getSocketId(routeState.id)
     serHeaderImg(userInfo.allUser.headerImg)
-  }, [])
+    
+  }, [routeState.id])
 
   const inputVal = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
