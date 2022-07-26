@@ -10,9 +10,7 @@ export default class Socket {
 
     socket: any
     socketId: number = 0
-    friendUserInfo: FriendUserInfo = {
-        headerImg: ""
-    }
+    declare friendUserInfo: FriendUserInfo 
     constructor() {
         this.initSocket()
         // this.receiveMsg() // 监听接收服务端返回的消息数据
@@ -48,7 +46,6 @@ export default class Socket {
             })
             // msgInfo.friendId == msg.userId  服务端判断
             if (this.socketId === msg.userId) { // 同一环境下 不接受  只接收相同id消息
-                console.log('----socketId', this.socketId, msg.userId)
                 htmlFn(this.friendUserInfo, msg.sendMsg)
             }
         })
