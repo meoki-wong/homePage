@@ -135,6 +135,7 @@ module.exports = function (webpackEnv) {
             ident: 'postcss',
             config: false,
             plugins: !useTailwind
+            
               ? [
                   'postcss-flexbugs-fixes',
                   [
@@ -324,6 +325,7 @@ module.exports = function (webpackEnv) {
         ...(modules.webpackAliases || {}),
       },
       plugins: [
+        
         // Prevents users from importing files from outside of src/ (or node_modules/).
         // This often causes confusion because we only process files within src/ with babel.
         // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
@@ -592,6 +594,7 @@ module.exports = function (webpackEnv) {
             : undefined
         )
       ),
+      
       // Inlines the webpack runtime script. This script is too small to warrant
       // a network request.
       // https://github.com/facebook/create-react-app/issues/5358

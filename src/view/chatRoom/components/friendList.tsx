@@ -18,7 +18,6 @@ function FriendList(props: any) {
   let [friendList, setFriendList] = useState<FriendList>([]);
   useEffect(() => {
     getFriendList();
-    
   }, []);
   useEffect(() => {
     // 好友添加成功刷新好友列表

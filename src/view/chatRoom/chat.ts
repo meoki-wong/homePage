@@ -2,15 +2,14 @@ import io from 'socket.io-client'
 import { SendMsgInfo } from './interface/SelectItem'
 import Store from '../../store/store/index'
 import { request } from '@/api/request'
-
-interface FriendUserInfo {
-    headerImg: string
-}
+import { sendUserMessage } from '../utils/indexDBMethods'
+import { htmlFn } from './utils/optHtmlFn'
+import { FriendUserInfo } from './interface/SelectItem'
 export default class Socket {
 
     socket: any
     socketId: number = 0
-    declare friendUserInfo: FriendUserInfo 
+    declare friendUserInfo: FriendUserInfo
     constructor() {
         this.initSocket()
         // this.receiveMsg() // 监听接收服务端返回的消息数据
@@ -40,6 +39,7 @@ export default class Socket {
     // 接收单聊消息
     receiveSingleMsg() {
         this.socket.on('singleMsg', (msg: SendMsgInfo) => {
+            sendUserMessage(msg.sendMsg, '')
             Store.dispatch({
                 type: 'getSingleMsg',
                 value: msg.userId
@@ -84,6 +84,7 @@ export default class Socket {
                 type: 'action_type_1',
                 value: 0
             })
+
         })
     }
 
@@ -100,16 +101,3 @@ export default class Socket {
 }
 
 
-const htmlFn = (info: FriendUserInfo, msg: string) => {
-    let htmlCon = document.createElement("div")
-    htmlCon.setAttribute('class', 'other-frame')
-    htmlCon.innerHTML = `
-            <img src='${info.headerImg}' alt="" />
-            <p class="inner-msg">${msg}</p>`
-
-    document.getElementsByClassName('msg-area')[0].append(
-        htmlCon
-    )
-    const areaHeight = document.querySelector('.msg-area') as HTMLElement
-    areaHeight.scrollTo(0, areaHeight.scrollHeight); // 每次发送消息   使消息都处在底部
-}

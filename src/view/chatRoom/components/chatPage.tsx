@@ -1,49 +1,57 @@
 import React, { useEffect, useState, useRef } from "react";
-import {socketIo} from "../utils/newSocket";
+import { socketIo } from "../utils/newSocket";
 import "./chatPage.scss";
 import { Input, message } from "antd";
 import { Location, useLocation } from "react-router-dom";
-import { SelectItem, SendMsgInfo } from '../interface/SelectItem'
-import userStore from "../../../store/store/userInfoStore";
-export default function ChatPage(props: any) {
+import { SelectItem, chatItem } from "../interface/SelectItem";
+import { sendUserMessage, getUserMessage } from "@/view/utils/indexDBMethods";
+import { htmlUserFn, htmlFn } from "../utils/optHtmlFn";
+export default function ChatPage() {
   // const inputRef:any = useRef()
   const { TextArea } = Input;
   const [content, setContent] = useState<string>("");
   // const [initSocket, setInitSocket] = useState<any>({});
-  const location: Location = useLocation()
-  let routeState = location.state as SelectItem
-  
-  const [headerImgs, serHeaderImg] = useState<string>("")
-  const userInfo = JSON.parse((localStorage.getItem('userInfo')!))
-  useEffect(()=>{
-    routeState = location.state as SelectItem
-    socketIo.getSocketId(routeState.id)
-    serHeaderImg(userInfo.allUser.headerImg)
-    
-  }, [routeState.id])
+  const location: Location = useLocation();
+  let routeState = location.state as SelectItem;
+
+  const [headerImgs, serHeaderImg] = useState<string>("");
+  const userInfo = JSON.parse(localStorage.getItem("userInfo")!);
+  useEffect(() => {
+    routeState = location.state as SelectItem;
+    socketIo.getSocketId(routeState.id);
+    serHeaderImg(userInfo.allUser.headerImg);
+    new Promise(resolve=>{
+      resolve(getUserMessage())
+    }).then((res)=>{
+      (res as Array<chatItem>)?.map(element => {
+        console.log('----内容跟别', element);
+        if(element.friendEnd){
+          htmlFn({headerImg: ''}, element.friendEnd)
+        } else {
+          htmlUserFn(element.userEnd, headerImgs)
+        }
+      });
+      console.log('----getUserMessage()', res);
+    })
+  }, [routeState.id]);
 
   const inputVal = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
   };
   const sendMsg = () => {
-    if (!content.trim()) { // 禁止输入空内容
-      message.warning('禁止输入空白内容')
+    if (!content.trim()) {
+      // 禁止输入空内容
+      message.warning("禁止输入空白内容");
       return;
     }
     const sendMsgInfo = {
-      userId: JSON.parse(localStorage.getItem('userInfo')!).id,
+      userId: JSON.parse(localStorage.getItem("userInfo")!).id,
       friendId: routeState.id,
-      sendMsg: content
-    }
+      sendMsg: content,
+    };
     socketIo.sendSingleMsg(sendMsgInfo);
-    let selfHtml = document.createElement("div");
-    selfHtml.setAttribute("class", "self-frame");
-    selfHtml.innerHTML = `
-          <p class="inner-msg">${content}</p>
-          <img src="${headerImgs}" alt="" />`;
-    document.getElementsByClassName("msg-area")[0].append(selfHtml);
-    const areaHeight = document.querySelector('.msg-area') as HTMLElement
-    areaHeight.scrollTo(0, areaHeight.scrollHeight);
+    sendUserMessage("", content);
+    htmlUserFn(content, headerImgs)
     setContent("");
   };
   return (
