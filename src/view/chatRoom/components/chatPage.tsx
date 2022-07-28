@@ -24,7 +24,6 @@ export default function ChatPage() {
       resolve(getUserMessage())
     }).then((res)=>{
       (res as Array<chatItem>)?.map(element => {
-        console.log('----内容跟别', element);
         if(element.friendEnd){
           htmlFn({headerImg: ''}, element.friendEnd)
         } else {
