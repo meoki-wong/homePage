@@ -39,7 +39,12 @@ export default class Socket {
     // 接收单聊消息
     receiveSingleMsg() {
         this.socket.on('singleMsg', (msg: SendMsgInfo) => {
-            sendUserMessage(msg, '')
+            console.log('----msg', msg)
+            sendUserMessage({
+                friendId: msg.userId,
+                userId: msg.friendId,
+                sendMsg: msg.sendMsg
+            }, '')
             Store.dispatch({
                 type: 'getSingleMsg',
                 value: msg.userId

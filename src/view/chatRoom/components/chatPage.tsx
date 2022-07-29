@@ -7,10 +7,8 @@ import { SelectItem, ChatItem } from "../interface/SelectItem";
 import { sendUserMessage, getUserMessage } from "@/view/utils/indexDBMethods";
 import { htmlUserFn, htmlFn } from "../utils/optHtmlFn";
 export default function ChatPage() {
-  // const inputRef:any = useRef()
   const { TextArea } = Input;
   const [content, setContent] = useState<string>("");
-  // const [initSocket, setInitSocket] = useState<any>({});
   const location: Location = useLocation();
   let routeState = location.state as SelectItem;
 

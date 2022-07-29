@@ -8,7 +8,7 @@ export const sendUserMessage = (friendMsg: SendMsgInfo, userMsg: string) => {
     friendEnd: friendMsg.sendMsg,
     userEnd: userMsg,
     friendId: friendMsg.friendId,
-    userId: friendMsg.userId
+    userId: friendMsg.userId,
   });
 }
 
