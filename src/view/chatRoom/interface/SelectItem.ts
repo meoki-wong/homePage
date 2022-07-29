@@ -1,8 +1,9 @@
 
 
 export type SelectItem = {
-    id: number,
-    userName: string
+    id: number, // id
+    userName: string, // 名字
+    headerImg: string // 头像
 }
 
 export interface SendMsgInfo {

@@ -1,6 +1,7 @@
 
 import { FriendUserInfo } from '../interface/SelectItem'
 
+// 好友聊天框
 export const htmlFn = (info: FriendUserInfo, msg: string) => {
     let htmlCon = document.createElement("div")
     htmlCon.setAttribute('class', 'other-frame')
@@ -15,6 +16,7 @@ export const htmlFn = (info: FriendUserInfo, msg: string) => {
     areaHeight.scrollTo(0, areaHeight.scrollHeight); // 每次发送消息   使消息都处在底部
 }
 
+// 自己聊天框
 export const htmlUserFn = (content: string, headerImgs: string) => {
     let selfHtml = document.createElement("div");
     selfHtml.setAttribute("class", "self-frame");

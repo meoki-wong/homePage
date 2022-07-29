@@ -27,7 +27,7 @@ export default function ChatPage() {
     }).then((res)=>{
       (res as Array<ChatItem>)?.map(element => {
         if(element.friendEnd){
-          htmlFn({headerImg: ''}, element.friendEnd)
+          htmlFn({headerImg: routeState.headerImg}, element.friendEnd)
         } else {
           htmlUserFn(element.userEnd, headerImgs)
         }

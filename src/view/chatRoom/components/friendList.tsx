@@ -67,6 +67,7 @@ function FriendList(props: any) {
       state: {
         id: item.id,
         userName: item.userName,
+        headerImg: item.headerImg
       },
     });
   };

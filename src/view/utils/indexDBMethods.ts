@@ -3,12 +3,12 @@ import { SendMsgInfo,  SearchMsgInfo} from '../chatRoom/interface/SelectItem';
 const db = new IndexDBServer()
 // 存储用户发送的信息
 export const sendUserMessage = (friendMsg: SendMsgInfo, userMsg: string) => {
+  const {sendMsg, friendId, userId} = friendMsg
   db[3214].add({
-    // msgIndex: new Date().getTime(),
-    friendEnd: friendMsg.sendMsg,
+    friendEnd: sendMsg,
     userEnd: userMsg,
-    friendId: friendMsg.friendId,
-    userId: friendMsg.userId,
+    friendId: friendId,
+    userId: userId,
   });
 }
 
