@@ -20,7 +20,9 @@ export interface FriendUserInfo {
 // 存储的单条聊天记录
 export interface ChatItem {
     friendEnd: string,
-    userEnd: string
+    userEnd: string,
+    friendId: number,
+    userId: number
 }
 
 // 获取聊天记录自己  用户的信息

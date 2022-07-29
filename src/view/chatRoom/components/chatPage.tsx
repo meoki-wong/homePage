@@ -19,18 +19,22 @@ export default function ChatPage() {
     routeState = location.state as SelectItem;
     socketIo.getSocketId(routeState.id);
     serHeaderImg(userInfo.allUser.headerImg);
+    // 初始化获取用户存储的聊天记录 （仅限本地  离线消息待开发）
     new Promise(resolve=>{
       resolve(getUserMessage({
         friendId: routeState.id,
         userId
       }))
     }).then((res)=>{
-      (res as Array<ChatItem>)?.map(element => {
-        if(element.friendEnd){
-          htmlFn({headerImg: routeState.headerImg}, element.friendEnd)
-        } else {
-          htmlUserFn(element.userEnd, headerImgs)
-        }
+      (document.querySelector('.msg-area')!).innerHTML = ""; // 初始化消息
+      (res as Array<ChatItem>)?.map((element: ChatItem) => {
+        // if(routeState.id == element.friendId){
+          if(element.friendEnd){
+            htmlFn({headerImg: routeState.headerImg}, element.friendEnd)
+          } else {
+            htmlUserFn(element.userEnd, headerImgs)
+          }
+        // }
       });
     })
   }, [routeState.id]);
