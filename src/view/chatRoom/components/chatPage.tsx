@@ -3,7 +3,7 @@ import { socketIo } from "../utils/newSocket";
 import "./chatPage.scss";
 import { Input, message } from "antd";
 import { Location, useLocation } from "react-router-dom";
-import { SelectItem, chatItem } from "../interface/SelectItem";
+import { SelectItem, ChatItem } from "../interface/SelectItem";
 import { sendUserMessage, getUserMessage } from "@/view/utils/indexDBMethods";
 import { htmlUserFn, htmlFn } from "../utils/optHtmlFn";
 export default function ChatPage() {
@@ -16,21 +16,24 @@ export default function ChatPage() {
 
   const [headerImgs, serHeaderImg] = useState<string>("");
   const userInfo = JSON.parse(localStorage.getItem("userInfo")!);
+  const userId: number = JSON.parse(localStorage.getItem("userInfo")!).id
   useEffect(() => {
     routeState = location.state as SelectItem;
     socketIo.getSocketId(routeState.id);
     serHeaderImg(userInfo.allUser.headerImg);
     new Promise(resolve=>{
-      resolve(getUserMessage())
+      resolve(getUserMessage({
+        friendId: routeState.id,
+        userId
+      }))
     }).then((res)=>{
-      (res as Array<chatItem>)?.map(element => {
+      (res as Array<ChatItem>)?.map(element => {
         if(element.friendEnd){
           htmlFn({headerImg: ''}, element.friendEnd)
         } else {
           htmlUserFn(element.userEnd, headerImgs)
         }
       });
-      console.log('----getUserMessage()', res);
     })
   }, [routeState.id]);
 
@@ -44,12 +47,16 @@ export default function ChatPage() {
       return;
     }
     const sendMsgInfo = {
-      userId: JSON.parse(localStorage.getItem("userInfo")!).id,
+      userId: userId,
       friendId: routeState.id,
       sendMsg: content,
     };
     socketIo.sendSingleMsg(sendMsgInfo);
-    sendUserMessage("", content);
+    sendUserMessage({
+      userId: userId,
+      friendId: routeState.id,
+      sendMsg: ''
+    }, content);
     htmlUserFn(content, headerImgs)
     setContent("");
   };

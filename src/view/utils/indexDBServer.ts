@@ -3,7 +3,9 @@ import Dexie, { Table } from 'dexie'
 interface Friends {
         msgIndex?: number,
         friendEnd: string,
-        userEnd: string
+        userEnd: string,
+        friendId: number,
+        userId: number
 }
 export class IndexDBServer extends Dexie {
 
@@ -11,7 +13,7 @@ export class IndexDBServer extends Dexie {
     constructor(){
         super('msgDatabases')
         this.version(1).stores({
-            3214: "++msgIndex"
+            3214: "++msgIndex, friendId, userId"
         })
     }
 }
