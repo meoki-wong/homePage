@@ -39,7 +39,6 @@ export default class Socket {
     // 接收单聊消息
     receiveSingleMsg() {
         this.socket.on('singleMsg', (msg: SendMsgInfo) => {
-            console.log('-----x消息接收', msg)
             sendUserMessage(msg, '')
             Store.dispatch({
                 type: 'getSingleMsg',
