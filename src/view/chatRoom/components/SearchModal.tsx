@@ -5,7 +5,7 @@ import { request } from '@/api/request'
 import "./SearchModal.scss";
 interface FriendItem {
   userName: string,
-  id: number
+  UserId: number
 }
 function SearchModal(props: any, ref: any) {
   const { Search } = Input;
@@ -37,6 +37,7 @@ function SearchModal(props: any, ref: any) {
       searchUserNum: searchVal
     }).then(res=>{
       if(res && res.data.success){
+        console.log('====13123', res.data.data)
         setSearchFriend(res.data.data || null)
       } 
     })
@@ -79,7 +80,7 @@ function SearchModal(props: any, ref: any) {
             <div className="item-desc">
               <div className="name">{searchFriend.userName}</div>
               <div className="desc">{"你夸撒大声地"}</div>
-              <div className="add-btn" onClick={()=>sendApply(searchFriend.id)}>
+              <div className="add-btn" onClick={()=>sendApply(searchFriend.UserId)}>
                 <UsergroupAddOutlined className="add-icon"/>
                 {/* <CheckCircleFilled className="add-icon add-ok"/> */}
               </div>

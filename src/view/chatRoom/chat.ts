@@ -19,14 +19,15 @@ export default class Socket {
 
 
     initSocket() {
+        let options = {
+            extraHeaders: {
+                userId: localStorage.getItem('token') ?
+                    JSON.parse(localStorage.getItem('userInfo')!).id : ''
+            }
+        }
         this.socket = process.env.NODE_ENV === 'production' ?
-            io('wss://supermeoki.xyz') :
-            io('ws://localhost:10021', {
-                extraHeaders: {
-                    userId: localStorage.getItem('token') ?
-                        JSON.parse(localStorage.getItem('userInfo')!).id : ''
-                }
-            })
+            io('wss://supermeoki.xyz', options) :
+            io('ws://localhost:10021', options)
     }
     socketIO() { return this.socket }
     sendMsg(msgInfo: SendMsgInfo) {
