@@ -21,8 +21,8 @@ const tabsList = [
     icon: <UserOutlined />,
     component: <FriendList />,
   },
-  {
-    name: "群聊列表",
+  { 
+    name: "群聊列表(待开发模块)",
     icon: <TeamOutlined />,
     component: "",
   },
