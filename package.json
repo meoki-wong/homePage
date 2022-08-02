@@ -2,7 +2,7 @@
   "name": "data-admin",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://supermeoki.xyz/dataAdmin",
+  "homepage": "./",
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
     "@amap/amap-jsapi-types": "^0.0.8",
@@ -95,8 +95,11 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "scp": "yarn build && node scripts/scp.js",
-    "testgit": "node src/utils/uploadGit/index.js"
+    "testgit": "node src/utils/uploadGit/index.js",
+    "electron:dev": "electron . dev",
+    "electron": "electron ."
   },
+  "main": "main.js",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -174,6 +177,7 @@
   "devDependencies": {
     "@types/js-cookie": "^3.0.1",
     "@types/js-md5": "^0.4.3",
+    "electron-builder": "^23.3.3",
     "js-md5": "^0.7.3",
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
