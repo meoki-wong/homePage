@@ -89,6 +89,25 @@
     "webpack-manifest-plugin": "^4.0.2",
     "workbox-webpack-plugin": "^6.4.1"
   },
+  "build": {
+    "productName": "superhippo",
+    "appId": "12121",
+    "directories": {
+      "output": "builder-win"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ]
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    }
+  },
   "scripts": {
     "start": "node scripts/start.js",
     "dev": "HTTPS=true node scripts/start.js",
@@ -97,7 +116,9 @@
     "scp": "yarn build && node scripts/scp.js",
     "testgit": "node src/utils/uploadGit/index.js",
     "electron:dev": "electron . dev",
-    "electron": "electron ."
+    "electron": "electron .",
+    "dist": "electron-builder --win --x64",
+    "package": "electron-packager ./ myapp --out ./OutApp --version 1.7.9 --arch=x64 --electron-version=6.0.4 --overwrite --icon=./public/hippo.ico"
   },
   "main": "main.js",
   "eslintConfig": {
@@ -177,7 +198,9 @@
   "devDependencies": {
     "@types/js-cookie": "^3.0.1",
     "@types/js-md5": "^0.4.3",
-    "electron-builder": "^23.3.3",
+    "electron": "20.0.0",
+    "electron-builder": "23.3.3",
+    "electron-packager": "15.5.1",
     "js-md5": "^0.7.3",
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
