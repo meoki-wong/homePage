@@ -50,7 +50,6 @@
     "js-cookie": "^3.0.1",
     "lib-flexible": "^0.3.2",
     "mini-css-extract-plugin": "^2.4.5",
-    "node-sass": "^7.0.1",
     "nprogress": "^0.2.0",
     "ora": "^6.0.1",
     "postcss": "^8.4.4",
@@ -117,7 +116,8 @@
     "testgit": "node src/utils/uploadGit/index.js",
     "electron:dev": "electron . dev",
     "electron": "electron .",
-    "dist": "electron-builder --win --x64",
+    "dist-win": "electron-builder --win --x64",
+    "dist": "electron-builder",
     "package": "electron-packager ./ myapp --out ./OutApp --version 1.7.9 --arch=x64 --electron-version=6.0.4 --overwrite --icon=./public/hippo.ico"
   },
   "main": "main.js",
@@ -206,7 +206,8 @@
     "less-loader": "^10.2.0",
     "redux-devtools": "^3.7.0",
     "tslint": "^6.1.3",
-    "tslint-react": "^5.0.0"
+    "tslint-react": "^5.0.0",
+    "node-sass": "^7.0.1"
   },
   "proxy": "https://127.0.0.1:10020"
 }

@@ -19,9 +19,7 @@ type UserInfo = {
 const retryDelay: number = 1000 // 超时请求
 const retry: number = 4 // 超时重新触发请求次数
 let axiosInstance: AxiosInstance = axios.create({
-    baseURL: process.env.NODE_ENV === 'production' ?
-        'https://supermeoki.xyz/data_admin' :
-        'http://127.0.0.1:10020/data_admin',
+    baseURL: 'https://supermeoki.xyz/data_admin',
     timeout: 15 * 1000, // 设置请求超时时间
 })
 
