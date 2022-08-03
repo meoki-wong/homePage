@@ -63,6 +63,7 @@ function FriendList(props: any) {
         })
   };
   const chatFriends = (item: SelectItem) => {
+    socket.emit('sendGroupMsg', 12121)
     navigate(`/dataAdmin/ChartRoom/friend`, {
       state: {
         id: item.id,

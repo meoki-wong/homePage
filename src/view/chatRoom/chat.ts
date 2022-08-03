@@ -56,6 +56,9 @@ export default class Socket {
             }
         })
     }
+    sendGroupMsg(){
+        this.socket.emit('sendGroupMsg', 12121)
+    }
     // 单聊  私发  创建单独房间
     // sendSingleMsg(item: any){
     //     console.log('------触发参数', item)
