@@ -44,13 +44,16 @@ function createWindow() {
   };
   mainWindow = new BrowserWindow(windowOptions);
   //判断是否是开发模式
-  if (mode === "dev") {
-    mainWindow.loadURL("http://localhost:8002/"); // http://localhost:8002/ 前端开发环境地址
-    mainWindow.webContents.openDevTools(); // 自动打开控制台
-    createDevTools();
-  } else { 
-    mainWindow.loadURL(path.join("file://", __dirname, "/build/index.html"));
-  }
+  // if (mode === "dev") {
+  //   mainWindow.loadURL("http://localhost:8002/"); // http://localhost:8002/ 前端开发环境地址
+  //   mainWindow.webContents.openDevTools(); // 自动打开控制台
+  //   createDevTools();
+  // } else { 
+    // mainWindow.loadURL(path.join("file://", __dirname, "./build/index.html"));
+    mainWindow.loadURL("https://supermeoki.xyz/dataAdmin");
+    // https://supermeoki.xyz/dataAdmin/
+    console.log('----')
+  // }
   //接收渲染进程的信息
   ipc.on("min", function () {
     mainWindow.minimize();
