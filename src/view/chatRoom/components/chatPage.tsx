@@ -32,7 +32,7 @@ export default function ChatPage() {
           if(element.friendEnd){
             htmlFn({headerImg: routeState.headerImg}, element.friendEnd)
           } else {
-            htmlUserFn(element.userEnd, headerImgs)
+            htmlUserFn(element.userEnd, userInfo.allUser.headerImg)
           }
         // }
       });
