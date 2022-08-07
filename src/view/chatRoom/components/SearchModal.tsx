@@ -13,10 +13,12 @@ function SearchModal(props: any, ref: any) {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [searchVal, setSearchVal] = useState<number | string>()
   const [searchFriend, setSearchFriend] = useState<FriendItem>()
+  const [searchType, setSearchType] = useState<number>(1) // 搜索类型 1 好友 2 群组
   useImperativeHandle(ref, () => {
     // 暴露子组件方法供父组件调用
     return {
-      showModal() {
+      showModal(type: number) {
+        setSearchType(type)
         setIsModalVisible(true);
       },
     };
@@ -32,9 +34,9 @@ function SearchModal(props: any, ref: any) {
     setSearchVal(e.target.value)
   }
   const onSearch = () => {
-    console.log('-------searchVal', searchVal)
     request.post('/searchFriend', {
-      searchUserNum: searchVal
+      searchUserNum: searchVal,
+      searchType
     }).then(res=>{
       if(res && res.data.success){
         console.log('====13123', res.data.data)
@@ -53,7 +55,7 @@ function SearchModal(props: any, ref: any) {
   }
   return (  
       <Modal
-        title="搜索好友"
+        title={searchType === 1? "搜索好友" : "搜索群组"}
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -63,7 +65,7 @@ function SearchModal(props: any, ref: any) {
           onSearch={onSearch}
           enterButton
           size="large"
-          placeholder="搜索用户"
+          placeholder={searchType === 1? "搜索好友" : "搜索群组"}
           allowClear
           prefix={<UserOutlined />}
           value={searchVal}

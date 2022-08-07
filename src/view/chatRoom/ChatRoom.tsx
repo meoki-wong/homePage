@@ -1,9 +1,10 @@
 import React, { Component, FC } from "react";
-import { notification, Input, Tabs, Modal } from "antd";
-import { UserOutlined, TeamOutlined, UserAddOutlined } from "@ant-design/icons";
+import { notification, Input, Tabs, Modal, Dropdown, Menu } from "antd";
+import { UserOutlined, TeamOutlined, UserAddOutlined, PlusCircleOutlined, UsergroupAddOutlined } from "@ant-design/icons";
 import { Outlet, useNavigate } from "react-router-dom";
 import Socket from "./chat";
 import FriendList from "./components/friendList";
+import GroupList from "./components/groupList";
 import SearchModal from "./components/SearchModal";
 import './chatRoom.scss'
 interface InitSocket {
@@ -24,7 +25,7 @@ const tabsList = [
   { 
     name: "群聊列表(待开发模块)",
     icon: <TeamOutlined />,
-    component: "",
+    component: <GroupList />,
   },
   {
     name: "测试内容",
@@ -32,8 +33,10 @@ const tabsList = [
     component: "",
   },
 ];
-export default class ChatRooms extends Component {
 
+
+export default class ChatRooms extends Component {
+  
   state: InitSocket = {
     initSocket: {},
     msgBox: [],
@@ -50,9 +53,21 @@ export default class ChatRooms extends Component {
       description: msg,
     });
   };
-  showAddFriend = ()=>{
-    this.myRef.current.showModal()
+  showAddFriend = (type: number)=>{
+    this.myRef.current.showModal(type)
   }
+  menu =()=> (
+    <Menu>
+      {
+        <Menu.Item key={1} onClick={()=>this.showAddFriend(1)}>
+          <UserAddOutlined />添加好友
+        </Menu.Item>
+      }
+      <Menu.Item key={2} onClick={()=>this.showAddFriend(2)}>
+          <UsergroupAddOutlined />添加群组
+        </Menu.Item>
+    </Menu>
+  );
   render() {
     return (
       <div className="chat-contain">
@@ -63,7 +78,12 @@ export default class ChatRooms extends Component {
               placeholder="搜索用户"
               prefix={<UserOutlined />}
             />
-            <UserAddOutlined className="add-btn" onClick={this.showAddFriend}/>
+            {/* <PlusCircleOutlined /> */}
+            <Dropdown overlay={this.menu} placement="bottomLeft" arrow>
+          {/* <span className="user-name">张三</span> */}
+          <PlusCircleOutlined className="add-btn"/>
+        </Dropdown>
+            
             <div className="friend-tabs">
               <Tabs size="small" defaultActiveKey="0">
                 {tabsList.map((item, index) => (

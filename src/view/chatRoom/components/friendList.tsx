@@ -47,6 +47,11 @@ function FriendList(props: any) {
     });
     
   }, []);
+  useEffect(()=>{
+    socket.on('eventName', (item: any)=>{
+      console.log('----接收群聊消息', item);
+    })
+  })
   const getFriendList = () => {
     request
       .post("/getFirends", {
@@ -63,7 +68,7 @@ function FriendList(props: any) {
         })
   };
   const chatFriends = (item: SelectItem) => {
-    socket.emit('sendGroupMsg', 12121)
+    socket.emit('sendGroupMsg', 1212112200021)
     navigate(`/dataAdmin/ChartRoom/friend`, {
       state: {
         id: item.id,
