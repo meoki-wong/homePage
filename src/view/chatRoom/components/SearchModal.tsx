@@ -5,7 +5,8 @@ import { request } from '@/api/request'
 import "./SearchModal.scss";
 interface FriendItem {
   userName: string,
-  UserId: number
+  UserId: number,
+  selfIntroduce: string
 }
 function SearchModal(props: any, ref: any) {
   const { Search } = Input;
@@ -81,7 +82,7 @@ function SearchModal(props: any, ref: any) {
             </div>
             <div className="item-desc">
               <div className="name">{searchFriend.userName}</div>
-              <div className="desc">{"你夸撒大声地"}</div>
+              <div className="desc">{searchFriend.selfIntroduce}</div>
               <div className="add-btn" onClick={()=>sendApply(searchFriend.UserId)}>
                 <UsergroupAddOutlined className="add-icon"/>
                 {/* <CheckCircleFilled className="add-icon add-ok"/> */}
