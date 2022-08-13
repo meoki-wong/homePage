@@ -38,7 +38,7 @@ function GroupList(props: any) {
               {/* <Badge count={props.getCount[item.UserId]?.msgCount || 0}> */}
                 <div className="item-header">
                   <img
-                    src={item.headerImg}
+                    src={item.groupImage}
                     alt=""
                   />
                 </div>

@@ -58,7 +58,7 @@ const UploadImg: React.FC<PropInterface> = (props?: any) => {
         onPreview={onPreview}
         maxCount={props.maxNum}
       >
-        {fileList.length < props.maxNum && "+ Upload"}
+        {fileList.length < props.maxNum && "点击上传"}
       </Upload>
     </ImgCrop>
   );
