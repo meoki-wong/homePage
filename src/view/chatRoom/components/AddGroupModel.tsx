@@ -52,6 +52,7 @@ const AddGroupModel = (props: any, ref: any) => {
         groupImage: imgUrl?.response?.data
       }).then(res=>{
         message.success('创建成功')
+        props.getUserGroup()
         setIsModalVisible(false);
       }) 
     

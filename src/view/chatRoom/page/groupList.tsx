@@ -27,7 +27,7 @@ function GroupList(props: any) {
       <div className="opt-area">
         <p onClick={()=>addGroup()}>点击创建群组</p>
       </div>
-      <ul>
+      <ul className='group-box'>
         {groupList?.map((item: any) => {
           return (
             <li
@@ -55,7 +55,7 @@ function GroupList(props: any) {
           );
         })}
       </ul>
-      <AddGroupModel ref={addGroupRef}/>
+      <AddGroupModel ref={addGroupRef} getUserGroup={getUserGroup}/>
     </div>
   )
 }
