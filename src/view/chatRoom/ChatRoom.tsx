@@ -3,9 +3,9 @@ import { notification, Input, Tabs, Modal, Dropdown, Menu } from "antd";
 import { UserOutlined, TeamOutlined, UserAddOutlined, PlusCircleOutlined, UsergroupAddOutlined } from "@ant-design/icons";
 import { Outlet, useNavigate } from "react-router-dom";
 import Socket from "./chat";
-import FriendList from "./components/friendList";
-import GroupList from "./components/groupList";
-import SearchModal from "./components/SearchModal";
+import FriendList from "./page/friendList";
+import GroupList from "./page/groupList";
+import SearchModal from "./page/SearchModal";
 import './chatRoom.scss'
 interface InitSocket {
   initSocket: any;
@@ -55,6 +55,7 @@ export default class ChatRooms extends Component {
   };
   showAddFriend = (type: number)=>{
     this.myRef.current.showModal(type)
+    console.log('----创建', this.myRef)
   }
   menu =()=> (
     <Menu>

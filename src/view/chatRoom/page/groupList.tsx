@@ -1,27 +1,34 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { connect } from 'react-redux'
 import { Badge } from 'antd'
+import AddGroupModel from '../components/AddGroupModel'
 import './groupList.scss'
+import { request } from '@/api/request'
 function GroupList(props: any) {
-    const [friendList, setFriendList] = useState([
-        {
-            id: 1,
-            headerImg: '',
-            userName: '121212',
-            user_number: '123456',
-            userOnlineStatus: {
-                userStatus: false
-            }
-        }
-    ])
-
+    const [groupList, setGroupList] = useState([])
+    const addGroupRef = useRef<any>()
+    useEffect(()=>{
+      getUserGroup()
+    }, [])
+    const getUserGroup = async ()=>{
+      let res = await request.post('/getGroups')
+      if(res.data.success){
+        setGroupList(res.data.data)
+      }
+    }
     const chatGroup = (item: any) => {
-        console.log('----群聊内容', item)
+        console.log('----群聊内容', addGroupRef)
+    }
+    const addGroup = () => {
+      addGroupRef.current.showModal()
     }
   return (
     <div className="group-list-contain">
+      <div className="opt-area">
+        <p onClick={()=>addGroup()}>点击创建群组</p>
+      </div>
       <ul>
-        {friendList?.map((item: any) => {
+        {groupList?.map((item: any) => {
           return (
             <li
               key={item.id}
@@ -39,15 +46,16 @@ function GroupList(props: any) {
               
               <div className="item-desc">
                 <div className="name">
-                  {item.userName}
-                  <span className="user-number">（{item.user_number}）</span>
+                  {item.groupName}
+                  <span className="user-number">（{item.groupNumber}）</span>
                 </div>
-                <div className="desc">{item.selfIntroduce || '群公告~'}</div>
+                <div className="desc">{item.groupAnnouncement || '暂无群组公告~'}</div>
               </div>
             </li>
           );
         })}
       </ul>
+      <AddGroupModel ref={addGroupRef}/>
     </div>
   )
 }

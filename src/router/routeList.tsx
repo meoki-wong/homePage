@@ -2,7 +2,7 @@ import React, { lazy, ReactElement, Suspense } from "react";
 // import { RouteObject } from 'react-router-dom' // hook导入
 import Loading from "../view/components/Loading";
 import Home from "../home";
-import ChatPage from "../view/chatRoom/components/chatPage";
+import ChatPage from "../view/chatRoom/page/chatPage";
 const LiveCom = lazy(() => import("../view/Meeting/index"));
 const ChartRoom = lazy(() => import("../view/chatRoom/ChatRoom"));
 const Map = lazy(() => import("../view/Map/index"));

@@ -40,7 +40,6 @@ function SearchModal(props: any, ref: any) {
       searchType
     }).then(res=>{
       if(res && res.data.success){
-        console.log('====13123', res.data.data)
         setSearchFriend(res.data.data || null)
       } 
     })

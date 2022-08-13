@@ -70,7 +70,7 @@ function FriendList(props: any) {
   const chatFriends = (item: SelectItem) => {
     socket.emit('sendGroupMsg', 1212112200021)
     request.post('/createGroup', {
-      groupName: '测试创建群组2'
+      groupName: '测试创建群组4'
     }).then(res=>{
       console.log('---------res', res);
     })
