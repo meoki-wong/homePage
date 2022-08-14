@@ -11,12 +11,12 @@ const UploadImg: React.FC<PropInterface> = (props?: any) => {
   const { getImgUrl } = props;
   useEffect(() => {
     setFileList([
-      {
-        uid: "-1",
-        name: "image.png",
-        type: "image/jpeg",
-        url: props.coverImg,
-      },
+      // {
+      //   uid: "-1",
+      //   name: "image.png",
+      //   type: "image/jpeg",
+      //   url: props.coverImg,
+      // },
     ]);
   }, [props.coverImg]);
   const [fileList, setFileList] = useState<UploadFile[]>([
