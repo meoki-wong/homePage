@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./friendList.scss";
 import { request } from "@/api/request";
-import { SelectItem } from "../interface/SelectItem";
+import { SelectItem } from "../type/selectItem";
 import { socketIo } from "../utils/newSocket";
 import { Badge } from 'antd';
 type FriendList = Array<object>;
@@ -68,7 +68,7 @@ function FriendList(props: any) {
         })
   };
   const chatFriends = (item: SelectItem) => {
-    socket.emit('sendGroupMsg', 1212112200021)
+    socketIo.joinGroup(JSON.parse(localStorage.getItem('userInfo')!).id) // 加入群组房间
     navigate(`/dataAdmin/ChartRoom/friend`, {
       state: {
         id: item.id,

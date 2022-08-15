@@ -12,6 +12,11 @@ export interface SendMsgInfo {
     sendMsg: string
 }
 
+export interface sendGroupMsgInfo {
+    groupId: number,
+    sendMsg: string
+}
+
 // 聊天用户头像
 export interface FriendUserInfo {
     headerImg: string

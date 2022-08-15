@@ -34,7 +34,7 @@ const AddGroupModel = (props: any, ref: any) => {
   };
   const getFriendList = async () => {
     let res = await request.post("/getFirends", {
-        userId: JSON.parse(localStorage.getItem("userInfo")!).id,
+        userId: id,
       });
     setFriendList(res.data.list);
   };

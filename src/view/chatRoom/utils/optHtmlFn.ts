@@ -1,5 +1,5 @@
 
-import { FriendUserInfo } from '../interface/SelectItem'
+import { FriendUserInfo } from '../type/selectItem'
 
 // 好友聊天框
 export const htmlFn = (info: FriendUserInfo, msg: string) => {

@@ -3,6 +3,7 @@ import React, { lazy, ReactElement, Suspense } from "react";
 import Loading from "../view/components/Loading";
 import Home from "../home";
 import ChatPage from "../view/chatRoom/page/chatPage";
+import GroupChatPage from "../view/chatRoom/page/groupPage"
 const LiveCom = lazy(() => import("../view/Meeting/index"));
 const ChartRoom = lazy(() => import("../view/chatRoom/ChatRoom"));
 const Map = lazy(() => import("../view/Map/index"));
@@ -41,6 +42,11 @@ const routeList: any[] = [
             name: "聊天界面",
             path: "/dataAdmin/ChartRoom/friend",
             element: <ChatPage />,
+          },
+          {
+            name: "群组聊天界面",
+            path: "/dataAdmin/ChartRoom/group",
+            element: <GroupChatPage />,
           },
         ],
       },

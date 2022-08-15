@@ -69,11 +69,11 @@ function Login() {
         window.localStorage.setItem("userInfo", JSON.stringify(res.data.data.userInfo));
         message.success("登录成功");
         let userinfo = JSON.parse(localStorage.getItem("userInfo")!);
-        console.log('-----登录内容', userinfo)
         socketIo.joinRoom({
         userName: userinfo.userName,
         userId: userinfo.id,
     });
+        socketIo.joinGroup(userinfo.id) // 加入群组房间
         navigate("/dataAdmin");
       }
     });

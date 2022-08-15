@@ -1,5 +1,5 @@
 import { IndexDBServer } from './indexDBServer'
-import { SendMsgInfo,  SearchMsgInfo} from '../chatRoom/interface/SelectItem';
+import { SendMsgInfo,  SearchMsgInfo} from '../chatRoom/type/selectItem';
 const db = new IndexDBServer()
 // 存储用户发送的信息
 export const sendUserMessage = (friendMsg: SendMsgInfo, userMsg: string) => {

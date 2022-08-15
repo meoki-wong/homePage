@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Badge } from 'antd'
 import AddGroupModel from '../components/AddGroupModel'
 import './groupList.scss'
 import { request } from '@/api/request'
 function GroupList(props: any) {
+  let navigate = useNavigate();
     const [groupList, setGroupList] = useState([])
     const addGroupRef = useRef<any>()
     useEffect(()=>{
@@ -17,7 +19,13 @@ function GroupList(props: any) {
       }
     }
     const chatGroup = (item: any) => {
-        console.log('----群聊内容', addGroupRef)
+      navigate(`/dataAdmin/ChartRoom/group`, {
+        state: {
+          id: item.groupId,
+          userName: item.groupName,
+          headerImg: item.groupImage
+        },
+      });
     }
     const addGroup = () => {
       addGroupRef.current.showModal()

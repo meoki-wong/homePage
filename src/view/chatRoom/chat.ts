@@ -1,10 +1,10 @@
 import io from 'socket.io-client'
-import { SendMsgInfo } from './interface/SelectItem'
+import { SendMsgInfo, sendGroupMsgInfo } from './type/selectItem'
 import Store from '../../store/store/index'
 import { request } from '@/api/request'
 import { sendUserMessage } from '../utils/indexDBMethods'
 import { htmlFn } from './utils/optHtmlFn'
-import { FriendUserInfo } from './interface/SelectItem'
+import { FriendUserInfo } from './type/selectItem'
 export default class Socket {
 
     socket: any
@@ -37,10 +37,17 @@ export default class Socket {
     sendSingleMsg(msgInfo: SendMsgInfo) {
         this.socket.emit('sendSingleMsg', msgInfo.userId, msgInfo.friendId, msgInfo)
     }
+    // 发送群聊消息
+    sendGroupMsg(msgInfo: sendGroupMsgInfo){
+        this.socket.emit('sendGroupMsg', msgInfo)
+    }
+    // 接收群聊消息
+    receiveGroupMsg(){
+
+    }
     // 接收单聊消息
     receiveSingleMsg() {
         this.socket.on('singleMsg', (msg: SendMsgInfo) => {
-            console.log('----msg', msg)
             sendUserMessage({
                 friendId: msg.userId,
                 userId: msg.friendId,
@@ -56,19 +63,16 @@ export default class Socket {
             }
         })
     }
-    sendGroupMsg(){
-        this.socket.emit('sendGroupMsg', 12121)
+    
+    // 加入群组房间
+    joinGroup(userId: number){
+        this.socket.emit('joinGroup', userId)
     }
-    // 单聊  私发  创建单独房间
-    // sendSingleMsg(item: any){
-    //     console.log('------触发参数', item)
-    //     this.socket.emit('singleRoom', {
-    //         room_name: `single_room_${12}`
-    //     })
-    // }
+    // 进入socket
     joinRoom(item: any) {
         this.socket.emit('join', item)
     }
+    // 获取当前的id
     getSocketId(sendId: number) {
         this.socketId = sendId
         console.log('sendIdsendIdsendId', sendId, this.socketId)
