@@ -3,41 +3,41 @@ import { socketIo } from "../utils/newSocket";
 import "./chatPage.scss";
 import { Input, message } from "antd";
 import { Location, useLocation } from "react-router-dom";
-import { SelectItem, ChatItem } from "../type/selectItem";
+import { SelectGroupItem, ChatItem } from "../type/selectItem";
 import { sendUserMessage, getUserMessage } from "@/view/utils/indexDBMethods";
 import { htmlUserFn, htmlFn } from "../utils/optHtmlFn";
 export default function ChatPage() {
   const { TextArea } = Input;
   const [content, setContent] = useState<string>("");
   const location: Location = useLocation();
-  let routeState = location.state as SelectItem;
+  let routeState = location.state as SelectGroupItem;
 
-  const [headerImgs, serHeaderImg] = useState<string>("");
+  const [headerImgs, setHeaderImg] = useState<string>("");
   const userInfo = JSON.parse(localStorage.getItem("userInfo")!);
   const userId: number = JSON.parse(localStorage.getItem("userInfo")!).id
   useEffect(() => {
-    routeState = location.state as SelectItem;
-    socketIo.getSocketId(routeState.id);
-    serHeaderImg(userInfo.allUser.headerImg);
+    routeState = location.state as SelectGroupItem;
+    // socketIo.getSocketId(routeState.id);
+    setHeaderImg(userInfo.allUser.headerImg);
     // 初始化获取用户存储的聊天记录 （仅限本地  离线消息待开发）
-    new Promise(resolve=>{
-      resolve(getUserMessage({
-        friendId: routeState.id,
-        userId
-      }))
-    }).then((res)=>{
-      (document.querySelector('.msg-area')!).innerHTML = ""; // 初始化消息
-      (res as Array<ChatItem>)?.map((element: ChatItem) => {
-        // if(routeState.id == element.friendId){
-          if(element.friendEnd){
-            htmlFn({headerImg: routeState.headerImg}, element.friendEnd)
-          } else {
-            htmlUserFn(element.userEnd, userInfo.allUser.headerImg)
-          }
-        // }
-      });
-    })
-  }, [routeState.id]);
+    // new Promise(resolve=>{
+    //   resolve(getUserMessage({
+    //     friendId: routeState.id,
+    //     userId
+    //   }))
+    // }).then((res)=>{
+    //   (document.querySelector('.msg-area')!).innerHTML = ""; // 初始化消息
+    //   (res as Array<ChatItem>)?.map((element: ChatItem) => {
+    //     // if(routeState.id == element.friendId){
+    //       if(element.friendEnd){
+    //         htmlFn({headerImg: routeState.headerImg}, element.friendEnd)
+    //       } else {
+    //         htmlUserFn(element.userEnd, userInfo.allUser.headerImg)
+    //       }
+    //     // }
+    //   });
+    // })
+  }, [routeState.groupId]);
 
   const inputVal = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
@@ -49,22 +49,21 @@ export default function ChatPage() {
       return;
     }
     const sendMsgInfo = {
-      userId: userId,
-      friendId: routeState.id,
+      groupId: routeState.groupId,
       sendMsg: content,
     };
-    socketIo.sendSingleMsg(sendMsgInfo);
-    sendUserMessage({
-      userId: userId,
-      friendId: routeState.id,
-      sendMsg: ''
-    }, content);
+    socketIo.sendGroupMsg(sendMsgInfo);
+    // sendUserMessage({
+    //   userId: userId,
+    //   friendId: routeState.id,
+    //   sendMsg: ''
+    // }, content);
     htmlUserFn(content, headerImgs)
     setContent("");
   };
   return (
     <div className="chat-page">
-      <div className="friend-name">{routeState.userName}</div>
+      <div className="friend-name">{routeState.groupName}</div>
       <div className="msg-area">{/* 聊天区 */}</div>
       <div className="msg-opt">
         <div className="option-area">

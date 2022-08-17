@@ -22,7 +22,7 @@ function GroupList(props: any) {
       navigate(`/dataAdmin/ChartRoom/group`, {
         state: {
           id: item.groupId,
-          userName: item.groupName,
+          groupName: item.groupName,
           headerImg: item.groupImage
         },
       });

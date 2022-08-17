@@ -1,9 +1,14 @@
 
 
-export type SelectItem = {
+export interface SelectItem {
     id: number, // id
     userName: string, // 名字
     headerImg: string // 头像
+}
+export interface SelectGroupItem {
+    groupId: number, // 群id
+    groupName: string, // 群名称
+    headerImg: string, // 群头像
 }
 
 export interface SendMsgInfo {
