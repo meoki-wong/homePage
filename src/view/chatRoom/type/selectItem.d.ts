@@ -19,7 +19,9 @@ export interface SendMsgInfo {
 
 export interface sendGroupMsgInfo {
     groupId: number,
-    sendMsg: string
+    sendMsg: string,
+    headerImg: string,
+    userName: string,
 }
 
 // 聊天用户头像

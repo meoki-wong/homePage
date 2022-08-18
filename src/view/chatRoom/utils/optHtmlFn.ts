@@ -1,5 +1,5 @@
 
-import { FriendUserInfo } from '../type/selectItem'
+import { FriendUserInfo } from '../type/selectItem' // 测试类型
 
 // 好友聊天框
 export const htmlFn = (info: FriendUserInfo, msg: string) => {

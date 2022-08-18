@@ -43,21 +43,25 @@ export default class Socket {
     }
     // 接收群聊消息
     receiveGroupMsg(){
-
+        this.socket.on('groupMsg', (msg: any)=>{
+            // htmlFn()
+        })
     }
     // 接收单聊消息
     receiveSingleMsg() {
         this.socket.on('singleMsg', (msg: SendMsgInfo) => {
+            // 聊天记录存indexedDB
             sendUserMessage({
                 friendId: msg.userId,
                 userId: msg.friendId,
                 sendMsg: msg.sendMsg
             }, '')
+            // 消息通知
             Store.dispatch({
                 type: 'getSingleMsg',
                 value: msg.userId
             })
-            // msgInfo.friendId == msg.userId  服务端判断
+
             if (this.socketId === msg.userId) { // 同一环境下 不接受  只接收相同id消息
                 htmlFn(this.friendUserInfo, msg.sendMsg)
             }
@@ -80,9 +84,7 @@ export default class Socket {
             userId: sendId
         }).then(res => {
             this.friendUserInfo = res.data.data
-            console.log('res.data.data', this.friendUserInfo, res.data)
         })
-        console.log('----触发', this.socketId)
     }
     receiveMsg() {
         this.socket.on('receiveMsg', (msg: any) => {

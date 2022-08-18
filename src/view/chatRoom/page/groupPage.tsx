@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { socketIo } from "../utils/newSocket";
 import "./chatPage.scss";
 import { Input, message } from "antd";
 import { Location, useLocation } from "react-router-dom";
-import { SelectGroupItem, ChatItem } from "../type/selectItem";
-import { sendUserMessage, getUserMessage } from "@/view/utils/indexDBMethods";
+import { SelectGroupItem } from "../type/selectItem";
 import { htmlUserFn, htmlFn } from "../utils/optHtmlFn";
 export default function ChatPage() {
   const { TextArea } = Input;
@@ -51,6 +50,8 @@ export default function ChatPage() {
     const sendMsgInfo = {
       groupId: routeState.groupId,
       sendMsg: content,
+      headerImg: headerImgs,
+      userName: userInfo.userName
     };
     socketIo.sendGroupMsg(sendMsgInfo);
     // sendUserMessage({

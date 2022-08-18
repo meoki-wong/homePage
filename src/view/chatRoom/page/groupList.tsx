@@ -21,7 +21,7 @@ function GroupList(props: any) {
     const chatGroup = (item: any) => {
       navigate(`/dataAdmin/ChartRoom/group`, {
         state: {
-          id: item.groupId,
+          groupId: item.groupId,
           groupName: item.groupName,
           headerImg: item.groupImage
         },
