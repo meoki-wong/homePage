@@ -29,7 +29,8 @@ export interface sendGroupMsgInfo {
 export interface FriendUserInfo {
     headerImg: string,
     userName?: string, // 群组聊天 携带用户名
-    sendMsg: string // 发送的消息
+    sendMsg: string, // 发送的消息
+    groupId?: number // 群组id
 }
 
 // 存储的单条聊天记录

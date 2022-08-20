@@ -46,7 +46,9 @@ export default class Socket {
     receiveGroupMsg(){
         this.socket.on('groupMsg', (msg: FriendUserInfo)=>{
             console.log('----接收群老消息', msg);
-            htmlFn(msg)
+            if(this.socketId === msg.groupId){
+                htmlFn(msg)
+            }
         })
     }
     // 接收单聊消息
@@ -81,7 +83,7 @@ export default class Socket {
     joinRoom(item: any) {
         this.socket.emit('join', item)
     }
-    // 获取当前的id
+    // 获取当前的id 私聊-用户ID  群组-群组ID
     getSocketId(sendId: number) {
         this.socketId = sendId
         console.log('sendIdsendIdsendId', sendId, this.socketId)
