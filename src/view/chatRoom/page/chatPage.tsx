@@ -30,7 +30,7 @@ export default function ChatPage() {
       (res as Array<ChatItem>)?.map((element: ChatItem) => {
         // if(routeState.id == element.friendId){
           if(element.friendEnd){
-            htmlFn({headerImg: routeState.headerImg}, element.friendEnd)
+            htmlFn({headerImg: routeState.headerImg, sendMsg: element.friendEnd})
           } else {
             htmlUserFn(element.userEnd, userInfo.allUser.headerImg)
           }

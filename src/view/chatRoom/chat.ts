@@ -14,6 +14,7 @@ export default class Socket {
         this.initSocket()
         // this.receiveMsg() // 监听接收服务端返回的消息数据
         this.receiveSingleMsg() // 单聊消息
+        this.receiveGroupMsg() // 群组消息
     }
 
 
@@ -43,8 +44,9 @@ export default class Socket {
     }
     // 接收群聊消息
     receiveGroupMsg(){
-        this.socket.on('groupMsg', (msg: any)=>{
-            // htmlFn()
+        this.socket.on('groupMsg', (msg: FriendUserInfo)=>{
+            console.log('----接收群老消息', msg);
+            htmlFn(msg)
         })
     }
     // 接收单聊消息
@@ -63,7 +65,10 @@ export default class Socket {
             })
 
             if (this.socketId === msg.userId) { // 同一环境下 不接受  只接收相同id消息
-                htmlFn(this.friendUserInfo, msg.sendMsg)
+                htmlFn({
+                    ...this.friendUserInfo, 
+                    sendMsg: msg.sendMsg
+                })
             }
         })
     }
@@ -88,7 +93,10 @@ export default class Socket {
     }
     receiveMsg() {
         this.socket.on('receiveMsg', (msg: any) => {
-            htmlFn(this.friendUserInfo, msg)
+            htmlFn({
+                ...this.friendUserInfo, 
+                sendMsg: msg
+            })
         })
     }
     // 接收添加朋友消息

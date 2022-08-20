@@ -2,16 +2,14 @@
 import { FriendUserInfo } from '../type/selectItem' // 测试类型
 
 // 好友聊天框
-export const htmlFn = (info: FriendUserInfo, msg: string) => {
+export const htmlFn = (info: FriendUserInfo) => {
     let htmlCon = document.createElement("div")
     htmlCon.setAttribute('class', 'other-frame')
     htmlCon.innerHTML = `
             <img src='${info.headerImg}' alt="" />
-            <p class="inner-msg">${msg}</p>`
+            <p class="inner-msg">${info.sendMsg}</p>`
 
-    document.getElementsByClassName('msg-area')[0].append(
-        htmlCon
-    )
+    document.getElementsByClassName('msg-area')[0].append(htmlCon)
     const areaHeight = document.querySelector('.msg-area') as HTMLElement
     areaHeight.scrollTo(0, areaHeight.scrollHeight); // 每次发送消息   使消息都处在底部
 }

@@ -14,7 +14,8 @@ export interface SelectGroupItem {
 export interface SendMsgInfo {
     userId: number,
     friendId: number,
-    sendMsg: string
+    sendMsg: string,
+    headerImg?: string
 }
 
 export interface sendGroupMsgInfo {
@@ -26,7 +27,9 @@ export interface sendGroupMsgInfo {
 
 // 聊天用户头像
 export interface FriendUserInfo {
-    headerImg: string
+    headerImg: string,
+    userName?: string, // 群组聊天 携带用户名
+    sendMsg: string // 发送的消息
 }
 
 // 存储的单条聊天记录

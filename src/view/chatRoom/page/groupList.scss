@@ -10,7 +10,7 @@
         }
     }
     .group-box{
-        height: calc(100% - 140px);
+        min-height: calc(100% - 140px);
         overflow: auto;
         .contant-item{
             width: 100%;

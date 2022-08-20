@@ -16,6 +16,7 @@ function GroupList(props: any) {
       let res = await request.post('/getGroups')
       if(res.data.success){
         setGroupList(res.data.data)
+        console.log('---群组内容', groupList);
       }
     }
     const chatGroup = (item: any) => {

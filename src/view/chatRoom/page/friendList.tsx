@@ -26,6 +26,7 @@ function FriendList(props: any) {
     });
     // 在线
     socket.on("userStatus", (item: number) => {
+      console.log('----statusDom', item);
       let userId = JSON.parse(localStorage.getItem('userInfo')!).id
       if(userId !== item){ // 过滤排除自己
         const statusDom = document.querySelector(`.user-status-${item}`) as HTMLElement
