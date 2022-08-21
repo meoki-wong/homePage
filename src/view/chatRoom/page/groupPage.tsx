@@ -16,7 +16,7 @@ export default function ChatPage() {
   const userId: number = JSON.parse(localStorage.getItem("userInfo")!).id
   useEffect(() => {
     routeState = location.state as SelectGroupItem;
-    socketIo.getSocketId(routeState.groupId);
+    socketIo.getGroupSocketId(routeState.groupId);
     setHeaderImg(userInfo.allUser.headerImg);
     // 初始化获取用户存储的聊天记录 （仅限本地  离线消息待开发）
     // new Promise(resolve=>{

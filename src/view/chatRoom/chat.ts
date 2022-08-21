@@ -86,12 +86,14 @@ export default class Socket {
     // 获取当前的id 私聊-用户ID  群组-群组ID
     getSocketId(sendId: number) {
         this.socketId = sendId
-        console.log('sendIdsendIdsendId', sendId, this.socketId)
         request.post('/getUserInfo', {
             userId: sendId
         }).then(res => {
             this.friendUserInfo = res.data.data
         })
+    }
+    getGroupSocketId(sendId: number){
+        this.socketId = sendId
     }
     receiveMsg() {
         this.socket.on('receiveMsg', (msg: any) => {
