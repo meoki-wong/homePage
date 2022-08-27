@@ -23,7 +23,7 @@ export default class Socket {
         let options = {
             extraHeaders: {
                 userId: localStorage.getItem('token') ?
-                    JSON.parse(localStorage.getItem('userInfo')!).id : ''
+                    JSON.parse(localStorage.getItem('userInfo')!)?.id : ''
             }
         }
         this.socket = process.env.NODE_ENV === 'production' ?

@@ -29,7 +29,7 @@ const ForkTsCheckerWebpackPlugin =
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const createEnvironmentHash = require('./webpack/persistentCache/createEnvironmentHash');
-
+const packageName = require('../package.json').name;
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -205,6 +205,11 @@ module.exports = function (webpackEnv) {
     // This means they will be the "root" imports that are included in JS bundle.
     entry: paths.appIndexJs,
     output: {
+      // qiankun配置
+      library: `${packageName}-[name]`,
+      libraryTarget: 'window',
+      // jsonpFunction: `webpackJsonp_${packageName}`,
+      // globalObject: "window",
       // The build folder.
       path: paths.appBuild,
       // Add /* filename */ comments to generated require()s in the output.

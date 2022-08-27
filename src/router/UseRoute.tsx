@@ -49,12 +49,13 @@ export default function UseRoute(props: any) {
   useEffect(() => {
     ElementRoute(); // 路由改变触发路由重新渲染  首先实现的功能是/ 重定向/home
     if (localStorage.getItem("token")) {
+      console.log('-----kkkk', localStorage.getItem("token"))
       joinRoom(); // 刷新页面后登录页面
     }
   });
   const joinRoom = () => {
     let userinfo = JSON.parse(localStorage.getItem("userInfo")!);
-    console.log('-----登录内容', userinfo)
+    console.log('-----登录内容', userinfo, localStorage.getItem("token"))
     socketIo.joinRoom({
       userName: userinfo.userName,
       userId: userinfo.id,
