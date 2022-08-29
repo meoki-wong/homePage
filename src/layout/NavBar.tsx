@@ -112,7 +112,7 @@ export default function LeftNav(props: Object) {
     <div className="nav-bar">
       <div className="left-area">
         <div className="logo">
-          <img src={require("../view/assets/image/Flag.png")} alt="" />
+          <img src={"/src/view/assets/image/Flag.png"} alt="" />
           <div className="title">
             SuperMeoki
             {/* <input

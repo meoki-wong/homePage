@@ -1,3 +1,4 @@
+import React from 'react';
 import { Suspense, ReactElement, lazy } from 'react'
 import Loading from "../view/components/Loading";
 import Login from '../view/login/login'

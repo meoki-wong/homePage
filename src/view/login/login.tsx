@@ -84,7 +84,7 @@ function Login() {
   return (
     <div className="login-container">
       <div className="header">
-        <div className="logo"><img src={require("../assets/image/Flag.png")} /></div>
+        <div className="logo"><img src={"/src/view/assets/image/Flag.png"} /></div>
         <div className="title">SuperMeoki</div>
       </div>
       <div className="form-area">
