@@ -3,7 +3,8 @@ import reactRefresh from '@vitejs/plugin-react-refresh';
 import antdDayjs from 'antd-dayjs-vite-plugin';
 import analyze from 'rollup-plugin-analyzer';
 import requireTransform from 'vite-plugin-require-transform';
-
+import replace from '@rollup/plugin-replace';
+import commonjs from '@rollup/plugin-commonjs'
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
@@ -13,9 +14,15 @@ export default defineConfig({
             summaryOnly: true,
             limit: 10, //
         }),
+        replace({
+            "process.env.NODE_ENV": JSON.stringify("development")
+        }),
         requireTransform({
-            fileRegex: /.js$|.vue$/
+            fileRegex:/.ts$|.tsx$|.vue$|.js$/
+          //   fileRegex:/.js$|.jsx$|.vue$/
           }),
+          commonjs()
+          
     ],
     base: './',
     resolve: {
