@@ -10,10 +10,11 @@ import NavBar from "./layout/NavBar";
 import BreadCrumb from "./utils/breadcrumb";
 import Archival from './layout/Archival'
 let { Header, Sider, Content } = Layout;
-
 function App(props: any) {
   let navigate = useNavigate();
-  useEffect(() => {}, []);
+  useEffect(() => {
+    console.log('----nodenode', import.meta );
+  }, []);
   return (
     <div className="App">
       <Layout>
