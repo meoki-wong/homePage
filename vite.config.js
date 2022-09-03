@@ -3,10 +3,11 @@ import reactRefresh from '@vitejs/plugin-react-refresh';
 import antdDayjs from 'antd-dayjs-vite-plugin';
 import analyze from 'rollup-plugin-analyzer';
 import requireTransform from 'vite-plugin-require-transform';
-
+import commonjs from '@rollup/plugin-commonjs'
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
+        commonjs(),
         reactRefresh(),
         antdDayjs(),
         analyze({   // 用户分析包的大小 和 数量

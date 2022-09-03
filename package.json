@@ -8,6 +8,7 @@
     "@amap/amap-jsapi-types": "^0.0.8",
     "@babel/core": "^7.16.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
+    "@rollup/plugin-commonjs": "^22.0.2",
     "@svgr/webpack": "^5.5.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
