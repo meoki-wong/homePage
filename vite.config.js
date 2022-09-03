@@ -15,7 +15,7 @@ export default defineConfig({
             limit: 10, //
         }),
         requireTransform({
-            fileRegex: /.js$|.vue$/
+            fileRegex: /.js$|.vue$|.jsx$|.ts$|.tsx$/
           }),
     ],
     base: './',
