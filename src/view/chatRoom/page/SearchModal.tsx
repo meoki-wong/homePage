@@ -24,6 +24,9 @@ function SearchModal(props: any, ref: any) {
       },
     };
   });
+  const getImageUrl = (name: string) => {
+    return new URL(name, import.meta.url).href;
+};
   const handleOk = () => {
     setIsModalVisible(false);
   };
@@ -75,7 +78,7 @@ function SearchModal(props: any, ref: any) {
           <li className="modal-item">
             <div className="item-header">
               <img
-                src={require("../../assets/image/user_header.jpeg")}
+                src={getImageUrl("../../assets/image/user_header.jpeg")}
                 alt=""
               />
             </div>

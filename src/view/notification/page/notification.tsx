@@ -32,6 +32,9 @@ export default function Notification() {
         }
       });
   };
+  const getImageUrl = (name: string) => {
+    return new URL(name, import.meta.url).href;
+};
   // 拒绝
   const handleCancel = () => {};
   const NotifierComponent = (item: MessageItem, index: number) => {
@@ -39,7 +42,7 @@ export default function Notification() {
       return <div className="notifier-item" key={index}>
         <img
           className="header"
-          src={require("../../assets/image/Flag.png")}
+          src={getImageUrl("../../assets/image/Flag.png")}
           alt=""
         />
         <div className="message-content">
@@ -59,7 +62,7 @@ export default function Notification() {
       return <div className="notifier-item" key={index}>
         <img
           className="header"
-          src={require("../../assets/image/Flag.png")}
+          src={getImageUrl("../../assets/image/Flag.png")}
           alt=""
         />
         <div className="message-content">

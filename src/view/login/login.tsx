@@ -38,7 +38,9 @@ function Login() {
   let [userName, setUserName] = useState('');
   let [password, setPassWord] = useState('');
   let [checkBox, setCheckBox] = useState(true);
-
+  const getImageUrl = (name: string) => {
+    return new URL(name, import.meta.url).href;
+};
   let getUser = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(e.target.value);
   };
@@ -84,7 +86,7 @@ function Login() {
   return (
     <div className="login-container">
       <div className="header">
-        <div className="logo"><img src={require("../assets/image/Flag.png")} /></div>
+        <div className="logo"><img src={getImageUrl("../assets/image/Flag.png")} /></div>
         <div className="title">SuperMeoki</div>
       </div>
       <div className="form-area">

@@ -57,6 +57,11 @@ export default function LeftNav(props: Object) {
     socketIo.getApplyMsg();
     
   }, []);
+  const getImageUrl = (name: string) => {
+    return new URL(name, import.meta.url).href;
+};
+
+
   const isLogin = () => {
     if (window.localStorage.token) {
       setIsModalVisible(true);
@@ -112,7 +117,7 @@ export default function LeftNav(props: Object) {
     <div className="nav-bar">
       <div className="left-area">
         <div className="logo">
-          <img src={require("../view/assets/image/Flag.png")} alt="" />
+          <img src={getImageUrl("../view/assets/image/Flag.png")} alt="" />
           <div className="title">
             SuperMeoki
             {/* <input
