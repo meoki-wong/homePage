@@ -30,4 +30,12 @@ export default defineConfig({
       },
     },
   },   
+  build: {
+    outDir: 'build',
+    minify: 'terser', // boolean | 'terser' | 'esbuild'
+    cssCodeSplit: true // 拆分css
+},
+server: {
+    port: 8000
+}
 })
