@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import vitePluginImp from 'vite-plugin-imp'
+import analyze from 'rollup-plugin-analyzer';
 import {createStyleImportPlugin, AntdResolve } from 'vite-plugin-style-import';
 // import commonjs from '@rollup/plugin-commonjs'
 // import vitePluginImp from 'vite-plugin-imp'
@@ -11,7 +12,11 @@ export default defineConfig({
     react(),
     createStyleImportPlugin({
       resolves: [AntdResolve()]
-  })
+  }),
+  analyze({   // 用户分析包的大小 和 数量
+    summaryOnly: true,
+    limit: 10, //
+}),
   ],
   base: "./",
   resolve: {
