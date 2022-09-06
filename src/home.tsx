@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Cookies from "js-cookie";
 import "./home.scss";
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 import { useNavigate, Outlet } from "react-router-dom";
 import { socketIo } from "./view/chatRoom/utils/newSocket";
 import { Layout } from "antd";
