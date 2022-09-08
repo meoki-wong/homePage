@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Consumer } from "../utils/useContext";
 import { Input, Radio } from "antd";
 import InitMaps from "../utils/InitMaps";
-import RouteStyl from '../assets/css/RouteAccount.module.scss'
+import '../assets/css/RouteAccount.less'
 type InputList = Array<object>
 interface OptionObject {
     [key: number]: string
@@ -40,14 +40,14 @@ export default function RouteAccount() {
     <>
       <Consumer>
         {(initMaps) => (
-          <div className={RouteStyl['route-func']}>
-            <Radio.Group className={RouteStyl.radio_list} onChange={onChange} value={value}>
+          <div className={"route-func"}>
+            <Radio.Group className={"radio_list"} onChange={onChange} value={value}>
               <Radio value={1}>步行</Radio>
               <Radio value={2}>驾车</Radio>
               <Radio value={3}>骑行</Radio>
               <Radio value={4}>公交</Radio>
             </Radio.Group>
-            <div className={RouteStyl.search_box}>
+            <div className={"search_box"}>
             <Input
               id="input_ids"
               onChange={(e) => inputStartRoute(e)}

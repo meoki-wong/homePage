@@ -1,7 +1,7 @@
 import React, { useState, useEffect, memo } from "react";
 import Map from "../components/map/Map";
 import DrawerContain from "./component/Drawer";
-import './assets/css/map.scss'
+import './assets/css/map.less'
 function Index() {
 
   return (

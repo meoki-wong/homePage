@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./notification.scss";
+import "./notification.less";
 import { request } from "@/api/request";
 import { message } from "antd";
 type Message = Array<MessageItem>;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { socketIo } from "../utils/newSocket";
-import "./chatPage.scss";
+import "./chatPage.less";
 import { Input, message } from "antd";
 import { Location, useLocation } from "react-router-dom";
 import { SelectItem, ChatItem } from "../type/selectItem";

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import "./editPage.scss";
+import "./editPage.less";
 type NavItem = {
   name: string;
   path: string;

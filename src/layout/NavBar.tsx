@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Menu, Dropdown, Modal, Badge } from "antd";
-import "./NavBar.scss";
+import "./NavBar.less";
 import { useNavigate, useParams } from "react-router-dom";
 import routeList from "../router/routeList";
 import { socketIo } from "../view/chatRoom/utils/newSocket";

@@ -6,7 +6,7 @@ import Socket from "./chat";
 import FriendList from "./page/friendList";
 import GroupList from "./page/groupList";
 import SearchModal from "./page/SearchModal";
-import './chatRoom.scss'
+import './chatRoom.less'
 interface InitSocket {
   initSocket: any;
   msgBox: Array<string | number>;

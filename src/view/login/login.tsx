@@ -3,7 +3,7 @@ import { Form, Input, Button, Checkbox, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { request } from "@/api/request";
 import { socketIo } from "../chatRoom/utils/newSocket";
-import "./login.scss"
+import "./login.less"
 
 // import { setCookieFn } from '../../utils/setCookie'
 // import {Base64} from 'js-base64'

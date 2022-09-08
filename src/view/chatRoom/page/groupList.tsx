@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Badge } from 'antd'
 import AddGroupModel from '../components/AddGroupModel'
-import './groupList.scss'
+import './groupList.less'
 import { request } from '@/api/request'
 function GroupList(props: any) {
   let navigate = useNavigate();

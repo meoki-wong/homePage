@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "@/view/login/register.scss";
+import "@/view/login/register.less";
 import { request } from "@/api/request";
 import userInfoStore from "@/store/store/userInfoStore";
 import UploadImg from "../../components/upload/UploadImg";

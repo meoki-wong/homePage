@@ -1,5 +1,5 @@
 import React from 'react'
-import './assets/css/liveStyl.scss'
+import './assets/css/liveStyl.less'
 import '../components/liveRtc/basicVideoCall'
 export default function LiveCom() {
   return (
