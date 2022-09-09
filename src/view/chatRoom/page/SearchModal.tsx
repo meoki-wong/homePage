@@ -3,6 +3,7 @@ import { Modal, Input, message } from "antd";
 import { UserOutlined, UsergroupAddOutlined, CheckCircleFilled } from "@ant-design/icons";
 import { request } from '@/api/request'
 import "./SearchModal.less";
+import UserHeader from '../../assets/image/user_header.jpeg'
 interface FriendItem {
   userName: string,
   UserId: number,
@@ -75,7 +76,7 @@ function SearchModal(props: any, ref: any) {
           <li className="modal-item">
             <div className="item-header">
               <img
-                src={require("../../assets/image/user_header.jpeg")}
+                src={UserHeader}
                 alt=""
               />
             </div>

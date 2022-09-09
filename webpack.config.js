@@ -21,7 +21,7 @@ const { NODE_ENV } = process.env;
 const plugins = [
   new CleanWebpackPlugin(),
   new HtmlWebpackPlugin({
-    // template: path.resolve(__dirname, 'template.html'),
+    template: path.resolve(__dirname, 'index.html'),
     title: 'supermeoki',
     minify: {
       removeComments: true,
@@ -109,7 +109,7 @@ module.exports = smp.wrap({
     filename: 'index.[hash:8].js',
     path: path.resolve(__dirname, 'build'),
     chunkFilename: 'chunk.[name].[contenthash:8].js',
-    publicPath: '/',
+    publicPath: './',
   },
   mode: NODE_ENV,
   devtool: false,

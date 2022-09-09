@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { request } from "@/api/request";
 import { socketIo } from "../chatRoom/utils/newSocket";
 import "./login.less"
-
+import Flag from '../assets/image/Flag.png'
 // import { setCookieFn } from '../../utils/setCookie'
 // import {Base64} from 'js-base64'
 // import md5 from 'js-md5'
@@ -84,7 +84,7 @@ function Login() {
   return (
     <div className="login-container">
       <div className="header">
-        <div className="logo"><img src={require("../assets/image/Flag.png")} /></div>
+        <div className="logo"><img src={Flag} /></div>
         <div className="title">SuperMeoki</div>
       </div>
       <div className="form-area">
