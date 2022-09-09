@@ -96,7 +96,9 @@
     "test": "node scripts/test.js",
     "scp": "yarn build && node scripts/scp.js",
     "testgit": "node src/utils/uploadGit/index.js",
-    "dev:vite": "vite"
+    "dev:vite": "vite",
+    "build:vite": "tsc && vite build",
+    "scp:vite": "yarn build:vite && node scripts/scp.js"
   },
   "eslintConfig": {
     "extends": [
