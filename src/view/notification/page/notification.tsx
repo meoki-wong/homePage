@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "./notification.scss";
+import "./notification.less";
 import { request } from "@/api/request";
 import { message } from "antd";
+import Flag from "../../assets/image/Flag.png"
 type Message = Array<MessageItem>;
 interface MessageItem {
   userName: string;
@@ -39,7 +40,7 @@ export default function Notification() {
       return <div className="notifier-item" key={index}>
         <img
           className="header"
-          src={require("../../assets/image/Flag.png")}
+          src={Flag}
           alt=""
         />
         <div className="message-content">
@@ -59,7 +60,7 @@ export default function Notification() {
       return <div className="notifier-item" key={index}>
         <img
           className="header"
-          src={require("../../assets/image/Flag.png")}
+          src={Flag}
           alt=""
         />
         <div className="message-content">

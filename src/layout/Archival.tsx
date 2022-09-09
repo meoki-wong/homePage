@@ -1,5 +1,5 @@
 import React from 'react'
-import './Archival.scss'
+import './Archival.less'
 export default function Footer() {
   return (
     <div className='archival-container'>

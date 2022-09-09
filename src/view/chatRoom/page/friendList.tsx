@@ -1,7 +1,7 @@
 import React, { useEffect, useState, memo } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import "./friendList.scss";
+import "./friendList.less";
 import { request } from "@/api/request";
 import { SelectItem } from "../type/selectItem";
 import { socketIo } from "../utils/newSocket";

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import mapStyl from "./map.module.scss";
+import "./map.module.less";
 function MapContain(props: any) {
   return (
-    <div className={mapStyl.map_box}>
-      <div className={mapStyl.map_container} id={"container"}>
+    <div className={"map_box"}>
+      <div className={"map_container"} id={"container"}>
       </div>
     </div>
   );

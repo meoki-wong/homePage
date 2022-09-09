@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Menu, Dropdown, Modal, Badge } from "antd";
-import "./NavBar.scss";
+import "./NavBar.less";
 import { useNavigate, useParams } from "react-router-dom";
 import routeList from "../router/routeList";
 import { socketIo } from "../view/chatRoom/utils/newSocket";
 import { request } from "../api/request";
 import userInfoStore from "@/store/store/userInfoStore";
+import Flag from "../view/assets/image/Flag.png"
 import {
   AppstoreOutlined,
   PieChartOutlined,
@@ -112,7 +113,7 @@ export default function LeftNav(props: Object) {
     <div className="nav-bar">
       <div className="left-area">
         <div className="logo">
-          <img src={require("../view/assets/image/Flag.png")} alt="" />
+          <img src={Flag } alt="" />
           <div className="title">
             SuperMeoki
             {/* <input

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./register.scss";
+import "./register.less";
 import { request } from "@/api/request";
 import UploadImg from "../components/upload/UploadImg";
 import {
