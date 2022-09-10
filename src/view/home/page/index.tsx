@@ -1,4 +1,9 @@
 import React from "react";
+import DataStatistics from "../components/DataStatistics";
+import Relationship from "../components/Relationship";
+import OneDayWord from "../components/OneDayWord";
+import BeautyPhoto from "../components/BeautyPhoto";
+import PublicCard from "../components/PublicCard";
 import '../assets/css/homeIndex.less'
 export default function HomeIndex() {
 
@@ -9,21 +14,18 @@ export default function HomeIndex() {
             <div className="inner-box">
                 {/* 功能区 */}
                 <div className="func-area">
-                    <div className="beauty-photo">
-                        <img src="https://hippo-meoki.oss-cn-beijing.aliyuncs.com/display-photo/photo_1.jpeg" alt="" />
-                        <div className="intro-box">这是什么情况啊</div>
-                    </div>
-                    <div className="cnzz-box">
-
-                    </div>
-                    <div className="one-day-word">
-                        <h2>一言难尽</h2>
-                        <p>你看我性感的小屁股~</p>
-                    </div>
+                    {/* 照片区块 */}
+                    <BeautyPhoto />
+                    {/* 关系区块 */}
+                    <Relationship />
+                    {/* 数据区块 */}
+                    <DataStatistics />
+                    {/* 一言区块 */}
+                    <OneDayWord />
                 </div>
                 {/* 发布区 */}
                 <div className="public-area">
-
+                    <PublicCard />
                 </div>
             </div>
         </div>
