@@ -4,6 +4,7 @@ import Loading from "../view/components/Loading";
 import Home from "../home";
 import ChatPage from "../view/chatRoom/page/chatPage";
 import GroupChatPage from "../view/chatRoom/page/groupPage"
+import HomeIndex from "@/view/home/page";
 const LiveCom = lazy(() => import("../view/Meeting/index"));
 const ChartRoom = lazy(() => import("../view/chatRoom/ChatRoom"));
 const Map = lazy(() => import("../view/Map/index"));
@@ -22,6 +23,12 @@ const routeList: any[] = [
     isShowNav: true,
     element: <Home />,
     children: [
+      {
+        name: "首页",
+        path: "/dataAdmin/",
+        index: true,
+        element: lazyComponent(<HomeIndex />),
+      },
       {
         name: "首页",
         path: "/dataAdmin/Map",
