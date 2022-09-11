@@ -1,3 +1,7 @@
+@index-line-color: #5fb4f1;  // #d8dbe5
+@circle-color: #fcdbd9;
+
+
 .pub-contain{
     width: 100%;
     min-height: 400px;
@@ -5,11 +9,51 @@
     margin-top: 30px;
     .master-line{
         width: 2px;
-        height: 100%;
+        height: calc(100% + 30px);
         position: absolute;
         top: -20px;
-        
-        background-color: #d8dbe5;
+        background-color: @index-line-color;
         margin: 0 20px;
+        z-index: 10;
+        .random-line{
+            width: 20px;
+            height: 20px;
+            border-top: 2px solid @index-line-color;
+            border-left: 2px solid @index-line-color;
+            border-radius: 20px 0 0 0;
+            position: absolute;
+            top: 90px;
+        }
+        .circle-box{
+            width: 40px;
+            height: 40px;
+            border: 10px solid @circle-color;
+            position: absolute;
+            top: 70px;
+            left: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100%;
+            .circle-solid{
+                background-color: @circle-color;
+                flex: none;
+                width: 20px;
+                height: 20px;
+                border: 5px solid #5fb4f1;
+                border-radius: 100%;
+            }
+        }
     }
+    .pub-inner-box{
+        width: 700px;
+        min-height: 400px;
+        background-color: #fff;
+        position: absolute;
+        top: 0px;
+        left: 60px;
+        border-radius: 20px;
+
+    }
+    
 }

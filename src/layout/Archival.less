@@ -1,15 +1,16 @@
 
 
 .archival-container{
-    width: 250px;
-    min-height: 200px;
-    position: absolute;
-    top: 300px;
-    right: 30px;
+    margin-top: 20px;
+    width: 300px;
+    min-height: 150px;
     padding: 10px;
     box-sizing: border-box;
     border: 1px solid #eee;
     border-radius: 8px;
+    &:hover{
+        box-shadow: 0 0 20px #eee;
+    }
     .rules-map{
         display: flex;
         flex-wrap: wrap;
@@ -19,9 +20,13 @@
             width: 25%;
             font-size: 12px;
             font-weight: 400;
+            cursor: pointer;
         }
     }
     .rules-service{
         text-align: left;
+        li{
+            margin-bottom: 5px;
+        }
     }
 }

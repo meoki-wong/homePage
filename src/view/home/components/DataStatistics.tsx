@@ -12,23 +12,23 @@ export default function DataStatistics() {
           const data = [
             {
               "date": "2015-01-04",
-              "lastYear": 8,
-              "thisYears": 2
+              "lastYear": 0,
+              "thisYears": 14
             },
             {
               "date": "2015-01-11",
-              "lastYear": 8,
-              "thisYears": 2
+              "lastYear": 1,
+              "thisYears": 12
             },
             {
               "date": "2015-01-18",
-              "lastYear": 8,
-              "thisYears": 3
+              "lastYear": 2,
+              "thisYears": 43
             },
             {
               "date": "2015-01-25",
-              "lastYear": 8,
-              "thisYears": 3
+              "lastYear": 13,
+              "thisYears": 33
             },
           ]
           chart.data(data);

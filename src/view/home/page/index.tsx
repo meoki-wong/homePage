@@ -4,6 +4,7 @@ import Relationship from "../components/Relationship";
 import OneDayWord from "../components/OneDayWord";
 import BeautyPhoto from "../components/BeautyPhoto";
 import PublicCard from "../components/PublicCard";
+import Archival from "@/layout/Archival"
 import '../assets/css/homeIndex.less'
 export default function HomeIndex() {
 
@@ -22,10 +23,18 @@ export default function HomeIndex() {
                     <DataStatistics />
                     {/* 一言区块 */}
                     <OneDayWord />
+                    {/* 备案信息 */}
+                    <Archival />
                 </div>
                 {/* 发布区 */}
                 <div className="public-area">
-                    <PublicCard />
+                    {
+                        [1,2,4].map(item=>{
+                            return (
+                                <PublicCard />
+                            )
+                        })
+                    }
                 </div>
             </div>
         </div>

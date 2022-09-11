@@ -1,4 +1,5 @@
 import React from 'react'
+import { WechatOutlined, QqOutlined, GithubOutlined, PhoneOutlined, MailOutlined } from '@ant-design/icons'
 import './Archival.less'
 export default function Footer() {
   return (
@@ -14,9 +15,12 @@ export default function Footer() {
         <li>更多文章</li>
       </ul>
       <ul className='rules-service'>
-        <li><a href="https://beian.miit.gov.cn">京ICP备2022013827号</a></li>
-        <li>公司座机：暂无</li>
-        <li>举报邮箱： 暂无</li>
+        <li><PhoneOutlined /> 联系手机: 173****8461</li>
+        <li><MailOutlined /> 联系邮箱: wangyongfeng1995@163.com</li>
+        <li><WechatOutlined /> 微信: 173****8461</li>
+        <li><QqOutlined /> QQ: 1084415961</li>
+        <li><GithubOutlined /> git地址: <a href="https://github.com/meoki-wong" target="_blank"> https://github.com/meoki-wong</a></li>
+        <li><a href="https://beian.miit.gov.cn"> 京ICP备2022013827号 </a></li>
         <li></li>
       </ul>
     </div>
