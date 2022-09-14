@@ -4,7 +4,7 @@ export default function BeautyPhoto() {
   return (
     <div className="beauty-photo">
       <img
-        src="https://hippo-meoki.oss-cn-beijing.aliyuncs.com/display-photo/photo_1.jpeg"
+        src="https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage-image/display_test_1.jpg"
         alt=""
       />
       <div className="intro-box">这是什么情况啊</div>
