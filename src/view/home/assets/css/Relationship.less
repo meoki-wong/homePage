@@ -1,12 +1,42 @@
-.relation-contain{
-    width: 300px;
-    min-height: 200px;
-    margin-bottom: 20px;
-    display: block;
-    border: 1px solid #eee;
-    border-radius: 14px;
-    &:hover{
-        cursor: pointer;
-        box-shadow: 0 0 20px #eee;
+.relation-contain {
+  width: 300px;
+  min-height: 200px;
+  margin-bottom: 20px;
+  display: block;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  padding: 20px;
+  box-sizing: border-box;
+  .avator-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .avator {
+      width: 50px;
+      height: 50px;
+      margin-top: 20px;
+      border-radius: 50%;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
+    .relaship-line{
+        margin-top: 20px;
+        font-size: 16px;
+        font-weight: 700;
+        color: lightsalmon;
+    }
+    .male{
+        margin-left: 20px;
+    }
+    .female{
+        margin-right: 20px;
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 0 20px #eee;
+  }
 }
