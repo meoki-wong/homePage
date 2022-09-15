@@ -14,7 +14,12 @@ function Relationship() {
  
 // 炸弹
 const clickBomb = () => {
-  console.log('---点击炸弹', bombRef);
+  const ball = document.createElement('div')
+  ball.setAttribute('class', 'iconfont icon-zhadan test-ball')
+  document.querySelector('.bomb')?.appendChild(ball)
+  setTimeout(() => {
+    document.querySelector('.bomb')?.removeChild(ball)
+  }, 500);
 }
 
 
