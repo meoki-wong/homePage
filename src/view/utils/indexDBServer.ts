@@ -7,6 +7,12 @@ interface Friends {
         friendId: number,
         userId: number
 }
+
+/**
+ * 
+ * indexedDB封装
+ * @constructor
+ */
 export class IndexDBServer extends Dexie {
 
     3214!: Table<Friends>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Input } from "antd";
 import { Consumer } from "../utils/useContext";
-import InitMaps from '../utils/InitMaps'
+import { InitMaps } from '../type/InitMaps'
 
 
 export default function AreaPoint() {

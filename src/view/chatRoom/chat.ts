@@ -5,6 +5,14 @@ import { request } from '@/api/request'
 import { sendUserMessage } from '../utils/indexDBMethods'
 import { htmlFn } from './utils/optHtmlFn'
 import { FriendUserInfo } from './type/selectItem'
+
+/**
+ * 
+ * socket.io 聊天 构造函数
+ * @constructor
+ * @method receiveSingleMsg -单聊消息
+ * @method receiveGroupMsg -群组消息
+ */
 export default class Socket {
 
     socket: any

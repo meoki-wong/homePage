@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Select, Input } from "antd";
 import { request } from "@/api/request";
 import { Consumer } from "../utils/useContext";
-import InitMaps from '../utils/InitMaps'
+import { InitMaps } from "../type/InitMaps";
 /**
  * @param name 省会
  * @param city 城市集合
@@ -69,32 +69,32 @@ export default function BusRoute() {
   return (
     <div className={"bus-func"}>
       <Consumer>
-        {initMaps=>(
-            <>
+        {(initMaps) => (
+          <>
             <Select
-          style={{ width: 120 }}
-          value={cities}
-          onChange={handleProvinceChange}
-        >
-          {provice.map((province) => (
-            <Option key={province}>{province}</Option>
-          ))}
-        </Select>
-        <Select
-          style={{ width: 120 }}
-          value={secondCity}
-          onChange={onSecondCityChange}
-        >
-          {city[cities] &&
-            city[cities].map((city) => <Option key={city}>{city}</Option>)}
-        </Select>
-        <Search
-          onChange={(e) => inputBus(e)}
-          placeholder="请输入公交线"
-          onSearch={()=>search(initMaps)}
-          style={{ width: 200 }}
-        />
-        </>
+              style={{ width: 120 }}
+              value={cities}
+              onChange={handleProvinceChange}
+            >
+              {provice.map((province) => (
+                <Option key={province}>{province}</Option>
+              ))}
+            </Select>
+            <Select
+              style={{ width: 120 }}
+              value={secondCity}
+              onChange={onSecondCityChange}
+            >
+              {city[cities] &&
+                city[cities].map((city) => <Option key={city}>{city}</Option>)}
+            </Select>
+            <Search
+              onChange={(e) => inputBus(e)}
+              placeholder="请输入公交线"
+              onSearch={() => search(initMaps)}
+              style={{ width: 200 }}
+            />
+          </>
         )}
       </Consumer>
     </div>

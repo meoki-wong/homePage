@@ -19,6 +19,10 @@ let mapPlugins = [
     "AMap.Riding", //骑行路线规划
     "AMap.Transfer", // 公交路线规划
 ] 
+/**
+ * 高德地图工具类
+ * @constructor
+ */
 export default class Map {
     AMapContain: any
     AMaper: any

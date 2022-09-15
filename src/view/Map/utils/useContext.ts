@@ -1,5 +1,5 @@
 import React, { createContext } from "react";
-import InitMaps from '../utils/InitMaps'
+import { InitMaps } from '../type/InitMaps'
 
 const maps: InitMaps = {
     searchPOI: Function,
@@ -9,10 +9,10 @@ const maps: InitMaps = {
 
 
 
-const { Provider, Consumer}  = createContext<InitMaps>(maps)
+const { Provider, Consumer } = createContext<InitMaps>(maps)
 
 
 export {
-    Provider, 
+    Provider,
     Consumer
 }
