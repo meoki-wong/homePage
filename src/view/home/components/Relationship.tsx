@@ -9,6 +9,7 @@ import "../assets/css/Relationship.less"
 function Relationship() {
   const bombRef = useRef<any>()
   const [dateTime, setDateTime] = useState<string>("")
+  // const [showBomb, setShowBomb] = useState<boolean>(false) // 显隐 炸弹
   useEffect(()=>{
     setInterval(()=>{
       setDateTime(calcTime())
@@ -25,6 +26,7 @@ const clickBomb = () => {
   ball.setAttribute('class', 'iconfont icon-zhadan test-ball')
   document.querySelector('.bomb')?.appendChild(ball)
   setTimeout(() => {
+    (document.querySelector('.animate-contain') as HTMLElement).style.display = 'block'
     document.querySelector('.bomb')?.removeChild(ball)
     bombRef.current.play()
   }, 500);
@@ -41,7 +43,7 @@ const clickBomb = () => {
           -----<HeartOutlined />-----
         </div>
         <div className="female avator">
-          <CommonAnimate configuration={configuration} ref={bombRef}/>
+          <CommonAnimate  configuration={configuration} ref={bombRef}/>
           <img src="https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/female.jpg" alt="" />
         </div>
       </div>

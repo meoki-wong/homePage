@@ -11,6 +11,7 @@ function CommonAnimate(props: any, ref: any) {
   useEffect(() => {
     initAnimate();
   }, []);
+
   const initAnimate = () => {
     const {
       loop,
@@ -24,13 +25,26 @@ function CommonAnimate(props: any, ref: any) {
       loop, // 是否循环 true|false|number
       autoplay, // 自动播放 true|false
       animationData, // lottie json文件
+    //   path: 'https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-animate/bomb.json' // 跨域  上线看
     });
     setAnimateBox(lottieBox)
+    // 动画结束 隐藏dom  销毁动画并重新创建新的
+    lottieBox.addEventListener("complete", ()=>{
+        (document.querySelector('.animate-contain') as HTMLElement).style.display = "none"
+        lottieBox.destroy()
+        initAnimate()
+    })
   };
   const play = () => {
     animateBox.play()
   }
-  return <div className="animate-contain">commonAnimate</div>;
+  return <div 
+  className="animate-contain"
+  style={{
+    position: 'absolute',
+    display: "none"
+}}
+  ></div>;
 }
 
 
