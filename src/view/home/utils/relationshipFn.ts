@@ -1,14 +1,5 @@
 
 
-/** 
- * 
- * @methods 创建炸弹 运动 
- * 
- * */
-export const activeBomb = () => {
-    console.log('---运动');
-}
-
 /**
  * 
  * @methods 获取时间段  计时  

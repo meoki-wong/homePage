@@ -1,11 +1,11 @@
 import React, { useEffect, useState, memo, useRef } from 'react'
 import { HeartOutlined } from '@ant-design/icons'
-import { calcTime, activeBomb } from '../utils/relationshipFn'
+import { calcTime } from '../utils/relationshipFn'
+import { $ } from '../utils/commonUtils'
 import { DateTime } from '../type/home'
-import CommonAnimate from '../utils/CommonAnimate'
+import CommonAnimate from './CommonAnimate'
 import lottieJson from '../assets/animateJson/bomb.json'
 import "../assets/css/Relationship.less"
-
 function Relationship() {
   const bombRef = useRef<any>()
   const [dateTime, setDateTime] = useState<string>("")
@@ -26,7 +26,7 @@ const clickBomb = () => {
   ball.setAttribute('class', 'iconfont icon-zhadan test-ball')
   document.querySelector('.bomb')?.appendChild(ball)
   setTimeout(() => {
-    (document.querySelector('.animate-contain') as HTMLElement).style.display = 'block'
+    $('.animate-contain').style.display = 'block' // 炸弹显示
     document.querySelector('.bomb')?.removeChild(ball)
     bombRef.current.play()
   }, 500);
