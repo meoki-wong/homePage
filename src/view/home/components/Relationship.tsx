@@ -2,21 +2,29 @@ import React, { useEffect, useState, memo, useRef } from 'react'
 import { HeartOutlined } from '@ant-design/icons'
 import { calcTime, activeBomb } from '../utils/relationshipFn'
 import { DateTime } from '../type/home'
+import CommonAnimate from '../utils/CommonAnimate'
+import lottieJson from '../assets/animateJson/bomb.json'
 import "../assets/css/Relationship.less"
 
 function Relationship() {
   const bombRef = useRef<any>()
+  const [dateTime, setDateTime] = useState<string>("")
   useEffect(()=>{
     setInterval(()=>{
-      calcTime()
+      setDateTime(calcTime())
     }, 1000)
   }, [])
- 
+ let configuration = {
+  animationData: lottieJson, 
+  loop: false,
+  autoplay: false
+}
 // 炸弹
 const clickBomb = () => {
   const ball = document.createElement('div')
   ball.setAttribute('class', 'iconfont icon-zhadan test-ball')
   document.querySelector('.bomb')?.appendChild(ball)
+  bombRef.current.play()
   setTimeout(() => {
     document.querySelector('.bomb')?.removeChild(ball)
   }, 500);
@@ -27,20 +35,21 @@ const clickBomb = () => {
     <div className='relation-contain'>
       <div className="avator-box">
         <div className="male avator">
-          <img src="https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage-image/male.jpg" alt="" />
+          <img src="https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/male.jpg" alt="" />
         </div>
         <div className="relaship-line">
           -----<HeartOutlined />-----
         </div>
         <div className="female avator">
-          <img src="https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage-image/female.jpg" alt="" />
+          <CommonAnimate configuration={configuration} ref={bombRef}/>
+          <img src="https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/female.jpg" alt="" />
         </div>
       </div>
       <div className="time-box">
-        在一起时间：{calcTime()}
+        在一起时间：{dateTime}
       </div>
       <div className="opt-box">
-        <span className='bomb' ref={bombRef}><i onClick={clickBomb} className="iconfont icon-zhadan"></i></span>
+        <span className='bomb'><i onClick={clickBomb} className="iconfont icon-zhadan"></i></span>
       </div>
     </div>
   )
