@@ -19,14 +19,14 @@ function Relationship() {
   loop: false,
   autoplay: false
 }
-// 炸弹
+// 创建炸弹  轨迹
 const clickBomb = () => {
   const ball = document.createElement('div')
   ball.setAttribute('class', 'iconfont icon-zhadan test-ball')
   document.querySelector('.bomb')?.appendChild(ball)
-  bombRef.current.play()
   setTimeout(() => {
     document.querySelector('.bomb')?.removeChild(ball)
+    bombRef.current.play()
   }, 500);
 }
 

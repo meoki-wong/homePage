@@ -10,10 +10,6 @@ function CommonAnimate(props: any, ref: any) {
   })
   useEffect(() => {
     initAnimate();
-    setTimeout(() => {
-        // play()
-        console.log('---props', props);
-    }, 3000);
   }, []);
   const initAnimate = () => {
     const {
@@ -33,7 +29,6 @@ function CommonAnimate(props: any, ref: any) {
   };
   const play = () => {
     animateBox.play()
-    console.log('-----animateBox', animateBox);
   }
   return <div className="animate-contain">commonAnimate</div>;
 }
