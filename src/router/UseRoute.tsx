@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import ReactRouter from "./ReactRouter";
+import { getWebViews } from '@/utils/buriedPoint/index'
 import {
   Routes,
   Route,
@@ -47,11 +48,18 @@ export default function UseRoute(props: any) {
   token = window.localStorage.getItem("token");
   
   useEffect(() => {
-    ElementRoute(); // 路由改变触发路由重新渲染  首先实现的功能是/ 重定向/home
+    getWebViews('getFullViews', {
+      UserId: null, 
+      pageRouter: location.pathname,
+    })
+    ElementRoute(); 
     if (localStorage.getItem("token")) {
-      joinRoom(); // 刷新页面后登录页面
+      joinRoom(); 
     }
   });
+  /**
+   * 刷新页面后登录页面
+   */
   const joinRoom = () => {
     let userinfo = JSON.parse(localStorage.getItem("userInfo")!);
     console.log('-----登录内容', userinfo)
@@ -68,7 +76,11 @@ export default function UseRoute(props: any) {
   );
 }
 
-// 路由重定向
+/**
+ *  路由重定向
+ *  路由改变触发路由重新渲染  首先实现的功能是/ 重定向/home
+ * @returns { ReactElement } 路由页面
+ */
 let ElementRoute = () => {
   if (!token && !whiteList.includes(location.pathname)) {
     return <RedirectLogin />;
