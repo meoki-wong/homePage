@@ -12,7 +12,7 @@ type ViewsParams = {
  */
 
 export const getWebViews = (type: string, params: ViewsParams) => {
-    request.post(`/getFullViews`, params).catch(err=>{
+    request.post(`/${type}`, params).catch(err=>{
         console.log('服务错误err', err);
     })
 }

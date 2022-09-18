@@ -52,6 +52,9 @@ export default function UseRoute(props: any) {
       UserId: null, 
       pageRouter: location.pathname,
     })
+    getWebViews('getUniqueViews', {
+      UserId: null
+    })
     ElementRoute(); 
     if (localStorage.getItem("token")) {
       joinRoom(); 
