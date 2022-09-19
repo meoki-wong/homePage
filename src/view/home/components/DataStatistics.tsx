@@ -6,7 +6,6 @@ import { Data } from "@antv/g2/lib/interface";
 export default function DataStatistics() {
     useEffect(()=>{
       getData()
-          
     }, [])
     const initChart = (chartData: Data)=>{
       const chart = new Chart({
