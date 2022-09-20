@@ -4,21 +4,41 @@ import { calcTime } from '../utils/relationshipFn'
 import { $ } from '../utils/commonUtils'
 import { DateTime } from '../type/home'
 import CommonAnimate from './CommonAnimate'
+import HeartAnimate from './heartAnimate'
 import lottieJson from '../assets/animateJson/bomb.json'
+import heartJson from '../assets/animateJson/heart.json'
+import heartLineJson from '../assets/animateJson/heartbeat.json'
 import "../assets/css/Relationship.less"
 function Relationship() {
   const bombRef = useRef<any>()
   const [dateTime, setDateTime] = useState<string>("")
-  // const [showBomb, setShowBomb] = useState<boolean>(false) // 显隐 炸弹
   useEffect(()=>{
     setInterval(()=>{
       setDateTime(calcTime())
     }, 1000)
   }, [])
- let configuration = {
+ let bombConfig = {
   animationData: lottieJson, 
   loop: false,
-  autoplay: false
+  autoplay: false,
+}
+const heartConfig = {
+  animationData: heartJson, 
+  loop: true,
+  autoplay: true,
+  contain: 'heart-contain'
+}
+const heartLeftLineConfig = {
+  animationData: heartLineJson, 
+  loop: true,
+  autoplay: true,
+  contain: 'heart-left-line-contain'
+}
+const heartRightLineConfig = {
+  animationData: heartLineJson, 
+  loop: true,
+  autoplay: true,
+  contain: 'heart-right-line-contain'
 }
 // 创建炸弹  轨迹
 const clickBomb = () => {
@@ -40,10 +60,12 @@ const clickBomb = () => {
           <img src="https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/male.jpg" alt="" />
         </div>
         <div className="relaship-line">
-          -----<HeartOutlined />-----
+        <HeartAnimate configuration={heartLeftLineConfig} />
+        <HeartAnimate configuration={heartConfig} />
+        <HeartAnimate configuration={heartRightLineConfig} />
         </div>
         <div className="female avator">
-          <CommonAnimate  configuration={configuration} ref={bombRef}/>
+          <CommonAnimate  configuration={bombConfig} ref={bombRef}/>
           <img src="https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/female.jpg" alt="" />
         </div>
       </div>

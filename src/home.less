@@ -7,7 +7,7 @@
 .App {
   text-align: center;
   height: auto;
-  background-color: #eee;
+  // background-color: #eee;
   .setting-space{
     height: 80px;
     width: 100%;
@@ -32,10 +32,16 @@
     border-radius: 14px;
     // display: grid;
   }
+
+  .ant-layout{
+    // background: url('https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/index_bg.jpeg') no-repeat;
+    // background-size: 100% 100%;
+    background-color: #eee;
+  }
 }
 
 
-:global {
+::global {
   .header-area{
     display: flex;
     justify-content: space-between;
@@ -50,4 +56,5 @@
       font-size: 14px;
     }
   }
+  
 }
