@@ -3,7 +3,9 @@ import Map from "../components/map/Map";
 import DrawerContain from "./component/Drawer";
 import './assets/css/map.less'
 function Index() {
-
+  useEffect(()=>{
+    console.log('----出阿发')
+  }, [])
   return (
     <div>
       <>

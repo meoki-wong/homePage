@@ -56,7 +56,7 @@ export default function Register() {
     }).then((res) => {
       if (res.data.success) {
         message.success("注册成功");
-        navigate("/dataAdmin/login");
+        navigate("/blog/login");
       }
     });
   };

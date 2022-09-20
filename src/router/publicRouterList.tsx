@@ -10,12 +10,12 @@ const lazyComponent = (Element: ReactElement) => {
 const publicRoute = [
     {
         name: '登录',
-        path: '/dataAdmin/login',
+        path: '/blog/login',
         element: <Login />
     },
     {
         name: '注册',
-        path: '/dataAdmin/register',
+        path: '/blog/register',
         element: <Register />
     },
 ]

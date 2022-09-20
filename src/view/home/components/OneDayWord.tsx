@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../assets/css/OneDayWord.less";
-import { $ } from "../utils/commonUtils";
 import { changeWordBoard } from '../utils/oneWordFn'
 import { Input, message } from 'antd'
 import { request } from "@/api/request";
@@ -31,6 +30,7 @@ export default function OneDayWord() {
     })
     if(res.data.success){
       message.success('发布成功')
+      getOneWord()
       changeWordBoard()
       setInputVal('')
     }

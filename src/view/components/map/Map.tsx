@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./map.module.less";
+import "./map.less";
 function MapContain(props: any) {
   return (
     <div className={"map_box"}>

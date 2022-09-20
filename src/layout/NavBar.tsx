@@ -66,7 +66,7 @@ export default function LeftNav(props: Object) {
         type: 'userInfo',
         value: {}
       })
-      navigate("/dataAdmin/login");
+      navigate("/blog/login");
     }
   };
   const handleConfirm = () => {
@@ -75,7 +75,7 @@ export default function LeftNav(props: Object) {
     setIsModalVisible(false);
   };
   const checkUserInfo = () => {
-    navigate("/dataAdmin/edit/editUserInfo");
+    navigate("/blog/edit/editUserInfo");
   };
   const menu = (
     <Menu>
@@ -92,7 +92,7 @@ export default function LeftNav(props: Object) {
   const showNotifier = () => {
     setReminder(0);
     request.post("/showAllMessage").then((res) => {
-      navigate("/dataAdmin/notification");
+      navigate("/blog/notification");
     });
   };
   const uploadPhoto = (e: any) => {

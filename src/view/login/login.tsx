@@ -21,7 +21,7 @@ function Login() {
       let userInfo = JSON.parse(`${Cookies.get("kk2")}`);
       request.post("/login", { ...userInfo }).then((res) => {
         if (res.data.code === 200) {
-          navigate("/dataAdmin");
+          navigate("/blog");
         }
       });
     }
@@ -75,7 +75,7 @@ function Login() {
         userId: userinfo.id,
     });
         socketIo.joinGroup(userinfo.id) // 加入群组房间
-        navigate("/dataAdmin");
+        navigate("/blog");
       }
     });
   };
@@ -144,7 +144,7 @@ function Login() {
             >
               登录
             </Button>
-            <Button type="primary" onClick={() => navigate("/dataAdmin/register")}>
+            <Button type="primary" onClick={() => navigate("/blog/register")}>
               注册
             </Button>
           </Form.Item>
