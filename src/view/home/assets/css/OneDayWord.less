@@ -9,7 +9,6 @@
     padding: 20px;
     box-sizing: border-box;
     text-align: left;
-    cursor: pointer;
     position: relative;
     .display-box{
       h2 {
@@ -23,17 +22,33 @@
         font-size: 18px;
         font-family: SaoBabe;
       }
-      .pub-time {
-        width: 100%;
-        text-align: right;
-        font-family: SaoBabe;
-        font-size: 26px;
-        color: @white-font-color;
+      .opt-box{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .pub-time {
+          width: 100%;
+          text-align: right;
+          font-family: SaoBabe;
+          font-size: 26px;
+          color: @white-font-color;
+        }
+        .send-btn{
+          .icon-send-s{
+            cursor: pointer;
+            &:before{
+              font-size: 30px;
+              color: lightcoral;
+            }
+          }
+        }
       }
+      
     }
     .edit-box{
       width: calc(100% - 40px);
       height: calc(100% - 40px);
+      z-index: -1;
       opacity: 0;
       position: absolute;
       top: 20px;
@@ -42,6 +57,22 @@
         border-radius: 12px;
         font-family: SaoBabe;
       }
+      .send-opt-box{
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+        .send-btn{
+          width: 50px;
+          height: 30px;
+          text-align: center;
+          line-height: 30px;
+          border-radius: 14px;
+          background: #fff;
+          font-family: SaoBabe;
+          cursor: pointer;
+        }
+      }
+      
     }
     &:hover {
       box-shadow: 0 0 20px #eee;

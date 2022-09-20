@@ -1,46 +1,72 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../assets/css/OneDayWord.less";
 import { $ } from "../utils/commonUtils";
-import { Input } from 'antd'
+import { changeWordBoard } from '../utils/oneWordFn'
+import { Input, message } from 'antd'
+import { request } from "@/api/request";
 export default function OneDayWord() {
   const { TextArea } = Input
-  let count = 90;
-  const changeWord = () => {
-    const wordContain = $(".display-box");
-    const editContain = $('.edit-box')
-    wordContain.style.transform = `rotateY(${90 + count}deg)`;
-    wordContain.style.transition = `transform 1s linear`;
-    editContain.style.transform = `rotateY(${90 - count}deg)`
-    editContain.style.transition = `transform 1s linear`;
-    if(count > 0){
-      setTimeout(() => {
-        wordContain.style.opacity = '0'
-        editContain.style.opacity = '1'
-      }, 500);
-    } else {
-      setTimeout(() => {
-        wordContain.style.opacity = '1'
-        editContain.style.opacity = '0'
-      }, 500);
+  const [inputVal, setInputVal] = useState<string>('')
+  const [showInfo, setShowInfo] = useState<any>({})
+  useEffect(()=>{
+    getOneWord()
+  }, [])
+  const changeWord = (e:React.ChangeEvent<HTMLTextAreaElement>) =>{
+    setInputVal(e.target.value)
+  }
+  const getOneWord = async () => {
+    let res = await request.post('/getOneWord', {
+      UserId: JSON.parse(localStorage.getItem('userInfo')!).id
+    })
+    setShowInfo(res.data.data)
+  }
+  const sendOneWord = async () => {
+    if(!inputVal){
+      message.warn('发布内容禁止为空')
+      return
     }
-    count = -count
-    console.log('---count', count);
-  };
+    let res = await request.post('/sendOneWord', {
+      publicWord: inputVal,
+      UserId: JSON.parse(localStorage.getItem('userInfo')!).id
+    })
+    if(res.data.success){
+      message.success('发布成功')
+      changeWordBoard()
+      setInputVal('')
+    }
+  }
+  const cancelOneWord = () => {
+    changeWordBoard()
+    setInputVal('')
+  }
   return (
-    <div className="one-day-word" onClick={changeWord}>
+    <div className="one-day-word">
       <div className="display-box">
         <h2>一言难尽</h2>
-        <p>你看我性感的小屁股~</p>
-        <div className="pub-time">——2022.09.19</div>
+        <p>{showInfo.publicWord}</p>
+        <div className="opt-box">
+          <div className="send-btn">
+            <i className="iconfont icon-send-s" onClick={changeWordBoard}></i>
+          </div>
+          <div className="pub-time">——{showInfo.createTime}</div>
+          
+        </div>
       </div>
       <div className="edit-box">
         <TextArea 
+        value={inputVal}
+        status={inputVal? '' : 'warning'}
+        onChange={(e)=>changeWord(e)}
         className="text-area"
         rows={4} 
         placeholder="最多能 BB 20个字" 
         maxLength={20} 
         autoSize={{ minRows: 3, maxRows: 5 }}
         />
+        <div className="send-opt-box">
+        <div className="send-btn send-confirm" onClick={sendOneWord}>发送</div>
+        <div className="send-btn send-cancel" onClick={cancelOneWord}>取消</div>
+        </div>
       </div>
     </div>
   );
