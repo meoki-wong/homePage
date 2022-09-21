@@ -16,3 +16,17 @@ export interface ChartData {
     lastYear: string,
     thisYears: string
 }
+
+// 文章
+export interface PublicData {
+    total: number,
+    list: [{
+        [key in string]: string
+    }]
+}
+
+// page
+export interface PageParams {
+    pageSize: number,
+    pageNum: number
+}

@@ -4,7 +4,7 @@
 
 .pub-contain{
     width: 100%;
-    min-height: 400px;
+    min-height: 100px;
     position: relative;
     margin-top: 30px;
     .master-line{
@@ -47,13 +47,43 @@
     }
     .pub-inner-box{
         width: 700px;
-        min-height: 400px;
+        min-height: 100px;
         background-color: #fff;
-        position: absolute;
-        top: 0px;
-        left: 60px;
+        // position: absolute;
+        // top: 0px;
+        margin-left: 60px;
         border-radius: 20px;
-
+        padding: 20px 30px 20px;
+        box-sizing: border-box;
+        .title{
+            font-size: 30px;
+            font-weight: 600;
+            margin-left: 20px;
+        }
+        .view-area{
+            display: flex;
+            justify-content: space-between;
+            .time{
+                font-size: 20px;
+                font-weight: 600;
+                margin-left: 20px;
+            }
+        }
+        
+        .img-area{
+            width: 100%;
+            height: 300px;
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .introduce{
+            font-size: 25px;
+            color: #bbb;
+            font-weight: 500;
+            margin: 10px 0 0;
+        }
     }
     
 }

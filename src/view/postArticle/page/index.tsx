@@ -23,7 +23,7 @@ export default function PostArticle() {
             title,
             articleContent: editor.getHtml(),
             UserId: JSON.parse(localStorage.getItem('userInfo')!).id,
-            introduce: editor.getText().slice(0, 70)
+            introduce: editor.getText().slice(0, 70).trim()
         })
         if(res.data.success){
             message.success('发布成功')
