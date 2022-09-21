@@ -12,6 +12,7 @@ const Notification = lazy(() => import("../view/notification/page/notification")
 // 编辑
 const Edit = lazy(() => import('../view/editUserInfo/editPage'))
 const EditUserInfo = lazy(()=> import('../view/editUserInfo/page/editUserInfo'))
+const EditArticle = lazy(()=> import('../view/postArticle/page/index'))
 // 路由懒加载
 const lazyComponent = (Element: ReactElement) => {
   return <Suspense fallback={<Loading />}>{Element}</Suspense>;
@@ -38,6 +39,11 @@ const routeList: any[] = [
         name: "对接声网",
         path: "/blog/Meeting",
         element: lazyComponent(<LiveCom />),
+      },
+      {
+        name: "文章编辑",
+        path: "/blog/editorArticle",
+        element: lazyComponent(<EditArticle />),
       },
       {
         name: "即时通讯",

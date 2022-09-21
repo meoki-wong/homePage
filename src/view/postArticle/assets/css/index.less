@@ -1,0 +1,45 @@
+.editor-contain{
+    width: 100%;
+    text-align: left;
+    padding: 20px;
+    box-sizing: border-box;
+    .title-box{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        .title{
+            flex: none;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .text-box{
+            flex: auto;
+            .ant-input{
+                width: 100%;
+                border-radius: 8px;
+            }
+        }
+    }
+    .opt-box{
+        width: 100%;
+        display: flex;
+        margin: 20px auto;
+        justify-content: center;
+        div{
+            border-radius: 12px;
+            width: 50px;
+            height: 40px;
+            background-color: #fff;
+            text-align: center;
+            line-height: 40px;
+            border: 1px solid #bbb;
+            margin: 0 10px;
+            cursor: pointer;
+            &:hover{
+                transform: scale(1.2);
+            }
+        }
+    }
+    
+}

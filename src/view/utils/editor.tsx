@@ -1,17 +1,28 @@
-import React, { useState, useEffect } from 'react'
+import '@wangeditor/editor/dist/css/style.css' // 引入 css
+
+import React, { useState, useEffect, useImperativeHandle } from 'react'
 import { Editor, Toolbar } from '@wangeditor/editor-for-react'
-import '@wangeditor/editor/dist/css/style.css'
-import { IDomEditor } from '@wangeditor/editor'
+import { IDomEditor, IEditorConfig, IToolbarConfig } from '@wangeditor/editor'
 
-function MyEditor() {
-    const [editor, setEditor] = useState<any>(null) // 存储 editor 实例
-    const [html, setHtml] = useState('')
+function MyEditor(props: any, ref: any) {
+    // editor 实例
+    const [editor, setEditor] = useState<IDomEditor | null>(null)   
 
+    // 编辑器内容
+    const [html, setHtml] = useState<string>('')
 
-    const toolbarConfig = { }
-    const editorConfig = {
+    // 工具栏配置
+    const toolbarConfig: Partial<IToolbarConfig> = { }  
+
+    // 编辑器配置
+    const editorConfig: Partial<IEditorConfig> = {    
         placeholder: '请输入内容...',
     }
+    useImperativeHandle(ref, ()=>{
+        return {
+            editor
+        }
+    })
 
     // 及时销毁 editor ，重要！
     useEffect(() => {
@@ -22,13 +33,12 @@ function MyEditor() {
         }
     }, [editor])
     const changeEditor = (editor: IDomEditor) => {
-        console.log('-----', editor.getHtml());
+        console.log('-----', editor.getText())
         setHtml(editor.getHtml())
     }
-
     return (
         <>
-            <div style={{ border: '1px solid #ccc', zIndex: 100, marginTop: '15px'}}>
+            <div style={{ border: '1px solid #ccc', zIndex: 100}}>
                 <Toolbar
                     editor={editor}
                     defaultConfig={toolbarConfig}
@@ -41,14 +51,11 @@ function MyEditor() {
                     onCreated={setEditor}
                     onChange={editor => changeEditor(editor)}
                     mode="default"
-                    style={{ height: '500px' }}
+                    style={{ height: '500px', overflowY: 'hidden' }}
                 />
-            </div>
-            <div style={{ marginTop: '15px' }}>
-                {html}
             </div>
         </>
     )
 }
 
-export default MyEditor
+export default React.forwardRef(MyEditor)
