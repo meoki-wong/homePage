@@ -30,3 +30,7 @@ export interface PageParams {
     pageSize: number,
     pageNum: number
 }
+
+export interface GetHtml {
+    __html: string | null
+}

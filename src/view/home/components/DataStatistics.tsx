@@ -19,11 +19,11 @@ export default function DataStatistics() {
       chart.scale({
         lastYear: {
           min: 0,
-          max: 100,
+          max: 200,
         },
         thisYears: {
           min: 0,
-          max: 100,
+          max: 200,
         },
       });
     

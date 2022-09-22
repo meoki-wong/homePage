@@ -5,11 +5,16 @@ import OneDayWord from "../components/OneDayWord";
 import BeautyPhoto from "../components/BeautyPhoto";
 import PublicCard from "../components/PublicCard";
 import Archival from "@/layout/Archival";
-import "../assets/css/homeIndex.less";
 import { request } from "@/api/request";
 import { PublicData, PageParams } from "../type/home";
 import { Pagination } from "antd";
+import { createSearchParams, useNavigate } from "react-router-dom";
+import "../assets/css/homeIndex.less";
+interface DetailItem {
+    id: string
+}
 export default function HomeIndex() {
+  const navigate = useNavigate();
   const [publicData, setPublicData] = useState<PublicData>();
   let params: PageParams = {
     pageNum: 1,
@@ -29,14 +34,23 @@ export default function HomeIndex() {
     }
   };
   const changePage = (page: any, pageSize: any) => {
-    // if(page === params.pageNum && pageSize === params.pageSize) return
+    if (page === params.pageNum && pageSize === params.pageSize) return;
     params = {
       pageNum: page,
       pageSize: pageSize,
     };
     getArticleData();
   };
-
+  const goDetails = (item: DetailItem) => {
+    const params = {
+      // 传articleId
+      id: item.id,
+    };
+    navigate({
+      pathname: "/blog/articleDetail",
+      search: `${createSearchParams(params)}`,
+    });
+  };
   return (
     <div className="home-contain">
       <div className="inner-box">
@@ -56,7 +70,11 @@ export default function HomeIndex() {
         {/* 发布区 */}
         <div className="public-area">
           {publicData?.list.map((item: any) => {
-            return <PublicCard publicData={item} />;
+            return (
+              <div onClick={() => goDetails(item)}>
+                <PublicCard publicData={item} />
+              </div>
+            );
           })}
           <div className="page-box">
             <Pagination

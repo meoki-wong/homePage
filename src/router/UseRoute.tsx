@@ -31,6 +31,7 @@ let RedirectHome = () => {
       <Routes>
         <Route path="/blog" element={<Home />} />
         <Route path="*" element={<Navigate to="/blog" />} />
+        <Route path="/404" element={<div>不存在</div>} />
       </Routes>
     </>
   );
@@ -65,7 +66,6 @@ export default function UseRoute(props: any) {
    */
   const joinRoom = () => {
     let userinfo = JSON.parse(localStorage.getItem("userInfo")!);
-    console.log('-----登录内容', userinfo)
     socketIo.joinRoom({
       userName: userinfo.userName,
       userId: userinfo.id,

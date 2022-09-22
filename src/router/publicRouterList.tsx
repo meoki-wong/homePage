@@ -18,6 +18,7 @@ const publicRoute = [
         path: '/blog/register',
         element: <Register />
     },
+    
 ]
 
 
