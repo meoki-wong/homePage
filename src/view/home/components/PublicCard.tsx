@@ -19,7 +19,7 @@ export default function PublicCard(props: any) {
           <div className='title'>{publicData.title}</div>
           <div className="view-area">
             <div></div>
-            <div className='time'>时间:{publicData.createTime}</div>
+            <div className='time'>发布时间:{publicData.createTime}</div>
           </div>
           <p><hr /></p>
           <div className="img-area">
