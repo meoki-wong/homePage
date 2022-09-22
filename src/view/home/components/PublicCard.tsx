@@ -25,7 +25,7 @@ export default function PublicCard(props: any) {
           <div className="img-area">
           <img src="https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/home_index_2.jpg" alt="文章图片" />
           </div>
-          <p className='introduce'>{publicData.introduce}...</p>
+          <p className='introduce'>{publicData.introduce}</p>
         </div>
     </div>
   )
