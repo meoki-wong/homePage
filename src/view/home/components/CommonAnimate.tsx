@@ -21,7 +21,7 @@ function CommonAnimate(props: any, ref: any) {
   const initAnimate = () => {
     
     const lottieBox = lottie.loadAnimation({
-      container: $(`.${contain}`), // 渲染容器
+      container: $(`.blob-contain`), // 渲染容器
       renderer: "svg", // 渲染方式 svg|canvas|html
       loop, // 是否循环 true|false|number
       autoplay, // 自动播放 true|false
@@ -31,7 +31,7 @@ function CommonAnimate(props: any, ref: any) {
     setAnimateBox(lottieBox)
     // 动画结束 隐藏dom  销毁动画并重新创建新的
     lottieBox.addEventListener("complete", ()=>{
-        $('.contain').style.display = "none"
+        $('.blob-contain').style.display = "none"
         lottieBox.destroy()
         initAnimate()
     })
@@ -40,7 +40,7 @@ function CommonAnimate(props: any, ref: any) {
     animateBox.play()
   }
   return <div 
-  className={contain}
+  className="blob-contain"
   style={{
     position: 'absolute',
     display: "none"

@@ -20,7 +20,7 @@ function Relationship() {
  let bombConfig = {
   animationData: lottieJson, 
   loop: false,
-  autoplay: false,
+  autoplay: false
 }
 const heartConfig = {
   animationData: heartJson, 
@@ -46,7 +46,7 @@ const clickBomb = () => {
   ball.setAttribute('class', 'iconfont icon-zhadan test-ball')
   document.querySelector('.bomb')?.appendChild(ball)
   setTimeout(() => {
-    $('.animate-contain').style.display = 'block' // 炸弹显示
+    $('.blob-contain').style.display = 'block' // 炸弹显示
     document.querySelector('.bomb')?.removeChild(ball)
     bombRef.current.play()
   }, 500);
