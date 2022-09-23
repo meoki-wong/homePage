@@ -76,7 +76,7 @@ export default function HomeIndex() {
               </div>
             );
           })}
-          <div className="page-box">
+          {publicData?.total && <div className="page-box">
             <Pagination
               total={publicData?.total}
               showSizeChanger
@@ -84,7 +84,7 @@ export default function HomeIndex() {
               onChange={changePage}
               showTotal={(total) => `共 ${total} 条`}
             />
-          </div>
+          </div>}
         </div>
       </div>
     </div>

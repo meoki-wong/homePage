@@ -17,14 +17,15 @@ function Login() {
   const onFinish = (values: any) => {};
 
   useEffect(() => {
-    if (window.localStorage.getItem("remember_pwd")) {
-      let userInfo = JSON.parse(`${Cookies.get("kk2")}`);
-      request.post("/login", { ...userInfo }).then((res) => {
-        if (res.data.code === 200) {
-          navigate("/blog");
-        }
-      });
-    }
+    // 记住密码  逻辑混乱 需要重新开发
+    // if (window.localStorage.getItem("remember_pwd")) {
+    //   let userInfo = JSON.parse(`${Cookies.get("kk2")}`);
+    //   request.post("/login", { ...userInfo }).then((res) => {
+    //     if (res.data.code === 200) {
+    //       navigate("/blog");
+    //     }
+    //   });
+    // }
   }, []);
 
   // const onFinishFailed = (errorInfo: any) => {
