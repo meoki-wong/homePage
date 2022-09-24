@@ -28,7 +28,10 @@ export default function PublicCard(props: any) {
         <div className="pub-inner-box" onClick={goDetails}>
           <div className='title'>{publicData.title}</div>
           <div className="view-area">
-            <div></div>
+            <div className='show-data-area'>
+              <span><i className='iconfont icon-liulan1'></i> <span className='num'>10</span></span>
+              <span><i className='iconfont icon-pinglun'></i> <span className='num'>10</span></span>
+            </div>
             <div className='time'>发布时间:{publicData.createTime}</div>
           </div>
           <p><hr /></p>
