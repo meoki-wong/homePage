@@ -1,0 +1,25 @@
+/**
+ * 首页导航
+ */
+export const navRouter = [
+	{
+		path: "/blog/",
+		icon: "icon-xiazai45",
+		pathname: "首页"
+	},
+	{
+		path: "/blog/Map",
+		icon: "icon-ditu",
+		pathname: "地图"
+	},
+	{
+		path: "/blog/ChartRoom",
+		icon: "icon-chat",
+		pathname: "聊天"
+	},
+	{
+		path: "/blog/editorArticle",
+		icon: "icon-wenbenbianji",
+		pathname: "创建文章"
+	},
+]

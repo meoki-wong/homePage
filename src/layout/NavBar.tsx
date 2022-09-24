@@ -123,7 +123,7 @@ export default function LeftNav(props: Object) {
             /> */}
           </div>
         </div>
-        <Menu
+        {/* <Menu
           defaultSelectedKeys={[window.location.pathname]}
           defaultOpenKeys={[routeList[0].path]}
           mode="horizontal"
@@ -153,7 +153,7 @@ export default function LeftNav(props: Object) {
               );
             }
           })}
-        </Menu>
+        </Menu> */}
       </div>
       <div className="user-info">
         <div className="notify" onClick={showNotifier}>

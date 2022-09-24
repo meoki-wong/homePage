@@ -25,6 +25,7 @@
     // margin-top: 80px;
   }
   .view{
+    position: relative;
     background-color: #fff;
     max-width: 1200px;
     min-height: calc(100vh - 150px);
@@ -33,15 +34,40 @@
     box-sizing: border-box;
     border-radius: 14px;
     // display: grid;
+    .view-option-area{
+      position: fixed;
+      top: 20%;
+      right: calc((100% - 1200px) / 2 - 60px);
+      background-color: rgba(174 216 212, 0.7);
+      width: 50px;
+      border-radius: 14px;
+      box-shadow: 0 0 20px #eee;
+      i{
+        display: block;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        margin: 20px auto;
+        font-size: 25px;
+        font-weight: 600;
+        color: aliceblue;
+      }
+      
+    }
   }
-
+  
   .ant-layout{
     background: url('https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/home_index_2.jpg') no-repeat;
     background-size: 100% 100%;
     background-color: #eee;
   }
 }
-
+.ant-tooltip-inner{
+  border-radius: 8px!important;
+  font-family: SaoBabe!important;
+}
 
 ::global {
   .header-area{
