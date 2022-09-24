@@ -32,5 +32,5 @@ export interface PageParams {
 }
 
 export interface GetHtml {
-    __html: string | null
+    __html: string
 }

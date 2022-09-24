@@ -34,7 +34,6 @@ export default function HomeIndex() {
     }
   };
   const changePage = (page: any, pageSize: any) => {
-    if (page === params.pageNum && pageSize === params.pageSize) return;
     params = {
       pageNum: page,
       pageSize: pageSize,
