@@ -1,19 +1,15 @@
 import React, { useEffect } from "react";
-import Cookies from "js-cookie";
-import "./home.less";
-import "antd/dist/antd.css";
-import { useNavigate, Outlet } from "react-router-dom";
-import { socketIo } from "./view/chatRoom/utils/newSocket";
-import { Layout, Tooltip } from "antd";
+import { Outlet } from "react-router-dom";
+import { Layout } from "antd";
 import { connect } from "react-redux";
 import NavBar from "./layout/NavBar";
+import NavRouter from "./view/components/NavRouter";
 import BreadCrumb from "./utils/breadcrumb";
-import { navRouter } from "./homeRouterNav";
-import Archival from './layout/Archival'
-let { Header, Sider, Content } = Layout;
+import "./home.less";
+import "antd/dist/antd.css";
+let { Content } = Layout;
 // /blog/Meeting  声网
 function App(props: any) {
-  let navigate = useNavigate();
   useEffect(() => {}, []);
   return (
     <div className="App">
@@ -32,18 +28,7 @@ function App(props: any) {
             </div>
             <div className="view">
                 <Outlet />
-				<div className="view-option-area">
-					{
-						navRouter.map(item=>{
-							return (<Tooltip placement="right" title={item.pathname}>
-								<i 
-								className={`iconfont ${item.icon}`}
-								onClick={()=>navigate(item.path)}>
-								</i>
-							</Tooltip>)
-						})
-					}
-            	</div>
+				<NavRouter />
             </div>
           </Content>
         </Layout>

@@ -26,7 +26,6 @@ export default function LeftNav(props: Object) {
   let [logMsg, setLogMsg] = useState<string>("登录/注册");
   let [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [userInfo, setUserInfo] = useState<UserInfo>(Object);
-  const [reminder, setReminder] = useState<number>(0);
   useEffect(() => {
     if (!window.localStorage.token) {
       setLogMsg("登录/注册");
@@ -34,9 +33,6 @@ export default function LeftNav(props: Object) {
       setLogMsg("退出登录");
     }
 
-    request.post("/getMessageAccount").then((res) => {
-      setReminder(res.data.data);
-    });
     // 存储全局用户信息数据  存在  则不会重新请求展示
     if(!userInfo.userName){
       if (window.localStorage.getItem("token")) {
@@ -51,9 +47,6 @@ export default function LeftNav(props: Object) {
           }
         });
       }
-      Store.subscribe(() => {
-        setReminder(Store.getState().reactReducer.value);
-      });
     }
     socketIo.getApplyMsg();
     
@@ -89,16 +82,6 @@ export default function LeftNav(props: Object) {
       </Menu.Item>
     </Menu>
   );
-  const showNotifier = () => {
-    setReminder(0);
-    request.post("/showAllMessage").then((res) => {
-      navigate("/blog/notification");
-    });
-  };
-  const uploadPhoto = (e: any) => {
-    let file = e.target.files;
-    uploadFile(file);
-  };
   const uploadFile = (file: any) => {
     var formData = new FormData();
     Array.from(file).forEach((item: any) => {
@@ -116,11 +99,6 @@ export default function LeftNav(props: Object) {
           <img src={Flag } alt="" />
           <div className="title">
             SuperMeoki
-            {/* <input
-              type="file"
-              multiple
-              onChange={(e)=> uploadPhoto(e)}
-            /> */}
           </div>
         </div>
         {/* <Menu
@@ -156,14 +134,7 @@ export default function LeftNav(props: Object) {
         </Menu> */}
       </div>
       <div className="user-info">
-        <div className="notify" onClick={showNotifier}>
-          <Badge count={reminder}>
-            <i className="iconfont icon-notify"></i>
-          </Badge>
-        </div>
-
         <Dropdown overlay={menu} placement="bottomLeft" arrow>
-          {/* <span className="user-name">张三</span> */}
           <div className="user-header">
             <img src={userInfo.headerImg} />
           </div>

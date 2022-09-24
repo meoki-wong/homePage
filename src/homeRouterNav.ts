@@ -7,6 +7,11 @@ export const navRouter = [
 		icon: "icon-xiazai45",
 		pathname: "首页"
 	},
+    {
+		path: "/blog/notification",
+		icon: "icon-notify",
+		pathname: "通知"
+	},
 	{
 		path: "/blog/Map",
 		icon: "icon-ditu",
