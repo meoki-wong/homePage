@@ -32,10 +32,6 @@ function App(props: any) {
             <div className="view">
               <Outlet />
             </div>
-            <div className="archival">
-              {/* 协议 */}
-              {/* <Archival /> */}
-            </div>
           </Content>
         </Layout>
       </Layout>

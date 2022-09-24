@@ -8,13 +8,8 @@ import Archival from "@/layout/Archival";
 import { request } from "@/api/request";
 import { PublicData, PageParams } from "../type/home";
 import { Pagination } from "antd";
-import { createSearchParams, useNavigate } from "react-router-dom";
 import "../assets/css/homeIndex.less";
-interface DetailItem {
-    id: string
-}
 export default function HomeIndex() {
-  const navigate = useNavigate();
   const [publicData, setPublicData] = useState<PublicData>();
   let params: PageParams = {
     pageNum: 1,
@@ -40,16 +35,7 @@ export default function HomeIndex() {
     };
     getArticleData();
   };
-  const goDetails = (item: DetailItem) => {
-    const params = {
-      // 传articleId
-      id: item.id,
-    };
-    navigate({
-      pathname: "/blog/articleDetail",
-      search: `${createSearchParams(params)}`,
-    });
-  };
+  
   return (
     <div className="home-contain">
       <div className="inner-box">
@@ -70,9 +56,7 @@ export default function HomeIndex() {
         <div className="public-area">
           {publicData?.list.map((item: any) => {
             return (
-              <div onClick={() => goDetails(item)}>
                 <PublicCard publicData={item} />
-              </div>
             );
           })}
           {publicData?.total && <div className="page-box">
