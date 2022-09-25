@@ -31,6 +31,7 @@ export default function PublicCard(props: any) {
             <div className='show-data-area'>
               <span><i className='iconfont icon-liulan1'></i> <span className='num'>10</span></span>
               <span><i className='iconfont icon-pinglun'></i> <span className='num'>10</span></span>
+              <span><i className='iconfont icon-dianzanb'></i> <span className='num'>10</span></span>
             </div>
             <div className='time'>发布时间:{publicData.createTime}</div>
           </div>

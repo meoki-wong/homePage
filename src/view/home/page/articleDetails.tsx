@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { request } from '@/api/request';
 import '../assets/css/articleDetails.less'
 import { GetHtml } from '../type/home';
+import Comments from '../components/Comments';
 export default function ArticleDetails() {
     const [searchParams] = useSearchParams();
     const id = searchParams.get('id')
@@ -23,6 +24,7 @@ export default function ArticleDetails() {
   return (
     <div className='article-contain'>
         <div dangerouslySetInnerHTML={getHtml}></div>
+        <Comments />
     </div>
   )
 }
