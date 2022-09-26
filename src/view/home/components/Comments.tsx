@@ -1,6 +1,8 @@
+import { request } from '@/api/request';
 import { Avatar, Button, Comment, Form, Input, List } from 'antd';
 import moment from 'moment';
 import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 const { TextArea } = Input;
 
 const CommentList = ({ comments }: any) => (
@@ -26,13 +28,20 @@ const Editor = ({ onChange, onSubmit, submitting, value }: any) => (
 );
 
 const Comments = () => {
+  const [searchParams] = useSearchParams()
+  const articleId = searchParams.get('id')
   const [comments, setComments] = useState<any>([]);
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState('');
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!value) return;
     setSubmitting(true);
+    let res = await request.post('/setCommit', {
+      articleId,
+      content: value
+    })
+    if(res.data.success){
       setSubmitting(false);
       setValue('');
       setComments([
@@ -44,6 +53,8 @@ const Comments = () => {
           datetime: moment('2016-11-22').fromNow(),
         },
       ]);
+    }
+      
   };
 
   const handleChange = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
