@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./notification.less";
 import { request } from "@/api/request";
 import { message } from "antd";
-import Flag from "../../assets/image/Flag.png"
+import Flag from "../../assets/image/Hippo.png"
 type Message = Array<MessageItem>;
 interface MessageItem {
   userName: string;

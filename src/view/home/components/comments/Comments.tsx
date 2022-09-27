@@ -1,0 +1,109 @@
+import React, { useEffect, useState } from "react";
+import { request } from "@/api/request";
+import { Avatar, Button, Comment, Form, Input, message } from "antd";
+import CommentsOption from "./CommentsOption";
+import moment from "moment";
+import { useSearchParams } from "react-router-dom";
+const { TextArea } = Input;
+
+const Editor = ({ onChange, onSubmit, submitting, value }: any) => (
+  <>
+    <Form.Item>
+      <TextArea rows={4} onChange={onChange} value={value} />
+    </Form.Item>
+    <Form.Item>
+      <Button
+        htmlType="submit"
+        loading={submitting}
+        onClick={onSubmit}
+        type="primary"
+      >
+        评论
+      </Button>
+    </Form.Item>
+  </>
+);
+
+const Comments = () => {
+  const [searchParams] = useSearchParams();
+  const articleId = searchParams.get("id");
+  const [comments, setComments] = useState<any>([]);
+  const [submitting, setSubmitting] = useState(false);
+  const [value, setValue] = useState("");
+
+  useEffect(() => {
+    getComment();
+  }, []);
+
+  const getComment = async () => {
+    let res = await request.post("/getCommitList", { articleId });
+    const { data, success } = res.data;
+    if (success) {
+      setSubmitting(false);
+      setValue("");
+      let list: any = [];
+      data.map((item: any) => {
+        console.log("--data", item.content);
+        list.push({
+          author: "Han Solo",
+          avatar: "https://joeschmoe.io/api/v1/random",
+          content: <p>{item.content}</p>,
+          datetime: moment(item.createdAt.split(" ")[0]).fromNow(),
+          articleCommitReplys: item.articleCommitReplys,
+        });
+      });
+      setComments(list);
+    }
+  };
+  const handleSubmit = async () => {
+    if (!value) return;
+    setSubmitting(true);
+    try {
+      let res = await request.post("/setCommit", {
+        articleId,
+        content: value,
+      });
+      if (res.data.success) {
+        message.success("评论成功");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setValue(e.target.value);
+  };
+
+  return (
+    <>
+      {comments?.map((item: any) => {
+        return (
+          <div>
+            <CommentsOption
+              items={item}
+              children={item.articleCommitReplys?.map((ite: any) => (
+                <CommentsOption items={ite} />
+              ))}
+            />
+          </div>
+        );
+      })}
+      <Comment
+        avatar={
+          <Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
+        }
+        content={
+          <Editor
+            onChange={handleChange}
+            onSubmit={handleSubmit}
+            submitting={submitting}
+            value={value}
+          />
+        }
+      />
+    </>
+  );
+};
+
+export default Comments;

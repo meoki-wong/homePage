@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { request } from '@/api/request';
 import '../assets/css/articleDetails.less'
 import { GetHtml } from '../type/home';
-import Comments from '../components/Comments';
+import Comments from '../components/comments/Comments';
 export default function ArticleDetails() {
     const [searchParams] = useSearchParams();
     const id = searchParams.get('id')
