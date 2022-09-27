@@ -4,31 +4,39 @@ import { DislikeFilled, DislikeOutlined, LikeFilled, LikeOutlined, MessageOutlin
 import { request } from '@/api/request';
 import { useSearchParams } from 'react-router-dom';
 import '../../assets/css/CommentsOption.less'
-import { connect } from 'react-redux';
-export default function CommentsOption(props: any) {
+import { CommentAction, CommentsOptionProps } from '../../type/home'
+export default function CommentsOption(props: CommentsOptionProps) {
   const { items, children } = props
   const {TextArea} = Input
+  const actionObj: CommentAction = {
+    0: null,
+    1: 'liked',
+    2: 'disliked'
+  }
+  const actionType: string | null = actionObj[items?.is_like]
   const [searchParams] = useSearchParams()
   const articleId = searchParams.get('id')
-  const [likes, setLikes] = useState(0);
-  const [dislikes, setDislikes] = useState(0);
-  const [action, setAction] = useState<string | null>(null);
+  let [likes, setLikes] = useState<number>(items?.like_count || 0);
+  let [dislikes, setDislikes] = useState(items?.dislike_count || 0);
+  const [action, setAction] = useState<string | null>(actionType);
   const [showReply, setShowReply] = useState<boolean>(false)
   const [replyVal, setReplyVal] = useState<string>('')
   const like = async () => {
-    let res = await request.post('/setLikes', {id: items.id, type: 'like'})
+    if( action === 'liked') return 
+    let res = await request.post('/setLikes', {id: items.id, type: 'like', commit_id: items.commit_id || null})
     if(res.data.success){
-        setLikes(1);
-        setDislikes(0);
+        setLikes(++ likes);
+        setDislikes(dislikes? --dislikes : 0);
         setAction('liked');
     }
   };
 
   const dislike = async () => {
+    if(action === 'disliked') return 
     let res = await request.post('/setLikes', {id: items.id, type: 'dislike'})
     if(res.data.success){
-        setLikes(0);
-        setDislikes(1);
+        setLikes(likes? --likes : 0);
+        setDislikes(++ dislikes );
         setAction('disliked');
     }
   };

@@ -34,3 +34,21 @@ export interface PageParams {
 export interface GetHtml {
     __html: string
 }
+
+export type CommentAction = {
+    [key in number]: string | null
+}
+
+export interface CommentsOptionProps {
+    items: {
+        is_like: number,
+        like_count: number,
+        dislike_count: number,
+        id: number,
+        author: string,
+        content: string,
+        avatar: string,
+        commit_id?: number
+    }
+    children?: React.ReactNode
+}
