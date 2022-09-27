@@ -13,7 +13,6 @@ const nameInitialState = {
 }
 // 获取全局提示消息数量
 export const reactReducer = (state: any = nameInitialState, action: any) => {
-    console.log('----reducer', state, action)
     switch (action.type) {
         case 'action_type_1':
             action.value++

@@ -4,6 +4,7 @@ import { Avatar, Button, Comment, Form, Input, message } from "antd";
 import CommentsOption from "./CommentsOption";
 import moment from "moment";
 import { useSearchParams } from "react-router-dom";
+import { connect } from "react-redux";
 const { TextArea } = Input;
 
 const Editor = ({ onChange, onSubmit, submitting, value }: any) => (
@@ -24,7 +25,7 @@ const Editor = ({ onChange, onSubmit, submitting, value }: any) => (
   </>
 );
 
-const Comments = () => {
+const Comments = (props: any) => {
   const [searchParams] = useSearchParams();
   const articleId = searchParams.get("id");
   const [comments, setComments] = useState<any>([]);
@@ -42,17 +43,17 @@ const Comments = () => {
       setSubmitting(false);
       setValue("");
       let list: any = [];
-      data.map((item: any) => {
-        console.log("--data", item.content);
-        list.push({
-          author: "Han Solo",
-          avatar: "https://joeschmoe.io/api/v1/random",
-          content: <p>{item.content}</p>,
-          datetime: moment(item.createdAt.split(" ")[0]).fromNow(),
-          articleCommitReplys: item.articleCommitReplys,
-        });
-      });
-      setComments(list);
+      // data.map((item: any) => {
+      //   list.push({
+      //     author: "Han Solo",
+      //     avatar: "https://joeschmoe.io/api/v1/random",
+      //     id: item.id,
+      //     content: <p>{item.content}</p>,
+      //     datetime: moment(item.createdAt.split(" ")[0]).fromNow(),
+      //     articleCommitReplys: item.articleCommitReplys,
+      //   });
+      // });
+      setComments(data);
     }
   };
   const handleSubmit = async () => {
@@ -64,6 +65,9 @@ const Comments = () => {
         content: value,
       });
       if (res.data.success) {
+        setSubmitting(false)
+        setValue('')
+        getComment()
         message.success("评论成功");
       }
     } catch (err) {
@@ -83,7 +87,7 @@ const Comments = () => {
             <CommentsOption
               items={item}
               children={item.articleCommitReplys?.map((ite: any) => (
-                <CommentsOption items={ite} />
+                <CommentsOption items={ite}/>
               ))}
             />
           </div>
@@ -91,7 +95,7 @@ const Comments = () => {
       })}
       <Comment
         avatar={
-          <Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
+          <Avatar src={props.userInfo.value.headerImg} alt="Han Solo" />
         }
         content={
           <Editor
@@ -106,4 +110,11 @@ const Comments = () => {
   );
 };
 
-export default Comments;
+const mapStateToProps = (state: any, ownProps: any) => {
+  return {
+    userInfo: state.userInfoReducer,
+  };
+};
+
+
+export default connect(mapStateToProps)(Comments)

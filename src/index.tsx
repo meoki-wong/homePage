@@ -8,9 +8,9 @@ import reportWebVitals from "./reportWebVitals";
 import "./api/axios.module";
 import store from "./store/store";
 import "lib-flexible"; //转化px
-// import { PersistGate } from "redux-persist/lib/integration/react";
+import { PersistGate } from "redux-persist/lib/integration/react";
 import { persistor } from "./store/store/userInfoStore";
-import { PersistGate } from 'redux-persist/es/integration/react'
+// import { PersistGate } from 'redux-persist/es/integration/react'
 
 // 字体
 // const url = `https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-font/HuXiaoBoSaoBaoTi-2.otf`;

@@ -1,0 +1,14 @@
+
+/* 去除第二层评论回复功能 */
+
+.ant-comment-nested{
+    .ant-comment-inner{
+        .ant-comment-actions{
+            &>li{
+                &:last-child{
+                    display: none;
+                }
+            }
+        }
+    }
+}

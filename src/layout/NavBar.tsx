@@ -16,12 +16,13 @@ import {
 } from "@ant-design/icons";
 import Store from "../store/store/index";
 import EditPersonInfo from "../view/personInfo/page/editPersonInfo";
+import { connect } from "react-redux";
 let { SubMenu } = Menu;
 type UserInfo = {
   userName: string;
   headerImg: string;
 };
-export default function LeftNav(props: Object) {
+function LeftNav(props: any) {
   let navigate = useNavigate();
   let [logMsg, setLogMsg] = useState<string>("登录/注册");
   let [isModalVisible, setIsModalVisible] = useState<boolean>(false);
@@ -40,10 +41,7 @@ export default function LeftNav(props: Object) {
         request.post("/getUserInfo").then((res) => {
           if (res.data.success) {
             setUserInfo(res.data.data);
-            userInfoStore.dispatch({
-              type: 'userInfo',
-              value: res.data.data
-            })
+            props.getUserInfoDispatch(res.data.data)
           }
         });
       }
@@ -55,10 +53,7 @@ export default function LeftNav(props: Object) {
     if (window.localStorage.token) {
       setIsModalVisible(true);
     } else {
-      userInfoStore.dispatch({
-        type: 'userInfo',
-        value: {}
-      })
+      props.getUserInfoDispatch({})
       navigate("/blog/login");
     }
   };
@@ -153,4 +148,20 @@ export default function LeftNav(props: Object) {
       </Modal>
     </div>
   );
+
+  
 }
+const mapDispatchToProps = (dispatch: any, ownProps: any) => {
+  return {
+    getUserInfoDispatch: (item: any) => {
+      dispatch({
+        type: 'userInfo',
+        value: item
+      })
+    }
+  }
+  }
+  const mapStateToProps = (state: any, ownProps: any) => {
+    
+  };
+export default connect(mapStateToProps, mapDispatchToProps)(LeftNav)

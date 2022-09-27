@@ -37,7 +37,6 @@ function App(props: any) {
   );
 }
 const mapStateToProps = (state: any, ownProps: any) => {
-  console.log("---statestate", state, ownProps);
   return {
     prop: state,
   };
