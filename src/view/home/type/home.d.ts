@@ -48,7 +48,8 @@ export interface CommentsOptionProps {
         author: string,
         content: string,
         avatar: string,
-        commit_id?: number
+        commit_id?: number,
+        createdAt: string
     }
     children?: React.ReactNode
 }

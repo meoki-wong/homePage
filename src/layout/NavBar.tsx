@@ -162,6 +162,7 @@ const mapDispatchToProps = (dispatch: any, ownProps: any) => {
   }
   }
   const mapStateToProps = (state: any, ownProps: any) => {
+    return {}
     
   };
 export default connect(mapStateToProps, mapDispatchToProps)(LeftNav)
