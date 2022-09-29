@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { request } from "@/api/request";
-import { Avatar, Button, Comment, Form, Input, message } from "antd";
+import {
+	Avatar,
+	Button,
+	Comment,
+	Form,
+	Input,
+	message,
+	Pagination,
+} from "antd";
 import CommentsOption from "./CommentsOption";
 import NoLoginComments from "./noLoginComments";
 import { useSearchParams } from "react-router-dom";
 import { connect } from "react-redux";
+import "../../assets/css/comments.less";
 const { TextArea } = Input;
 
 const Editor = ({ onChange, onSubmit, submitting, value }: any) => (
 	<>
 		<Form.Item>
-			<TextArea rows={4} onChange={onChange} value={value} />
+			<TextArea placeholder="分享你的态度~" rows={4} onChange={onChange} value={value} />
 		</Form.Item>
 		<Form.Item>
 			<Button
@@ -42,17 +51,6 @@ const Comments = (props: any) => {
 		if (success) {
 			setSubmitting(false);
 			setValue("");
-			let list: any = [];
-			// data.map((item: any) => {
-			//   list.push({
-			//     author: "Han Solo",
-			//     avatar: "https://joeschmoe.io/api/v1/random",
-			//     id: item.id,
-			//     content: <p>{item.content}</p>,
-			//     datetime: moment(item.createdAt.split(" ")[0]).fromNow(),
-			//     articleCommitReplys: item.articleCommitReplys,
-			//   });
-			// });
 			setComments(data);
 		}
 	};
@@ -78,32 +76,13 @@ const Comments = (props: any) => {
 	const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		setValue(e.target.value);
 	};
-
 	return (
 		<>
-			{comments?.map((item: any) => {
-				return (
-					<div key={item.id}>
-						<CommentsOption
-							items={item}
-							children={item.articleCommitReplys?.map(
-								(ite: any) => (
-									<CommentsOption key={item.id} items={ite} />
-								)
-							)}
-						/>
-					</div>
-				);
-			})}
-			{localStorage.getItem("token") ? (
+			{!localStorage.getItem("token") ? (
 				<NoLoginComments />
 			) : (
 				<Comment
-					avatar={
-						<Avatar
-							src={props.userInfo.value.headerImg}
-						/>
-					}
+					avatar={<Avatar src={props.userInfo.value.headerImg} />}
 					content={
 						<Editor
 							onChange={handleChange}
@@ -114,6 +93,25 @@ const Comments = (props: any) => {
 					}
 				/>
 			)}
+			<div className="comments-area">
+				{comments?.map((item: any) => {
+					return (
+						<div key={item.id}>
+							<CommentsOption
+								items={item}
+								children={item.articleCommitReplys?.map(
+									(ite: any, index: number) => (
+										<CommentsOption
+											key={index}
+											items={ite}
+										/>
+									)
+								)}
+							/>
+						</div>
+					);
+				})}
+			</div>
 		</>
 	);
 };
