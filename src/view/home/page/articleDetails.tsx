@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { request } from '@/api/request';
 import '../assets/css/articleDetails.less'
 import { GetHtml } from '../type/home';
+import { Divider } from 'antd'
 import Comments from '../components/comments/Comments';
 export default function ArticleDetails() {
     const [searchParams] = useSearchParams();
@@ -24,7 +25,11 @@ export default function ArticleDetails() {
   return (
     <div className='article-contain'>
         <div dangerouslySetInnerHTML={getHtml}></div>
+        <p className='comment-title'>
+            <Divider orientation="left">评论</Divider>
+        </p>
         <Comments />
+
     </div>
   )
 }

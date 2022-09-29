@@ -7,7 +7,6 @@ import {
 	Form,
 	Input,
 	message,
-	Pagination,
 } from "antd";
 import CommentsOption from "./CommentsOption";
 import NoLoginComments from "./noLoginComments";
@@ -19,7 +18,11 @@ const { TextArea } = Input;
 const Editor = ({ onChange, onSubmit, submitting, value }: any) => (
 	<>
 		<Form.Item>
-			<TextArea placeholder="分享你的态度~" rows={4} onChange={onChange} value={value} />
+			<TextArea 
+      placeholder="分享你的态度~" 
+      autoSize={{ minRows: 3, maxRows: 6 }}
+      onChange={onChange} 
+      value={value} />
 		</Form.Item>
 		<Form.Item>
 			<Button

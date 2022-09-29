@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import { Layout } from "antd";
+import { BackTop, Layout } from "antd";
 import { connect } from "react-redux";
 import NavBar from "./layout/NavBar";
 import NavRouter from "./view/components/NavRouter";
@@ -33,6 +33,9 @@ function App(props: any) {
           </Content>
         </Layout>
       </Layout>
+      <BackTop>
+      <div className="back-up">UP</div>
+    </BackTop>
     </div>
   );
 }
