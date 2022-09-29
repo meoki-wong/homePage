@@ -68,11 +68,11 @@ function LeftNav(props: any) {
   const menu = (
     <Menu>
       {window.localStorage.token && (
-        <Menu.Item key={1} onClick={checkUserInfo}>
+        <Menu.Item key={'1'} onClick={checkUserInfo}>
           {userInfo.userName}
         </Menu.Item>
       )}
-      <Menu.Item key={2} onClick={isLogin}>
+      <Menu.Item key={'2'} onClick={isLogin}>
         {logMsg}
       </Menu.Item>
     </Menu>

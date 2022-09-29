@@ -52,8 +52,8 @@ export default function CommentsOption(props: CommentsOptionProps) {
 	const [replyVal, setReplyVal] = useState<string>("");
 	const like = async () => {
 		if (action === "liked") {
-			cancelOptions(action)
-			return 
+			cancelOptions(action);
+			return;
 		}
 		let res = await request.post("/setLikes", {
 			id: items.id,
@@ -68,9 +68,9 @@ export default function CommentsOption(props: CommentsOptionProps) {
 	};
 	const dislike = async () => {
 		if (action === "disliked") {
-			cancelOptions(action)
-			return 
-		};
+			cancelOptions(action);
+			return;
+		}
 		let res = await request.post("/setLikes", {
 			id: items.id,
 			type: "dislike",
@@ -84,25 +84,25 @@ export default function CommentsOption(props: CommentsOptionProps) {
 	};
 	// 取消点赞操作
 	const cancelOptions = async (type: string) => {
-			try{
-				let res = await request.post("/setLikes", {
-					id: items.id,
-					type,
-					isCancal: 1,
-					commit_id: items.commit_id || null,
-				});
-				if(res.data.success){
-					 setAction(null) // 取消选择状态
-					 if(type === 'liked'){
-						setLikes(likes ? --likes : 0);
-					 } else {
-						setDislikes(dislikes? --dislikes : 0);
-					 }
+		try {
+			let res = await request.post("/setLikes", {
+				id: items.id,
+				type,
+				isCancal: 1,
+				commit_id: items.commit_id || null,
+			});
+			if (res.data.success) {
+				setAction(null); // 取消选择状态
+				if (type === "liked") {
+					setLikes(likes ? --likes : 0);
+				} else {
+					setDislikes(dislikes ? --dislikes : 0);
 				}
-			}catch(err){
-				console.log('--err')
 			}
-	}
+		} catch (err) {
+			console.log("--err");
+		}
+	};
 	const actions = [
 		<Tooltip key="comment-basic-like" title="喜欢">
 			<span onClick={like}>
@@ -126,9 +126,8 @@ export default function CommentsOption(props: CommentsOptionProps) {
 		</Tooltip>,
 	];
 	const handleChanges = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-		console.log('----改变值', e.target.value);
-		setReplyVal(e.target.value)
-	}
+		setReplyVal(e.target.value);
+	};
 	const handleSubmit = async () => {
 		try {
 			let res = await request.post("/setCommotReply", {
@@ -144,20 +143,19 @@ export default function CommentsOption(props: CommentsOptionProps) {
 		}
 	};
 	return (
-		<Comment
-			actions={!window.localStorage.token ? [] : actions}
-			author={<a>{items.author}</a>}
-			avatar={<Avatar src={items.avatar} alt={items.author} />}
-			content={<p>{items.content}</p>}
-			datetime={moment(items.createdAt).fromNow()}
-		>
-			{showReply && (
-				<Editor
-					onChange={handleChanges}
-					onSubmit={handleSubmit}
-				/>
-			)}
-			{children}
-		</Comment>
+		<>
+			<Comment
+				actions={!window.localStorage.token ? [] : actions}
+				author={<a>{items.author}</a>}
+				avatar={<Avatar src={items.avatar} alt={items.author} />}
+				content={<p>{items.content}</p>}
+				datetime={moment(items.createdAt).fromNow()}
+			>
+				{showReply && (
+					<Editor onChange={handleChanges} onSubmit={handleSubmit} />
+				)}
+				{children}
+			</Comment>
+		</>
 	);
 }
