@@ -27,7 +27,7 @@ export default function NavRouter() {
     <div className="view-option-area">
       {navRouter.map((item) => {
         return (
-          <Tooltip placement="right" title={item.pathname}>
+          <Tooltip placement="right" key={item.path} title={item.pathname}>
             {item.path === "/blog/notification" ? (
               <Badge count={reminder}>
                 <i

@@ -25,9 +25,9 @@ export default function ArticleDetails() {
   return (
     <div className='article-contain'>
         <div dangerouslySetInnerHTML={getHtml}></div>
-        <p className='comment-title'>
+        <div className='comment-title'>
             <Divider orientation="left">评论</Divider>
-        </p>
+        </div>
         <Comments />
 
     </div>
