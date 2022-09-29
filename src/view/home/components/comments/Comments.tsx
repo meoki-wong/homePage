@@ -40,13 +40,13 @@ let params = {
   pageSize: 10,
   pageNum: 1
 }
-let commentsTotal: number = 0
 const Comments = (props: any) => {
 	const [searchParams] = useSearchParams();
 	const articleId = searchParams.get("id");
 	const [comments, setComments] = useState<any>([]);
 	const [submitting, setSubmitting] = useState(false);
 	const [value, setValue] = useState("");
+  const [commentsTotal, setCommentsTotal] = useState<number>(0)
 	useEffect(() => {
 		getComment();
 	}, []);
@@ -61,7 +61,7 @@ const Comments = (props: any) => {
 			setSubmitting(false);
 			setValue("");
 			setComments(data);
-      commentsTotal = total
+      setCommentsTotal(total)
 		}
 	};
 	const handleSubmit = async () => {
@@ -128,7 +128,7 @@ const Comments = (props: any) => {
 				})}
 			</div>
       {
-        commentsTotal <= 10 && <div className="show-more" onClick={showMoreComments}>查看更多</div>
+        (commentsTotal > 10) && (commentsTotal > comments.length) && <div className="show-more" onClick={showMoreComments}>查看更多</div>
       }
 		</>
 	);
