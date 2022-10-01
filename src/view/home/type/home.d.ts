@@ -53,3 +53,8 @@ export interface CommentsOptionProps {
     }
     children?: React.ReactNode
 }
+
+export interface artcileInfo {
+    title: string,
+    createdAt: string
+}

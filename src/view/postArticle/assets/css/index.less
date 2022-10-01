@@ -12,6 +12,7 @@
             flex: none;
             font-size: 20px;
             font-weight: 700;
+            width: 80px;
         }
         .text-box{
             flex: auto;
@@ -19,6 +20,14 @@
                 width: 100%;
                 border-radius: 8px;
             }
+        }
+    }
+    .img-box{
+        display: flex;
+        align-items: center;
+        span{
+            flex: none;
+            width: 80px;
         }
     }
     .opt-box{
@@ -41,5 +50,10 @@
             }
         }
     }
-    
+
+
+    .ant-input-textarea-show-count::after{
+        position: absolute;
+        right: 35px;
+    }
 }

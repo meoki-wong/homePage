@@ -71,6 +71,7 @@ export default function CommentsOption(props: CommentsOptionProps) {
 			cancelOptions(action);
 			return;
 		}
+		console.log('---items', items)
 		let res = await request.post("/setLikes", {
 			id: items.id,
 			type: "dislike",
@@ -132,7 +133,7 @@ export default function CommentsOption(props: CommentsOptionProps) {
 		try {
 			let res = await request.post("/setCommotReply", {
 				content: replyVal,
-				commit_id: articleId,
+				commit_id: items.id,
 			});
 			if (res.data.success) {
 				message.success("回复成功");
