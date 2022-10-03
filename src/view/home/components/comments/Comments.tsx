@@ -4,6 +4,7 @@ import {
 	Avatar,
 	Button,
 	Comment,
+	Divider,
 	Form,
 	Input,
 	message,
@@ -92,6 +93,9 @@ const Comments = (props: any) => {
   }
 	return (
 		<>
+		<div className='comment-title'>
+            <Divider orientation="left">{commentsTotal}条评论</Divider>
+        </div>
 			{!localStorage.getItem("token") ? (
 				<NoLoginComments />
 			) : (
@@ -128,7 +132,7 @@ const Comments = (props: any) => {
 				})}
 			</div>
       {
-        (commentsTotal > 10) && (commentsTotal > comments.length) && <div className="show-more" onClick={showMoreComments}>查看更多</div>
+        (commentsTotal > 10) && (commentsTotal > comments.length) && <div className="show-more" onClick={showMoreComments}><Divider>查看更多</Divider></div>
       }
 		</>
 	);

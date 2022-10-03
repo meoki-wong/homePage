@@ -33,7 +33,7 @@ export default function PublicCard(props: any) {
             </span>
             <span>
               <i className="iconfont icon-pinglun"></i>{" "}
-              <span className="num">10</span>
+              <span className="num">{publicData.articleReplys.length || 0}</span>
             </span>
             <span>
               <i className="iconfont icon-dianzanb"></i>{" "}
@@ -45,13 +45,18 @@ export default function PublicCard(props: any) {
         <p>
           <hr />
         </p>
-        <div className="img-area">
+        {
+          publicData.titleImg && (
+            <div className="img-area">
           <img
-            src="https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/home_index_2.jpg"
+            src={publicData.titleImg}
             alt="文章图片"
           />
         </div>
+          )
+        }
         <p className="introduce">{publicData.introduce}</p>
+        <a className="view-article">浏览文章...</a>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 @index-line-color: #5fb4f1;  // #d8dbe5
-@circle-color: #fcdbd9;
+@circle-color: #e3e9f3;
 
 
 .pub-contain{
@@ -58,7 +58,7 @@
         padding: 20px 30px 20px;
         box-sizing: border-box;
         .title{
-            font-size: 30px;
+            font-size: 26px;
             font-weight: 600;
             margin-left: 20px;
         }
@@ -66,20 +66,23 @@
             display: flex;
             justify-content: space-between;
             .show-data-area{
+                color: lightgray;
+                font-weight: 600;
                 &>span{
                     margin-right: 10px;
                 }
                 .iconfont{
-                    font-size: 16px;
+                    font-size: 14px;
                 }
                 .num{
-                    font-size: 20px;
+                    font-size: 14px;
                 }
             }
             .time{
-                font-size: 20px;
+                font-size: 16px;
                 font-weight: 600;
                 margin-left: 20px;
+                color: lightgray;
             }
         }
         
@@ -96,8 +99,8 @@
             }
         }
         .introduce{
-            font-size: 25px;
-            color: #bbb;
+            font-size: 16px;
+            color: #434b64;
             font-weight: 500;
             margin: 10px 0 0;
             text-overflow: -o-ellipsis-lastline;
@@ -107,6 +110,16 @@
             -webkit-line-clamp: 2;			//行数
             line-clamp: 2;					
             -webkit-box-orient: vertical;	//盒子中内容竖直排列
+        }
+        .view-article{
+            display: inline-block;
+            margin-top: 10px;
+            color: #aeb3c7;
+            box-shadow: 0 1px 0 #aeb3c7;
+            font-size: 16px;
+            &:hover{
+                color: #1b2b47;
+            }
         }
     }
     

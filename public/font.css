@@ -1,6 +1,9 @@
-@font-face {
+/* @font-face {
     font-family: SaoBabe;
     src: url("/font/HuXiaoBoSaoBaoTi-2.otf");
     font-style: normal;
-  }
+  } */
   
+  *{
+    font-family: "Roboto", Arial, sans-serif;
+  }

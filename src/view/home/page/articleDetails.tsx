@@ -3,7 +3,6 @@ import { useSearchParams } from 'react-router-dom'
 import { request } from '@/api/request';
 import '../assets/css/articleDetails.less'
 import { GetHtml, artcileInfo } from '../type/home';
-import { Divider } from 'antd'
 import Comments from '../components/comments/Comments';
 export default function ArticleDetails() {
     const [searchParams] = useSearchParams();
@@ -32,8 +31,10 @@ export default function ArticleDetails() {
             <span className='time'>发布时间：{articleData?.createdAt}</span></p>
         <hr />
         <div dangerouslySetInnerHTML={getHtml}></div>
-        <div className='comment-title'>
-            <Divider orientation="left">评论</Divider>
+        <div className="opt-area">
+            <i className='iconfont icon-dashang'></i>
+            <i className='iconfont icon-dianzan'></i>
+            <i className='iconfont icon-shoucang'></i>
         </div>
         <Comments />
 
