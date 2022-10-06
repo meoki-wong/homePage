@@ -10,7 +10,7 @@ import {
 	message,
 } from "antd";
 import CommentsOption from "./CommentsOption";
-import NoLoginComments from "./noLoginComments";
+import NoLoginComments from "./NoLoginComments";
 import { useSearchParams } from "react-router-dom";
 import { connect } from "react-redux";
 import "../../assets/css/comments.less";

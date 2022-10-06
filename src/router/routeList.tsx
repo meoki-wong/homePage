@@ -1,10 +1,12 @@
 import React, { lazy, ReactElement, Suspense } from "react";
 // import { RouteObject } from 'react-router-dom' // hook导入
 import Loading from "../view/components/Loading";
-import Home from "../home";
+// import Home from "../home";
 import ChatPage from "../view/chatRoom/page/chatPage";
 import GroupChatPage from "../view/chatRoom/page/groupPage"
-import HomeIndex from "@/view/home/page";
+// import HomeIndex from "@/view/home/page";
+const Home = lazy(() => import("../home"));
+const HomeIndex = lazy(() => import("@/view/home/page"));
 const LiveCom = lazy(() => import("../view/Meeting/index"));
 const ChartRoom = lazy(() => import("../view/chatRoom/ChatRoom"));
 const Map = lazy(() => import("../view/Map/index"));
@@ -23,8 +25,7 @@ const routeList: any[] = [
   {
     name: "首批功能实现",
     path: "/blog",
-    isShowNav: true,
-    element: <Home />,
+    element: lazyComponent(<Home />),
     children: [
       {
         name: "首页",
@@ -73,18 +74,15 @@ const routeList: any[] = [
   },
   {
     name: "测试待定",
-    isShowNav: true,
   },
   { // 个人消息页
     name: '个人消息页',
     path: '/blog',
-    isShowNav: false,
     element: lazyComponent(<Home />),
     children: [
       {
         name: '个人消息页',
         path: '/blog/notification',
-        isShowNav: false,
         element: lazyComponent(<Notification />)
       }
     ]
@@ -92,13 +90,11 @@ const routeList: any[] = [
   { // 编辑用户相关信息
     name: '用户个人信息',
     path: '/blog',
-    isShowNav: false,
     element: lazyComponent(<Home />),
     children: [
       {
         name: '个人信息',
         path: '/blog/edit',
-        isShowNav: false,
         element: lazyComponent(<Edit />),
         children: [
           {

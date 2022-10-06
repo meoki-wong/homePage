@@ -17,7 +17,12 @@ export default class Socket {
 
     socket: any
     socketId: number = 0
-    declare friendUserInfo: FriendUserInfo
+    friendUserInfo: FriendUserInfo = {
+        headerImg: '',
+    userName: '', // 群组聊天 携带用户名
+    sendMsg: '', // 发送的消息
+    groupId: 0 // 群组id
+    }
     constructor() {
         this.initSocket()
         // this.receiveMsg() // 监听接收服务端返回的消息数据

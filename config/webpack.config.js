@@ -30,7 +30,7 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 
 const createEnvironmentHash = require('./webpack/persistentCache/createEnvironmentHash');
 
-
+const APP_NAME = require("../package.json").name;
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 
@@ -118,7 +118,7 @@ module.exports = function (webpackEnv) {
         // css is located in `static/css`, use '../../' to locate index.html folder
         // in production `paths.publicUrlOrPath` can be a relative path
         options: paths.publicUrlOrPath.startsWith('.')
-          ? { publicPath: '../../' }
+          ? { publicPath: '//localhost: 8000' }
           : {},
       },
       {
@@ -207,6 +207,10 @@ module.exports = function (webpackEnv) {
     // This means they will be the "root" imports that are included in JS bundle.
     entry: paths.appIndexJs,
     output: {
+      library: APP_NAME,
+      libraryTarget: "umd",
+      chunkLoadingGlobal: `webpackJsonp_${APP_NAME}`,
+      globalObject: "window",
       // The build folder.
       path: paths.appBuild,
       // Add /* filename */ comments to generated require()s in the output.
@@ -505,7 +509,7 @@ module.exports = function (webpackEnv) {
                 modules: {
                   mode: 'local',
                   getLocalIdent: getCSSModuleLocalIdent,
-                },
+                }
               }),
             },
             // Opt-in support for SASS (using .scss or .sass extensions).
@@ -552,7 +556,7 @@ module.exports = function (webpackEnv) {
             },
             {
               test: lessRegex,
-              exclude: sassModuleRegex,
+              exclude: lessModuleRegex,
               use: getStyleLoaders(
                 {
                   importLoaders: 3,
@@ -793,6 +797,18 @@ module.exports = function (webpackEnv) {
           },
         }),
     ].filter(Boolean),
+    devServer: {
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      historyApiFallback: true,
+      allowedHosts: true,
+      changeOrigin: true,
+      proxy: {
+        '/*': {
+          target: 'http://localhost:3000'
+        }
+      }
+    },
+    
     // Turn off performance processing because we utilize
     // our own hints via the FileSizeReporter
     performance: false,

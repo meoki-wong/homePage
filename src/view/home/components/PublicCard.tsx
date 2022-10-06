@@ -42,9 +42,7 @@ export default function PublicCard(props: any) {
           </div>
           <div className="time">发布时间:{publicData.createTime}</div>
         </div>
-        <p>
-          <hr />
-        </p>
+        <hr />
         {
           publicData.titleImg && (
             <div className="img-area">

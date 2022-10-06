@@ -6,7 +6,7 @@ import NavBar from "./layout/NavBar";
 import NavRouter from "./view/components/NavRouter";
 import BreadCrumb from "./utils/breadcrumb";
 import "./home.less";
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 let { Content } = Layout;
 // /blog/Meeting  声网
 function App(props: any) {

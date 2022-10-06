@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { request } from "@/api/request";
 import { socketIo } from "../chatRoom/utils/newSocket";
 import "./login.less"
-import Flag from "../assets/image/Hippo.png"
+import Flag from "../assets/image/hippo.png"
 
 // import { setCookieFn } from '../../utils/setCookie'
 // import {Base64} from 'js-base64'

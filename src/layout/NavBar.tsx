@@ -6,7 +6,7 @@ import routeList from "../router/routeList";
 import { socketIo } from "../view/chatRoom/utils/newSocket";
 import { request } from "../api/request";
 import userInfoStore from "@/store/store/userInfoStore";
-import Flag from "../view/assets/image/Hippo.png"
+import Flag from "../view/assets/image/hippo.png"
 import {
   AppstoreOutlined,
   PieChartOutlined,

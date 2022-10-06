@@ -9,7 +9,7 @@ export default function DataStatistics() {
     }, [])
     const initChart = (chartData: Data)=>{
       const chart = new Chart({
-        container: "container",
+        container: "charts-container",
         autoFit: true,
         height: 200,
         padding: [30, 20, 70, 30],
@@ -73,7 +73,7 @@ export default function DataStatistics() {
 
   return (
     <div className="cnzz-box">
-      <div id="container"></div>
+      <div id="charts-container"></div>
     </div>
   );
 }
