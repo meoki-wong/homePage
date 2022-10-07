@@ -33,6 +33,8 @@ import { persistor } from "./store/store/userInfoStore";
 //       });
 //     }, 0);
 //   };
+
+// 对接qinakun
 function render(props: any={}){
   console.log('---props', props)
   ReactDOM.render(
@@ -68,7 +70,7 @@ export async function mount(props: any) {
  */
 export async function unmount(props: any) {
   console.log('react-app unmount');
-//   ReactDOM.unmountComponentAtNode(props.container ? props.container.querySelector('#blog-root') : document.getElementById('blog-root'));
+  ReactDOM.unmountComponentAtNode(props.container ? props.container.querySelector('#blog-root') : document.getElementById('blog-root'));
 }
 /**
  * 可选生命周期钩子，仅使用 loadMicroApp 方式加载微应用时生效
