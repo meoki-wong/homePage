@@ -35,8 +35,8 @@ import { persistor } from "./store/store/userInfoStore";
 //   };
 
 // 对接qinakun
+
 function render(props: any={}){
-  console.log('---props', props)
   ReactDOM.render(
     <Provider store={store}>
       {/* <PersistGate persistor={persistor}> */}

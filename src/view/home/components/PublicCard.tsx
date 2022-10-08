@@ -29,7 +29,7 @@ export default function PublicCard(props: any) {
           <div className="show-data-area">
             <span>
               <i className="iconfont icon-liulan1"></i>{" "}
-              <span className="num">10</span>
+              <span className="num">{publicData.read_total}</span>
             </span>
             <span>
               <i className="iconfont icon-pinglun"></i>{" "}
