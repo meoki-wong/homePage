@@ -10,6 +10,7 @@
   // font-family: SaoBabe;
   // font-size: 18px;
   // background-color: #eee;
+  position: relative;
   .setting-space{
     height: 80px;
     width: 100%;
@@ -42,14 +43,22 @@
     background: lightgray;
     background-size: 100% 100%;
   }
-  .back-up{
-    width: 50px;
-    height: 50px;
-    background-color: red;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .ant-back-top{
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    .back-up{
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .iconfont{
+        font-size: 50px;
+      }
+    }
   }
+  
 }
 
 .ant-tooltip-inner{

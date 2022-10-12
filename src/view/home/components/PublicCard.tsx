@@ -37,13 +37,13 @@ export default function PublicCard(props: any) {
             </span>
             <span>
               <i className="iconfont icon-dianzanb"></i>{" "}
-              <span className="num">10</span>
+              <span className="num">0</span>
             </span>
           </div>
           <div className="time">发布时间:{publicData.createTime}</div>
         </div>
         <hr />
-        {
+        { 
           publicData.titleImg && (
             <div className="img-area">
           <img
