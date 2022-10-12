@@ -38,6 +38,17 @@ export default function HomeIndex() {
   
   return (
     <div className="home-contain">
+      {/* <div className="nav">
+        <p>我是第一</p>
+        <p>我是第一</p>
+        <p>我是第一</p>
+        <p>我是第一</p>
+      </div>
+      <div className="header">
+        <div className="search">
+          <p>我是点击搜索🔍</p>
+        </div>
+      </div> */}
       <div className="inner-box">
         {/* 功能区 */}
         <div className="func-area">

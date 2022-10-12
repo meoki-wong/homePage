@@ -32,7 +32,7 @@ let axiosInstance: AxiosInstance = axios.create({
 
 
 // 请求拦截
-let requestWhiteList = ['/login', '/register'] // 请求白名单
+let requestWhiteList = ['/login', '/register', '/getFullViews', '/getUniqueViews'] // 请求白名单
 // let responseWhiteList = [] // 响应白名单
 axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
     Nprogress.start() // 添加请求进度条
@@ -40,7 +40,7 @@ axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
         return config
     }
     let userInfo: UserInfo = {
-        id: JSON.parse(localStorage.getItem('userInfo')!).id
+        id: JSON.parse(localStorage.getItem('userInfo')!).id || ''
     }
     let token = window.localStorage.getItem('token')
     if (!config.headers) {
@@ -61,7 +61,6 @@ axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
             userInfo: JSON.stringify(userInfo)
         }
     }
-
     return config
 }, (err: any) => {
     message.error(err)
@@ -85,27 +84,27 @@ axiosInstance.interceptors.response.use((config: AxiosResponse) => {
     return config
 }, (err: any) => {
     // 设置超时请求
-    let config = err.config;
-    if (!config || !config.retry) return Promise.reject(err);
+    // let config = err.config;
+    Nprogress.done()
+    // if (!config || !config.retry) return Promise.reject(err);
 
-    config.__retryCount = config.__retryCount || 0;
+    // config.__retryCount = config.__retryCount || 0;
 
-    if (config.__retryCount >= config.retry) {
-        return Promise.reject(err);
-    }
+    // if (config.__retryCount >= config.retry) {
+    //     return Promise.reject(err);
+    // }
 
-    config.__retryCount += 1;
-    let backoff = new Promise<void>((resolve) => {
-        setTimeout(function () {
-            resolve();
-        }, config.retryDelay || 1);
-    });
-
-    return backoff.then(function () {
-        return axiosInstance(config);
-    });
+    // config.__retryCount += 1;
+    // let backoff = new Promise<void>((resolve) => {
+    //     setTimeout(function () {
+    //         resolve();
+    //     }, config.retryDelay || 1);
+    // });
+    // return backoff.then(function () {
+    //     return axiosInstance(config);
+    // });
     // console.log('=====>响应拦截失败', err.config)
-    // message.error(String(err)) // statusCode 不为200时   报相关异常信息
+    message.error(String(err)) // statusCode 不为200时   报相关异常信息
 })
 
 export default axiosInstance

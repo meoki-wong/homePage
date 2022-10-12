@@ -10,7 +10,6 @@ import "antd/dist/antd.min.css";
 let { Content } = Layout;
 // /blog/Meeting  声网
 function App(props: any) {
-	useEffect(() => {}, []);
 	return (
 		<div className="App">
 			<Layout>
