@@ -17,7 +17,7 @@ export default function OneDayWord() {
     let res = await request.post('/getOneWord', {
       UserId: JSON.parse(localStorage.getItem('userInfo')!).id
     })
-    setShowInfo(res.data.data)
+    setShowInfo(res.data.data || {})
   }
   const sendOneWord = async () => {
     if(!inputVal){
@@ -43,12 +43,12 @@ export default function OneDayWord() {
     <div className="one-day-word">
       <div className="display-box">
         <h2>一言难尽</h2>
-        <p>{showInfo.publicWord}</p>
+        <p>{showInfo.publicWord || '暂无内容'}</p>
         <div className="opt-box">
           <div className="send-btn">
             <i className="iconfont icon-send-s" onClick={changeWordBoard}></i>
           </div>
-          <div className="pub-time">——{showInfo.createTime}</div>
+          <div className="pub-time">——{showInfo.createTime || ''}</div>
           
         </div>
       </div>
