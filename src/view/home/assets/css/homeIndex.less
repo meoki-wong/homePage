@@ -10,12 +10,29 @@
 	background-color: #d0dbec;
 	background-size: 100% 100%;
 	border-radius: 14px;
-  // .nav{
-  //   display: flex;
-  // }
-  // .header{
-
-  // }
+	.nav {
+		display: flex;
+	}
+	.header {
+		display: flex;
+		justify-content: flex-end;
+		.search{
+			.search-box{
+				display: flex;
+				align-items: center;
+				.ant-input{
+					.ant-input{
+						border-radius: 8px;
+					}
+				}
+				.iconfont{
+					font-size: 18px;
+					margin-left: 10px;
+					cursor: pointer;
+				}
+			}
+		}
+	}
 	.inner-box {
 		width: 100%;
 		min-height: calc(100vh - 150px);

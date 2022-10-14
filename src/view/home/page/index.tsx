@@ -7,10 +7,11 @@ import PublicCard from "../components/PublicCard";
 import Archival from "@/layout/Archival";
 import { request } from "@/api/request";
 import { PublicData, PageParams } from "../type/home";
-import { Pagination } from "antd";
+import { Pagination, Input } from "antd";
 import "../assets/css/homeIndex.less";
 export default function HomeIndex() {
   const [publicData, setPublicData] = useState<PublicData>();
+  const [searchVal, setSearchVal] = useState<string>('')
   let params: PageParams = {
     pageNum: 1,
     pageSize: 10,
@@ -28,6 +29,12 @@ export default function HomeIndex() {
       setPublicData(res.data);
     }
   };
+  const changeSearch = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setSearchVal(e.target.value)
+  }
+  const search = () => {
+    console.log('00000');
+  }
   const changePage = (page: any, pageSize: any) => {
     params = {
       pageNum: page,
@@ -38,7 +45,7 @@ export default function HomeIndex() {
   
   return (
     <div className="home-contain">
-      {/* <div className="nav">
+      <div className="nav">
         <p>我是第一</p>
         <p>我是第一</p>
         <p>我是第一</p>
@@ -46,9 +53,18 @@ export default function HomeIndex() {
       </div>
       <div className="header">
         <div className="search">
-          <p>我是点击搜索🔍</p>
+          <p className="search-box">
+            <Input 
+            value={searchVal}
+            placeholder="输入搜索内容"
+            onChange={(e)=>changeSearch(e)}
+            />
+            <i 
+            className="iconfont icon-search"
+            onClick={search}></i>
+          </p>
         </div>
-      </div> */}
+      </div>
       <div className="inner-box">
         {/* 功能区 */}
         <div className="func-area">
