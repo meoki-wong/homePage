@@ -24,6 +24,7 @@ export default function HomeIndex() {
       UserId: JSON.parse(localStorage.getItem("userInfo")!).id,
       pageSize: params.pageSize,
       pageNum: params.pageNum,
+      title: searchVal
     });
     if (res.data.success) {
       setPublicData(res.data);
@@ -32,8 +33,8 @@ export default function HomeIndex() {
   const changeSearch = (e:React.ChangeEvent<HTMLInputElement>) => {
     setSearchVal(e.target.value)
   }
-  const search = () => {
-    console.log('00000');
+  const search = async () => {
+    getArticleData()
   }
   const changePage = (page: any, pageSize: any) => {
     params = {
@@ -56,7 +57,7 @@ export default function HomeIndex() {
           <p className="search-box">
             <Input 
             value={searchVal}
-            placeholder="输入搜索内容"
+            placeholder="搜点什么？"
             onChange={(e)=>changeSearch(e)}
             />
             <i 
