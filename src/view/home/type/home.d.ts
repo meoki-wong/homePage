@@ -5,6 +5,12 @@ export type DateTime = {
     [key in string]: number
 }
 
+// 头像等用户信息
+export type UserInfo = {
+    userName: string;
+    headerImg: string;
+};
+
 /**
  * 页面访问量数据
  * @param date 日期
@@ -58,3 +64,4 @@ export interface artcileInfo {
     title: string,
     createdAt: string
 }
+

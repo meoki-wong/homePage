@@ -86,6 +86,7 @@ axiosInstance.interceptors.response.use((config: AxiosResponse) => {
     // 设置超时请求
     // let config = err.config;
     Nprogress.done()
+    // 暂时注释
     // if (!config || !config.retry) return Promise.reject(err);
 
     // config.__retryCount = config.__retryCount || 0;
