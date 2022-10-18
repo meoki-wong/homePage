@@ -14,17 +14,17 @@ function App(props: any) {
 		<div className="App">
 			<Layout>
 				{/* <Header> */}
-				<NavBar />
+				{/* <NavBar /> */}
 				{/* </Header> */}
 				<Layout>
 					{/* <Sider collapsible={true}>
           
         </Sider> */}
 					<Content>
-						<div className="setting-space"></div>
-						<div className="bread-crumb">
+						{/* <div className="setting-space"></div> */}
+						{/* <div className="bread-crumb">
 							<BreadCrumb />
-						</div>
+						</div> */}
 						<div className="view">
 							<Outlet />
 							<NavRouter />
