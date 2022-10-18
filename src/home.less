@@ -1,108 +1,138 @@
-*{
-  padding: 0;
-  margin: 0;
-  list-style: none;
+* {
+	padding: 0;
+	margin: 0;
+	list-style: none;
 }
-@keyframes human_active {
-  0% {
-    left: -25%;
-  }
-  100%{
-    left: 110%;
-  }
+@keyframes human_active_1 {
+	0% {
+		left: -25%;
+	}
+	100% {
+		left: 110%;
+	}
 }
-.App {
-  // text-align: center;
-  height: auto;
-  // font-family: SaoBabe;
-  // font-size: 18px;
-  // background-color: #eee;
-  position: relative;
-  .bread-crumb{
-    display: flex;
-    align-items: center;
-    margin: 10px;
-    text-align: left;
-    height: 30px;
-    box-sizing: border-box;
-    font: 400 12px;
-    // margin-top: 80px;
-  }
-  .view{
-    position: relative;
-    background-color: #fff;
-    max-width: 1200px;
-    min-height: calc(100vh - 150px);
-    margin: 30px auto 20px;
-    // padding-bottom: 20px;
-    box-sizing: border-box;
-    border-radius: 14px;
-    // display: grid;
-    
-  }
-  .game-footer{
-    width: 100%;
-    height: 300px;
-    background: url(https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/blood_bg.png) no-repeat;
-    background-size: 100% 100%;
-    margin: 20px auto;
-    overflow: hidden;
-    position: relative;
-    
-    .human-one{
-      background: url(https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/blood1.gif) no-repeat;
-      width: 60px;
-      height: 96px;
-      position: absolute;
-      bottom: 30px;
-      left: 0;
-      animation: human_active linear 10s infinite;
-    }
-    
-    
-  }
-  
-  .ant-layout{
-    // background: url('https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/home_index_2.jpg') no-repeat;
-    background: lightgray;
-    background-size: 100% 100%;
-  }
-  .ant-back-top{
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    .back-up{
-      width: 50px;
-      height: 50px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      .iconfont{
-        font-size: 50px;
-      }
-    }
-  }
-  
+@keyframes human_active_2 {
+	0% {
+		left: -30%;
+	}
+	100% {
+		left: 115%;
+	}
+}
+@keyframes human_active_3 {
+	0% {
+		left: -35%;
+	}
+	100% {
+		left: 120%;
+	}
+}
+@keyframes human_active_4 {
+	0% {
+		left: -40%;
+	}
+	100% {
+		left: 125%;
+	}
 }
 
-.ant-tooltip-inner{
-  border-radius: 8px!important;
-  font-family: SaoBabe!important;
+.active_footer(@active, @url, @index) {
+	&:nth-child(@{index}) {
+		background: url(@url) no-repeat;
+		width: 60px;
+		height: 96px;
+		position: absolute;
+		bottom: (@index - 1)* 25px + 12px;
+		left: 0;
+		animation: @active linear 10s + @index*2 infinite;
+	}
 }
-::global {
-  .header-area{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .logout-btn{
-      background-color: #eee;
-      width: 50px;
-      height: 30px;
-      line-height: 30px;
-      text-align: center;
-      border-radius: 14px;
-      font-size: 14px;
+
+.App {
+	// text-align: center;
+	height: auto;
+	// font-family: SaoBabe;
+	// font-size: 18px;
+	// background-color: #eee;
+	position: relative;
+	.bread-crumb {
+		display: flex;
+		align-items: center;
+		margin: 10px;
+		text-align: left;
+		height: 30px;
+		box-sizing: border-box;
+		font: 400 12px;
+		// margin-top: 80px;
+	}
+	.view {
+		position: relative;
+		background-color: #fff;
+		max-width: 1200px;
+		min-height: calc(100vh - 150px);
+		margin: 30px auto 20px;
+		// padding-bottom: 20px;
+		box-sizing: border-box;
+		border-radius: 14px;
+		// display: grid;
+	}
+	.game-footer {
+		width: 100%;
+		height: 300px;
+		background: url(https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/blood_bg.png)
+			no-repeat;
+		background-size: 100% 100%;
+		margin: 20px auto;
+		overflow: hidden;
+		position: relative;
+    .human-active{
+      .active_footer(human_active_1, 'https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/blood1.gif', 1);
+		  .active_footer(human_active_2, 'https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/blood2.gif', 2);
+		  .active_footer(human_active_3, 'https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/blood3.gif', 3);
+		  .active_footer(human_active_4, 'https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/blood4.gif', 4);
+	
     }
   }
-  
+
+	.ant-layout {
+		// background: url('https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/home_index_2.jpg') no-repeat;
+		background: lightgray;
+		background-size: 100% 100%;
+	}
+	.ant-back-top {
+		position: fixed;
+		bottom: 40px;
+		right: 40px;
+		.back-up {
+			width: 50px;
+			height: 50px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			.iconfont {
+				font-size: 50px;
+			}
+		}
+	}
+}
+
+.ant-tooltip-inner {
+	border-radius: 8px !important;
+	font-family: SaoBabe !important;
+}
+::global {
+	.header-area {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.logout-btn {
+			background-color: #eee;
+			width: 50px;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			border-radius: 14px;
+			font-size: 14px;
+		}
+	}
 }

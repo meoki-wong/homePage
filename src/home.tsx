@@ -32,10 +32,10 @@ function App(props: any) {
 					</Content>
 				</Layout>
 				<div className="game-footer">
-					<div className="human-one"></div>
-					<div className="human-two"></div>
-					<div className="human-three"></div>
-					<div className="human-four"></div>
+					<div className="human-active"></div>
+					<div className="human-active"></div>
+					<div className="human-active"></div>
+					<div className="human-active"></div>
 				</div>
 			</Layout>
 			<BackTop>
