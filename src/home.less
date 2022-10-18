@@ -3,7 +3,14 @@
   margin: 0;
   list-style: none;
 }
-
+@keyframes human_active {
+  0% {
+    left: -25%;
+  }
+  100%{
+    left: 110%;
+  }
+}
 .App {
   // text-align: center;
   height: auto;
@@ -11,10 +18,6 @@
   // font-size: 18px;
   // background-color: #eee;
   position: relative;
-  .setting-space{
-    height: 80px;
-    width: 100%;
-  }
   .bread-crumb{
     display: flex;
     align-items: center;
@@ -30,11 +33,32 @@
     background-color: #fff;
     max-width: 1200px;
     min-height: calc(100vh - 150px);
-    margin: 0 auto 20px;
+    margin: 30px auto 20px;
     // padding-bottom: 20px;
     box-sizing: border-box;
     border-radius: 14px;
     // display: grid;
+    
+  }
+  .game-footer{
+    width: 100%;
+    height: 300px;
+    background: url(https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/blood_bg.png) no-repeat;
+    background-size: 100% 100%;
+    margin: 20px auto;
+    overflow: hidden;
+    position: relative;
+    
+    .human-one{
+      background: url(https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/blood1.gif) no-repeat;
+      width: 60px;
+      height: 96px;
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      animation: human_active linear 10s infinite;
+    }
+    
     
   }
   

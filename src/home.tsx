@@ -7,7 +7,7 @@ import NavRouter from "./view/components/NavRouter";
 import BreadCrumb from "./utils/breadcrumb";
 import "./home.less";
 import "antd/dist/antd.min.css";
-let { Content } = Layout;
+let { Content, Footer } = Layout;
 // /blog/Meeting  声网
 function App(props: any) {
 	return (
@@ -31,6 +31,12 @@ function App(props: any) {
 						</div>
 					</Content>
 				</Layout>
+				<div className="game-footer">
+					<div className="human-one"></div>
+					<div className="human-two"></div>
+					<div className="human-three"></div>
+					<div className="human-four"></div>
+				</div>
 			</Layout>
 			<BackTop>
 				<div className="back-up">
