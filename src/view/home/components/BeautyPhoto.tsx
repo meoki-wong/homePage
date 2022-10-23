@@ -20,7 +20,7 @@ export default function BeautyPhoto() {
   return (
     <div className="beauty-photo">
       <img
-        src="https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/home_index_1.jpeg"
+        src="https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/shuangjiang.jpeg"
         alt=""
       />
       <div className="intro-box">
@@ -29,7 +29,10 @@ export default function BeautyPhoto() {
         src={userInfo.headerImg}
         alt="" />
         </div>
-        这是什么情况啊</div>
+        <p className="desc-fest">
+        霜降是秋季的最后一个节气，是秋季到冬季的过渡。霜降时节，万物毕成，毕入于戌，阳下入地，阴气始凝。天气渐寒始于霜降。《逸周书·周月》：“秋三月中气：处暑、秋分、霜降。”
+        </p>
+        </div>
     </div>
   );
 }
