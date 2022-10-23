@@ -33,7 +33,7 @@ function CommonAnimate(props: any, ref: any) {
     lottieBox.addEventListener("complete", ()=>{
         $('.blob-contain').style.display = "none"
         lottieBox.destroy()
-        // initAnimate()
+        initAnimate()
     })
   };
   const play = () => {
