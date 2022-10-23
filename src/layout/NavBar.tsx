@@ -96,37 +96,7 @@ function LeftNav(props: any) {
             SuperMeoki
           </div>
         </div>
-        {/* <Menu
-          defaultSelectedKeys={[window.location.pathname]}
-          defaultOpenKeys={[routeList[0].path]}
-          mode="horizontal"
-          inlineCollapsed={false}
-        >
-          {routeList.map((item, index) => {
-            if (!item.isShowNav) return;
-            if (item.children) {
-              return (
-                <SubMenu key={index} icon={<MailOutlined />} title={item.name}>
-                  {item.children.map((ite: any, idx: number) => (
-                    <Menu.Item key={idx} onClick={() => navigate(ite.path)}>
-                      {ite.name}
-                    </Menu.Item>
-                  ))}
-                </SubMenu>
-              );
-            } else {
-              return (
-                <Menu.Item
-                  key={index}
-                  icon={<PieChartOutlined />}
-                  onClick={() => navigate(item.path)}
-                >
-                  {item.name}
-                </Menu.Item>
-              );
-            }
-          })}
-        </Menu> */}
+
       </div>
       <div className="user-info">
         <Dropdown overlay={menu} placement="bottomLeft" arrow>

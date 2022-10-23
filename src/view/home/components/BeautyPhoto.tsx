@@ -1,8 +1,9 @@
 import { request } from "@/api/request";
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import "../assets/css/BeautyPhoto.less"
 import { UserInfo } from "../type/home";
-export default function BeautyPhoto() {
+function BeautyPhoto(props: any) {
  
   const [userInfo, setUserInfo] = useState<UserInfo>(Object);
 
@@ -12,10 +13,11 @@ export default function BeautyPhoto() {
       request.post("/getUserInfo").then((res) => {
         if (res.data.success) {
           setUserInfo(res.data.data);
-          // props.getUserInfoDispatch(res.data.data)
+          props.getUserInfoDispatch(res.data.data)
         }
       });
     }
+    
   }, [])
   return (
     <div className="beauty-photo">
@@ -36,3 +38,20 @@ export default function BeautyPhoto() {
     </div>
   );
 }
+
+const mapDispatchToProps = (dispatch: any, ownProps: any) => {
+  return {
+    getUserInfoDispatch: (item: any) => {
+      dispatch({
+        type: 'userInfo',
+        value: item
+      })
+    }
+  }
+  }
+  const mapStateToProps = (state: any, ownProps: any) => {
+    return {}
+    
+  };
+
+  export default connect(mapStateToProps, mapDispatchToProps)(BeautyPhoto)
