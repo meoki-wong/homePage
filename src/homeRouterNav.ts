@@ -27,4 +27,9 @@ export const navRouter = [
 		icon: "icon-wenbenbianji",
 		pathname: "创建文章"
 	},
+	{
+		path: "/blog/login",
+		icon: "icon-tuichudenglu",
+		pathname: "退出登录"
+	},
 ]

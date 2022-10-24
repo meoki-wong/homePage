@@ -14,6 +14,7 @@ import Login from "../view/login/login";
 import Home from "../home";
 import { socketIo } from "../view/chatRoom/utils/newSocket";
 import Cookies from "js-cookie";
+import { request } from "@/api/request";
 // 跳转登录页组件
 let RedirectLogin = () => {
   return (
@@ -58,6 +59,16 @@ export default function UseRoute(props: any) {
     ElementRoute(); 
     if (localStorage.getItem("token")) {
       joinRoom(); 
+    }
+
+    // 获取头像
+    if (window.localStorage.getItem("token")) {
+      // 登录情况下获取用户信息  刷新也会重新进行获取
+      request.post("/getUserInfo").then((res) => {
+        if (res.data.success) {
+          localStorage.setItem('avatar', JSON.stringify(res.data.data))
+        }
+      });
     }
   });
   /**

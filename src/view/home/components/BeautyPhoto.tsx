@@ -1,23 +1,18 @@
 import { request } from "@/api/request";
+import { Avatar } from "antd";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import "../assets/css/BeautyPhoto.less"
 import { UserInfo } from "../type/home";
-function BeautyPhoto(props: any) {
+export default function BeautyPhoto(props: any) {
  
-  const [userInfo, setUserInfo] = useState<UserInfo>(Object);
 
+  const [avatar, setAvatar] = useState<string>('')
   useEffect(()=>{
-    if (window.localStorage.getItem("token")) {
-      // 登录情况下获取用户信息  刷新也会重新进行获取
-      request.post("/getUserInfo").then((res) => {
-        if (res.data.success) {
-          setUserInfo(res.data.data);
-          props.getUserInfoDispatch(res.data.data)
-        }
-      });
+    if(window.localStorage.getItem('token')){
+      console.log('----测试', JSON.parse(localStorage.getItem('avatar')!).headerImg);
+      setAvatar(JSON.parse(localStorage.getItem('avatar')!).headerImg)
     }
-    
   }, [])
   return (
     <div className="beauty-photo">
@@ -28,7 +23,7 @@ function BeautyPhoto(props: any) {
       <div className="intro-box">
         <div className="header">
         <img 
-        src={userInfo.headerImg}
+        src={avatar}
         alt="" />
         </div>
         <p className="desc-fest">
@@ -38,20 +33,3 @@ function BeautyPhoto(props: any) {
     </div>
   );
 }
-
-const mapDispatchToProps = (dispatch: any, ownProps: any) => {
-  return {
-    getUserInfoDispatch: (item: any) => {
-      dispatch({
-        type: 'userInfo',
-        value: item
-      })
-    }
-  }
-  }
-  const mapStateToProps = (state: any, ownProps: any) => {
-    return {}
-    
-  };
-
-  export default connect(mapStateToProps, mapDispatchToProps)(BeautyPhoto)

@@ -47,9 +47,13 @@ const Comments = (props: any) => {
 	const [comments, setComments] = useState<any>([]);
 	const [submitting, setSubmitting] = useState(false);
 	const [value, setValue] = useState("");
-  const [commentsTotal, setCommentsTotal] = useState<number>(0)
+    const [commentsTotal, setCommentsTotal] = useState<number>(0)
+	const [avatar, setAvatar] = useState<string>('')
 	useEffect(() => {
 		getComment();
+		if(window.localStorage.getItem('token')){
+			setAvatar(JSON.parse(localStorage.getItem('avatar')!).headerImg)
+		  }
 	}, []);
 
 	const getComment = async () => {
@@ -100,7 +104,7 @@ const Comments = (props: any) => {
 				<NoLoginComments />
 			) : (
 				<Comment
-					avatar={<Avatar src={props.userInfo.value.headerImg} />}
+					avatar={<Avatar src={avatar} />}
 					content={
 						<Editor
 							onChange={handleChange}
@@ -138,10 +142,5 @@ const Comments = (props: any) => {
 	);
 };
 
-const mapStateToProps = (state: any, ownProps: any) => {
-	return {
-		userInfo: state.userInfoReducer,
-	};
-};
 
-export default connect(mapStateToProps)(Comments);
+export default Comments;

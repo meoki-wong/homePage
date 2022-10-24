@@ -2,6 +2,7 @@ import React from 'react'
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios'
 import { message } from 'antd'
 // @ts-ignore
+
 import Nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
 type UserInfo = {

@@ -26,6 +26,7 @@ function Login() {
     //     }
     //   });
     // }
+    localStorage.clear()
   }, []);
 
   // const onFinishFailed = (errorInfo: any) => {
