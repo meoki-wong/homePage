@@ -54,7 +54,7 @@ function LeftNav(props: any) {
       setIsModalVisible(true);
     } else {
       props.getUserInfoDispatch({})
-      navigate("/blog/login");
+      navigate("/login");
     }
   };
   const handleConfirm = () => {
@@ -63,7 +63,7 @@ function LeftNav(props: any) {
     setIsModalVisible(false);
   };
   const checkUserInfo = () => {
-    navigate("/blog/edit/editUserInfo");
+    navigate("/edit/editUserInfo");
   };
   const menu = (
     <Menu>

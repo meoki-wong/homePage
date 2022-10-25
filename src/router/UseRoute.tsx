@@ -20,8 +20,8 @@ let RedirectLogin = () => {
   return (
     <>
       <Routes>
-        <Route path="/blog/login" element={<Login />} />
-        <Route path="*" element={<Navigate to="/blog/login" />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </>
   );
@@ -30,8 +30,8 @@ let RedirectHome = () => {
   return (
     <>
       <Routes>
-        <Route path="/blog" element={<Home />} />
-        <Route path="*" element={<Navigate to="/blog" />} />
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
   );
@@ -42,7 +42,7 @@ let navigate: NavigateFunction;
 let token: string | null;
 
 // 免token白名单
-let whiteList = ["/blog/login", "/blog/register"];
+let whiteList = ["/login", "/register"];
 export default function UseRoute(props: any) {
   location = useLocation();
   navigate = useNavigate();
@@ -99,7 +99,7 @@ let ElementRoute = () => {
     return <RedirectLogin />;
   } else {
     if (location.pathname === "/") {
-      navigate("/blog");
+      navigate("/home");
     }
 
     return <ReactRouter />;

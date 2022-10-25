@@ -2,7 +2,7 @@
   "name": "data-admin",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://supermeoki.xyz/blog",
+  "homepage": "https://supermeoki.xyz/blog/home",
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
     "@amap/amap-jsapi-types": "^0.0.8",

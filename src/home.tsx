@@ -8,7 +8,7 @@ import BreadCrumb from "./utils/breadcrumb";
 import "./home.less";
 import "antd/dist/antd.min.css";
 let { Content, Footer } = Layout;
-// /blog/Meeting  声网
+// /Meeting  声网
 function App(props: any) {
 	return (
 		<div className="App">

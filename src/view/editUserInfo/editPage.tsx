@@ -10,8 +10,8 @@ export default function EditPage() {
   let [activeIndex, setActiveIndex] = useState<number>(0)
   // 左侧nav
   let nav = [
-    { name: "个人信息", path: "/blog/edit/editUserInfo" },
-    { name: "账户绑定", path: "/blog/edit/editUserInfo" }
+    { name: "个人信息", path: "/edit/editUserInfo" },
+    { name: "账户绑定", path: "/edit/editUserInfo" }
 ];
   const selectNavItem = (item: NavItem, index: number) => {
     setActiveIndex(index)

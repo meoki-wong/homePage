@@ -20,7 +20,7 @@ function GroupList(props: any) {
       }
     }
     const chatGroup = (item: any) => {
-      navigate(`/blog/ChartRoom/group`, {
+      navigate(`/ChartRoom/group`, {
         state: {
           groupId: item.groupId,
           groupName: item.groupName,

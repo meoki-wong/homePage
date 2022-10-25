@@ -24,48 +24,48 @@ const lazyComponent = (Element: ReactElement) => {
 const routeList: any[] = [
   {
     name: "首批功能实现",
-    path: "/blog",
+    path: "/",
     element: lazyComponent(<Home />),
     children: [
       {
         name: "首页",
-        path: "/blog/",
+        path: "/home",
         index: true,
         element: lazyComponent(<HomeIndex />),
       },
       {
         name: "地图",
-        path: "/blog/Map",
+        path: "/Map",
         element: lazyComponent(<Map />),
       },
       {
         name: "对接声网",
-        path: "/blog/Meeting",
+        path: "/Meeting",
         element: lazyComponent(<LiveCom />),
       },
       {
         name: "文章编辑",
-        path: "/blog/editorArticle",
+        path: "/editorArticle",
         element: lazyComponent(<EditArticle />),
       },
       {
         name: '文章详情',
-        path: '/blog/articleDetail',
+        path: '/articleDetail',
         element: lazyComponent(<ArticleDetail />)
     },
       {
         name: "即时通讯",
-        path: "/blog/ChartRoom",
+        path: "/ChartRoom",
         element: lazyComponent(<ChartRoom />),
         children: [
           {
             name: "聊天界面",
-            path: "/blog/ChartRoom/friend",
+            path: "/ChartRoom/friend",
             element: <ChatPage />,
           },
           {
             name: "群组聊天界面",
-            path: "/blog/ChartRoom/group",
+            path: "/ChartRoom/group",
             element: <GroupChatPage />,
           },
         ],
@@ -77,29 +77,29 @@ const routeList: any[] = [
   },
   { // 个人消息页
     name: '个人消息页',
-    path: '/blog',
+    path: '/',
     element: lazyComponent(<Home />),
     children: [
       {
         name: '个人消息页',
-        path: '/blog/notification',
+        path: '/notification',
         element: lazyComponent(<Notification />)
       }
     ]
   },
   { // 编辑用户相关信息
     name: '用户个人信息',
-    path: '/blog',
+    path: '/',
     element: lazyComponent(<Home />),
     children: [
       {
         name: '个人信息',
-        path: '/blog/edit',
+        path: '/edit',
         element: lazyComponent(<Edit />),
         children: [
           {
             name: '编辑个人信息',
-            path: '/blog/edit/editUserInfo',
+            path: '/edit/editUserInfo',
             element: lazyComponent(<EditUserInfo/>)
           }
         ]

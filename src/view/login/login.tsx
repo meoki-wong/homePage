@@ -22,7 +22,7 @@ function Login() {
     //   let userInfo = JSON.parse(`${Cookies.get("kk2")}`);
     //   request.post("/login", { ...userInfo }).then((res) => {
     //     if (res.data.code === 200) {
-    //       navigate("/blog");
+    //       navigate("/");
     //     }
     //   });
     // }
@@ -77,7 +77,7 @@ function Login() {
         userId: userinfo.id,
     });
         socketIo.joinGroup(userinfo.id) // 加入群组房间
-        navigate("/blog");
+        navigate("/home");
       }
     });
   };
@@ -146,7 +146,7 @@ function Login() {
             >
               登录
             </Button>
-            <Button type="primary" onClick={() => navigate("/blog/register")}>
+            <Button type="primary" onClick={() => navigate("/register")}>
               注册
             </Button>
           </Form.Item>

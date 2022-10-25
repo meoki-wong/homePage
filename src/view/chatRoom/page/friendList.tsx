@@ -70,7 +70,7 @@ function FriendList(props: any) {
   };
   const chatFriends = (item: SelectItem) => {
     socketIo.joinGroup(JSON.parse(localStorage.getItem('userInfo')!).id) // 加入群组房间
-    navigate(`/blog/ChartRoom/friend`, {
+    navigate(`/ChartRoom/friend`, {
       state: {
         id: item.id,
         userName: item.userName,

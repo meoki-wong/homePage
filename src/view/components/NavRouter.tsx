@@ -28,7 +28,7 @@ export default function NavRouter() {
       {navRouter.map((item) => {
         return (
           <Tooltip placement="right" key={item.path} title={item.pathname}>
-            {item.path === "/blog/notification" ? (
+            {item.path === "/notification" ? (
               <Badge count={reminder}>
                 <i
                   className={`iconfont ${item.icon}`}

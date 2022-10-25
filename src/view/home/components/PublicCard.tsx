@@ -11,7 +11,7 @@ export default function PublicCard(props: any) {
       id: publicData.id,
     };
     navigate({
-      pathname: "/blog/articleDetail",
+      pathname: "/articleDetail",
       search: `${createSearchParams(params)}`,
     });
   };

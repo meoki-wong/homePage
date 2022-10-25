@@ -5,7 +5,7 @@ import '../../assets/css/NoLoginComments.less'
 export default function NoLoginComments() {
     let navigate = useNavigate()
     const goLogin = () => {
-        navigate('/blog/login')
+        navigate('/login')
     }
   return (
     <div className='no-login'>
