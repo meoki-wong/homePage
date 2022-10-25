@@ -12,6 +12,31 @@
 	border-radius: 14px;
 	.nav {
 		display: flex;
+		text-align: center;
+		line-height: 50px;
+		font-size: 14px;
+		font-weight: 700;
+		p{
+			min-width: 80px;
+			height: 50px;
+			border-radius: 8px;
+			border: 2px solid #eee;
+			cursor: pointer;
+			margin-right: 20px;
+			&:hover{
+				animation: fontColor .4s linear;
+				box-shadow: 0 0 10px #eee;
+			}
+			@keyframes fontColor {
+				0% {
+					box-shadow: 0 0 0px #eee;
+				}
+				100% {
+					box-shadow: 0 0 10px #eee;
+				}
+			}
+
+		}
 	}
 	.header {
 		display: flex;

@@ -8,6 +8,7 @@ import Archival from "@/layout/Archival";
 import { request } from "@/api/request";
 import { PublicData, PageParams } from "../type/home";
 import { Pagination, Input } from "antd";
+import { navList } from "../utils/homeNav";
 import "../assets/css/homeIndex.less";
 export default function HomeIndex() {
   const [publicData, setPublicData] = useState<PublicData>();
@@ -47,10 +48,9 @@ export default function HomeIndex() {
   return (
     <div className="home-contain">
       <div className="nav">
-        <p>我是第一</p>
-        <p>我是第一</p>
-        <p>我是第一</p>
-        <p>我是第一</p>
+        {
+          navList.map(item=> <p>{item.name}</p>)
+        }
       </div>
       <div className="header">
         <div className="search">
