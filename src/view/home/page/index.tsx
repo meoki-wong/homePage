@@ -44,12 +44,20 @@ export default function HomeIndex() {
     };
     getArticleData();
   };
-  
+  const goNav = (item: any) => {
+    if(item.name === '后台管理'){
+          window.history.pushState(null, '', '/vue')
+    }
+  }
   return (
     <div className="home-contain">
       <div className="nav">
         {
-          navList.map(item=> <p>{item.name}</p>)
+          navList.map(item=> 
+          <p 
+          key={item.path}
+          onClick={() => goNav(item)}
+          >{item.name}</p>)
         }
       </div>
       <div className="header">
