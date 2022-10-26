@@ -43,7 +43,7 @@ function render(props: any = {}) {
 		<Provider store={store}>
 			{/* <PersistGate persistor={persistor}> */}
 			<BrowserRouter
-				basename={window.__POWERED_BY_QIANKUN__ ? "/react" : "/blog"}
+				basename={window.__POWERED_BY_QIANKUN__ ? "/react/" : "/blog/"}
 			>
         {/* 中文切换 组件会在某些时候无法切换中英文 */}
 				<ConfigProvider locale={zh_CN}>

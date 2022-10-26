@@ -17,6 +17,9 @@ export default function HomeIndex() {
     pageNum: 1,
     pageSize: 10,
   };
+  
+ //执行代码
+ 
   useEffect(() => {
     getArticleData();
   }, []);

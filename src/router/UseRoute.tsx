@@ -30,8 +30,8 @@ let RedirectHome = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="*" element={<Navigate to="/home" />} />
       </Routes>
     </>
   );
@@ -86,7 +86,7 @@ export default function UseRoute(props: any) {
     <>
       <ElementRoute />
     </>
-  );
+);
 }
 
 /**
