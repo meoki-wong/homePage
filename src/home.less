@@ -42,7 +42,7 @@
 		width: 60px;
 		height: 96px;
 		position: absolute;
-		bottom: (@index - 1)* 25px + 12px;
+		bottom: (@index - 1) * 25px + 12px;
 		left: 0;
 		animation: @active linear 10s + @index*2 infinite;
 	}
@@ -85,14 +85,18 @@
 		margin: 20px auto;
 		overflow: hidden;
 		position: relative;
-    .human-active{
-      .active_footer(human_active_1, 'https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/blood1.gif', 1);
-		  .active_footer(human_active_2, 'https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/blood2.gif', 2);
-		  .active_footer(human_active_3, 'https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/blood3.gif', 3);
-		  .active_footer(human_active_4, 'https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/blood4.gif', 4);
-	
-    }
-  }
+		.human-active {
+			.active_footer(human_active_1, 'https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/blood1.gif', 1);
+			.active_footer(human_active_2, 'https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/blood2.gif', 2);
+			.active_footer(human_active_3, 'https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/blood3.gif', 3);
+			.active_footer(human_active_4, 'https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/blood4.gif', 4);
+
+			&:hover {
+				animation-play-state: paused;
+				cursor: pointer;
+			}
+		}
+	}
 
 	.ant-layout {
 		// background: url('https://hippo-meoki.oss-cn-beijing.aliyuncs.com/homePage/homePage-image/home_index_2.jpg') no-repeat;

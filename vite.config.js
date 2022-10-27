@@ -24,6 +24,9 @@ export default defineConfig({
       limit: 10, //
     }),
   ],
+  define: {
+    'process.env': {} // 配置环境变量
+  },
   base: "./",
   resolve: {
     alias: {

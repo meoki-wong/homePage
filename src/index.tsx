@@ -39,11 +39,12 @@ import { ConfigProvider } from "antd";
 // 对接qinakun
 
 function render(props: any = {}) {
+	console.log('----process', process.env.REACT_APP_BASEROUTE)
 	ReactDOM.render(
 		<Provider store={store}>
 			{/* <PersistGate persistor={persistor}> */}
 			<BrowserRouter
-				basename={window.__POWERED_BY_QIANKUN__ ? "/react/" : "/blog/"}
+				basename={window.__POWERED_BY_QIANKUN__ ? "/react/" : process.env.REACT_APP_BASEROUTE || '/blog'}
 			>
         {/* 中文切换 组件会在某些时候无法切换中英文 */}
 				<ConfigProvider locale={zh_CN}>

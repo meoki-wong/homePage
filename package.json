@@ -2,7 +2,7 @@
   "name": "data-admin",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://supermeoki.xyz/blog/home",
+  "homepage": "https://supermeoki.xyz/blog",
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
     "@amap/amap-jsapi-types": "^0.0.8",
@@ -102,11 +102,11 @@
     "start:mico": "react-app-rewired start",
     "build:mico": "react-app-rewired build",
     "dev": "HTTPS=true node scripts/start.js",
-    "build": "node scripts/build.js",
+    "build": "node scripts/build.js  --mode production",
     "test": "node scripts/test.js",
     "scp": "yarn build && node scripts/scp.js",
     "testgit": "node src/utils/uploadGit/index.js",
-    "dev:vite": "vite --host",
+    "dev:vite": "vite --host --mode development",
     "build:vite": "tsc && vite build",
     "scp:vite": "yarn build:vite && node scripts/scp.js"
   },
