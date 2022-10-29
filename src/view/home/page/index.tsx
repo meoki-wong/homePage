@@ -108,7 +108,8 @@ export default function HomeIndex() {
               showTotal={(total) => `共 ${total} 条`}
             /> */}
             <Paginations 
-            total={10}
+            total={publicData?.total}
+            onchange={changePage}
             />
           </div> : <p>暂无内容</p>}
         </div>
