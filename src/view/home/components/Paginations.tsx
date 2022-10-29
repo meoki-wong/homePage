@@ -10,9 +10,8 @@ export default function Paginations(props: PaginationProps) {
   useEffect(()=>{
     setPageArr(calcPageArr(Math.ceil((total || 0) / 10)))
   }, [total])
-  /**
-   * 
-   * @param item 切换的页码
+  /*
+   * @param item 显示切换的页码
    */
 	const changePage = (item: number) => {
 		onchange && onchange(item, 10);
@@ -43,7 +42,6 @@ export default function Paginations(props: PaginationProps) {
 					<i className="iconfont icon-shangyiye"></i>
 				</li>
 				{
-					//
 					pageArr?.map((item: number) => {
 						return item !== 3 ? (
 							<li 
