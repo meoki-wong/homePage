@@ -8,6 +8,7 @@ import Archival from "@/layout/Archival";
 import { request } from "@/api/request";
 import { PublicData, PageParams } from "../type/home";
 import { Pagination, Input } from "antd";
+import Paginations from "../components/Paginations";
 import { navList } from "../utils/homeNav";
 import "../assets/css/homeIndex.less";
 export default function HomeIndex() {
@@ -99,12 +100,15 @@ export default function HomeIndex() {
             );
           })}
           {publicData?.total ? <div className="page-box">
-            <Pagination
+            {/* <Pagination
               total={publicData?.total}
               showSizeChanger
               showQuickJumper
               onChange={changePage}
               showTotal={(total) => `共 ${total} 条`}
+            /> */}
+            <Paginations 
+            total={10}
             />
           </div> : <p>暂无内容</p>}
         </div>
