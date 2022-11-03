@@ -9,7 +9,7 @@ import { request } from "@/api/request";
 import { PublicData, PageParams } from "../type/home";
 import { Pagination, Input } from "antd";
 // import Paginations from "../components/Paginations";
-import    {Paginations}  from 'ui-hippo'
+import {Paginations} from 'ui-hippo'
 import { navList } from "../utils/homeNav";
 import "../assets/css/homeIndex.less";
 export default function HomeIndex() {
