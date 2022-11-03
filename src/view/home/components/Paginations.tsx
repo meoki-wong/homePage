@@ -51,6 +51,7 @@ export default function Paginations(props: PaginationProps) {
 						<li
 							className={item === active ? "active-page" : ""}
 							onClick={() => changePage(item)}
+							key={item}
 						>
 							{item}
 						</li>

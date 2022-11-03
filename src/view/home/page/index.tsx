@@ -8,7 +8,8 @@ import Archival from "@/layout/Archival";
 import { request } from "@/api/request";
 import { PublicData, PageParams } from "../type/home";
 import { Pagination, Input } from "antd";
-import Paginations from "../components/Paginations";
+// import Paginations from "../components/Paginations";
+import    {Paginations}  from 'ui-hippo'
 import { navList } from "../utils/homeNav";
 import "../assets/css/homeIndex.less";
 export default function HomeIndex() {
@@ -94,9 +95,9 @@ export default function HomeIndex() {
         </div>
         {/* 发布区 */}
         <div className="public-area">
-          {publicData?.list.map((item: any) => {
+          {publicData?.list.map((item: any, index) => {
             return (
-                <PublicCard publicData={item} />
+                <PublicCard publicData={item} key={index} />
             );
           })}
           {publicData?.total ? <div className="page-box">
