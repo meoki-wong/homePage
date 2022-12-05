@@ -13,16 +13,23 @@ export default function ArticleDetails() {
 	const [articleData, setArticleData] = useState<artcileInfo>();
 	useEffect(() => {
 		getArticleDetails();
+		
 	}, []);
 	const getArticleDetails = async () => {
-		let res = await request.post("/getArticleDetails", { id });
-		if (res.data.success) {
-			let { data } = res.data;
-			setArticleData(data);
+		// let res = await request.post("/getArticleDetails", { id });
+		// if (res.data.success) {
+		// 	let { data } = res.data;
+		// 	setArticleData(data);
+		// 	setGetHtml({
+		// 		__html: data.articleContent,
+		// 	});
+		// }
+		request.post('/getMarkdown').then(res=>{
+			console.log('markdown', res.data)
 			setGetHtml({
-				__html: data.articleContent,
-			});
-		}
+						__html: res.data.data
+					});
+		})
 	};
 	return (
 		<div className="article-contain">

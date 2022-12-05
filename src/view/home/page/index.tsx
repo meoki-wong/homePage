@@ -61,6 +61,7 @@ export default function HomeIndex() {
           navList.map(item=> 
           <p 
           key={item.path}
+          style={{display: item.hide? 'none': 'inline-block'}}
           onClick={() => goNav(item)}
           >{item.name}</p>)
         }
