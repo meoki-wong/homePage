@@ -1,13 +1,14 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios'
+import { UserInfo, Marked } from './type/axios'
 import { message } from 'antd'
+import warnMessage from './utils/warnMessage'
 // @ts-ignore
 
 import Nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
-type UserInfo = {
-    id: string | number
-}
+
 
 interface AxiosReqConfig extends AxiosRequestConfig  {
     retryDelay: number, // 超时请求
@@ -30,6 +31,7 @@ let axiosInstance: AxiosInstance = axios.create({
     retry: 4, // 超时重新触发请求次数
 } as AxiosReqConfig)
 
+// const navigate = useNavigate()
 
 
 // 请求拦截
@@ -71,7 +73,8 @@ axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
 
 
 // 响应拦截
-
+// let warnTag: Boolean = false
+// let marked: Marked = {status: 200, title: null}
 axiosInstance.interceptors.response.use((config: AxiosResponse) => {
     let { status, statusText, data } = config
     if (!data.success) {
@@ -80,7 +83,6 @@ axiosInstance.interceptors.response.use((config: AxiosResponse) => {
         return
     }
     // 需要添加token等   登录信息失效  跳转 /login
-
     Nprogress.done() // 结束请求进度条 
     return config
 }, (err: any) => {
@@ -105,8 +107,11 @@ axiosInstance.interceptors.response.use((config: AxiosResponse) => {
     // return backoff.then(function () {
     //     return axiosInstance(config);
     // });
-    // console.log('=====>响应拦截失败', err.config)
+    if(warnMessage({status: err.status || 0, title: err.message})) return 
+    console.log('=====>响应拦截失败', err.config, err.status)
     message.error(String(err)) // statusCode 不为200时   报相关异常信息
+    console.log('---err', err);
+    // if(err)
 })
 
 export default axiosInstance

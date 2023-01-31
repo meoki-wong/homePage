@@ -4,7 +4,7 @@ import "./Paginations.less";
 export default function Paginations(props: PaginationProps) {
 	const { total, onchange } = props;
 
-	const [pageArr, setPageArr] = useState<number[]>([1]);
+	let [pageArr, setPageArr] = useState<Array<number>>([1]);
 	let [active, setActive] = useState<number>(1);
 	const calcPageArr = (length: number) =>
 		Array.from({ length }).map((v, k) => k + 1);
