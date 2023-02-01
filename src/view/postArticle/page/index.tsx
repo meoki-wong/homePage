@@ -44,7 +44,7 @@ export default function PostArticle() {
             UserId: JSON.parse(localStorage.getItem('userInfo')!).id,
             introduce: editor.getText().slice(0, 70).trim()
         })
-        if(res.data.success){
+        if(res?.data.success){
             message.success('发布成功')
             setTitle('')
             editor.clear()

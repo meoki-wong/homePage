@@ -2,7 +2,6 @@
 import {  Marked } from '../type/axios'
 /**
  * 
- * 
  * @method warnMessage -设置相同响应请求结果只提醒一次
  * @param { Object } err -传入的响应状态  status title
  */
@@ -11,6 +10,7 @@ let warnTag: Boolean = false
 let marked: Marked = {status: 200, title: null}
 let delayTimeOut: number
 function warnMessage(err: Marked): Boolean{
+    console.log('==测试传参', err);
     clearTimeout(delayTimeOut)
     delayTimeOut = window.setTimeout(()=>{
         warnTag = false

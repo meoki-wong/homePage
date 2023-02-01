@@ -53,7 +53,7 @@ export default class Socket {
     // 接收群聊消息
     receiveGroupMsg(){
         this.socket.on('groupMsg', (msg: FriendUserInfo)=>{
-            console.log('----接收群老消息', msg);
+            console.log('----接收群聊消息', msg);
             if(this.socketId === msg.groupId){
                 htmlFn(msg)
             }

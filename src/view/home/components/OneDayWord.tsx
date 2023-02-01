@@ -17,7 +17,7 @@ export default function OneDayWord() {
     let res = await request.post('/getOneWord', {
       UserId: JSON.parse(localStorage.getItem('userInfo')!).id
     })
-    setShowInfo(res.data.data || {})
+    setShowInfo(res?.data.data || {})
   }
   const sendOneWord = async () => {
     if(!inputVal){
@@ -28,7 +28,7 @@ export default function OneDayWord() {
       publicWord: inputVal,
       UserId: JSON.parse(localStorage.getItem('userInfo')!).id
     })
-    if(res.data.success){
+    if(res?.data.success){
       message.success('发布成功')
       getOneWord()
       changeWordBoard()

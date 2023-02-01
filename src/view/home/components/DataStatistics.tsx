@@ -66,8 +66,8 @@ export default function DataStatistics() {
     }
     const getData = async () => {
       let res = await request.get('/getPVStatistics')
-      if(res.data.success){
-        initChart(res.data.data || [])
+      if(res?.data.success){
+        initChart(res?.data.data || [])
       }
     }
 

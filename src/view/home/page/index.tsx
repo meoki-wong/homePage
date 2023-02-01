@@ -32,7 +32,7 @@ export default function HomeIndex() {
       pageNum: params.pageNum,
       title: searchVal
     });
-    if (res.data.success) {
+    if (res?.data.success) {
       setPublicData(res.data);
     }
   };

@@ -5,7 +5,6 @@ import { UserInfo, Marked } from './type/axios'
 import { message } from 'antd'
 import warnMessage from './utils/warnMessage'
 // @ts-ignore
-
 import Nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
 
@@ -73,8 +72,6 @@ axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
 
 
 // 响应拦截
-// let warnTag: Boolean = false
-// let marked: Marked = {status: 200, title: null}
 axiosInstance.interceptors.response.use((config: AxiosResponse) => {
     let { status, statusText, data } = config
     if (!data.success) {
@@ -82,36 +79,37 @@ axiosInstance.interceptors.response.use((config: AxiosResponse) => {
         Nprogress.done() // 结束请求进度条 
         return
     }
-    // 需要添加token等   登录信息失效  跳转 /login
     Nprogress.done() // 结束请求进度条 
     return config
 }, (err: any) => {
     // 设置超时请求
-    // let config = err.config;
+    let config = err.config;
     Nprogress.done()
-    // 暂时注释
-    // if (!config || !config.retry) return Promise.reject(err);
-
-    // config.__retryCount = config.__retryCount || 0;
-
-    // if (config.__retryCount >= config.retry) {
-    //     return Promise.reject(err);
-    // }
-
-    // config.__retryCount += 1;
-    // let backoff = new Promise<void>((resolve) => {
-    //     setTimeout(function () {
-    //         resolve();
-    //     }, config.retryDelay || 1);
-    // });
-    // return backoff.then(function () {
-    //     return axiosInstance(config);
-    // });
-    if(warnMessage({status: err.status || 0, title: err.message})) return 
-    console.log('=====>响应拦截失败', err.config, err.status)
+    console.log('---301', err.response.data.code);
+    if(warnMessage({status: err.response.data.code || 0, title: err.message})) return 
     message.error(String(err)) // statusCode 不为200时   报相关异常信息
-    console.log('---err', err);
-    // if(err)
+    if(err.response.data.code === 301){
+        window.location.replace('/blog/login') 
+    }
+    // 
+    if (!config || !config.retry) return Promise.reject(err);
+
+    config.__retryCount = config.__retryCount || 0;
+
+    if (config.__retryCount >= config.retry) {
+        return Promise.reject(err);
+    }
+
+    config.__retryCount += 1;
+    let backoff = new Promise<void>((resolve) => {
+        setTimeout(function () {
+            resolve();
+        }, config.retryDelay || 1);
+    });
+    return backoff.then(function () {
+        return axiosInstance(config);
+    });
+    
 })
 
 export default axiosInstance

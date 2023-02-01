@@ -65,7 +65,7 @@ export default function UseRoute(props: any) {
     if (window.localStorage.getItem("token")) {
       // 登录情况下获取用户信息  刷新也会重新进行获取
       request.post("/getUserInfo").then((res) => {
-        if (res.data.success) {
+        if (res?.data.success) {
           localStorage.setItem('avatar', JSON.stringify(res.data.data))
         }
       });
