@@ -94,6 +94,7 @@
     "tsd": "^0.22.0",
     "typescript": "^4.5.4",
     "ui-hippo": "1.0.4",
+    "ui-hippo-test": "^0.2.4",
     "web-vitals": "^2.1.3",
     "webpack": "^5.64.4",
     "webpack-dev-server": "^4.6.0",

@@ -14,6 +14,9 @@ import { PersistGate } from "redux-persist/lib/integration/react";
 import { persistor } from "./store/store/userInfoStore";
 import zh_CN from "antd/lib/locale-provider/zh_CN";
 import { ConfigProvider } from "antd";
+
+// 全局引入hippo-ui  css样式
+import 'ui-hippo-test/dist/hippoUI.css'
 // import { PersistGate } from 'redux-persist/es/integration/react'
 
 // 字体

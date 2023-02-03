@@ -7,9 +7,8 @@ import PublicCard from "../components/PublicCard";
 import Archival from "@/layout/Archival";
 import { request } from "@/api/request";
 import { PublicData, PageParams } from "../type/home";
-import { Pagination, Input } from "antd";
-import Paginations from "../components/Paginations";
-// import {Paginations} from 'ui-hippo'
+import {  Input } from "antd";
+import { Paginations } from 'ui-hippo-test'
 import { navList } from "../utils/homeNav";
 import "../assets/css/homeIndex.less";
 export default function HomeIndex() {
@@ -109,7 +108,7 @@ export default function HomeIndex() {
               onChange={changePage}
               showTotal={(total) => `共 ${total} 条`}
             /> */}
-            <Paginations 
+            <Paginations
             total={publicData?.total}
             onchange={changePage}
             />
